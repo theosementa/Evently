@@ -6,12 +6,38 @@
 //
 
 import SwiftUI
+import Observation
 
 @main
 struct EventlyApp: App {
+
+    @State private var appManager: AppManager = .shared
+
+    // MARK: -
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            VStack { // TODO: TEMP
+                switch appManager.appState {
+                case .idle:
+                    EmptyView()
+                case .loading:
+                    SplachScreen(
+                        onStart: {
+
+                        }, completion: {
+                            appManager.appState = .running
+                        }
+                    )
+                case .running:
+                    Text("Remi t booooooo")
+                case .failed:
+                    Text("Failed")
+                }
+            }
+            .environment(appManager)
+            .onAppear {
+                appManager.appState = .loading
+            }
         }
-    }
-}
+    } // body
+} // struct
