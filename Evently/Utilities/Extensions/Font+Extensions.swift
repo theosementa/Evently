@@ -8,30 +8,30 @@
 import SwiftUI
 
 extension Font {
-    
+
     static let customFont: String = "Nunito"
-    
+
     struct Headline {
-        static let h3: Font = .custom(customFont + "-Bold", size: 40)
-        static let h4: Font = .custom(customFont + "-Bold", size: 32)
-        static let h5: Font = .custom(customFont + "-Bold", size: 24)
+        static let head3: Font = .custom(customFont + "-Bold", size: 40)
+        static let head4: Font = .custom(customFont + "-Bold", size: 32)
+        static let head5: Font = .custom(customFont + "-Bold", size: 24)
     }
-    
+
     struct Content {
         static let xlBold: Font = .custom(customFont + "-Bold", size: 20)
         static let xlSemiBold: Font = .custom(customFont + "-SemiBold", size: 20)
-        
+
         static let largeBold: Font = .custom(customFont + "-Bold", size: 18)
         static let largeSemiBold: Font = .custom(customFont + "-SemiBold", size: 18)
         static let largeMedium: Font = .custom(customFont + "-Medium", size: 18)
-        
+
         static let mediumBold: Font = .custom(customFont + "-Bold", size: 16)
         static let mediumSemiBold: Font = .custom(customFont + "-SemiBold", size: 16)
         static let mediumMedium: Font = .custom(customFont + "-Medium", size: 16)
-        
+
         static let smallSemiBold: Font = .custom(customFont + "-SemiBold", size: 14)
     }
-    
+
 }
 
 // MARK: - Preview
@@ -39,13 +39,13 @@ extension Font {
     VStack(spacing: 48) {
         VStack(alignment: .leading, spacing: 16) {
             Text("Headline 3")
-                .font(.Headline.h3)
+                .font(.Headline.head3)
             Text("Headline 4")
-                .font(.Headline.h4)
+                .font(.Headline.head4)
             Text("Headline 5")
-                .font(.Headline.h5)
+                .font(.Headline.head5)
         }
-        
+
         VStack(alignment: .leading, spacing: 32) {
             VStack(alignment: .leading, spacing: 16) {
                 Text("Content - XL - Bold")
@@ -53,7 +53,7 @@ extension Font {
                 Text("Content - XL - SemiBold")
                     .font(.Content.xlSemiBold)
             }
-            
+
             VStack(alignment: .leading, spacing: 16) {
                 Text("Content - L - Bold")
                     .font(.Content.largeBold)
@@ -62,7 +62,7 @@ extension Font {
                 Text("Content - L - Medium")
                     .font(.Content.largeMedium)
             }
-            
+
             VStack(alignment: .leading, spacing: 16) {
                 Text("Content - M - Bold")
                     .font(.Content.mediumBold)
@@ -71,7 +71,7 @@ extension Font {
                 Text("Content - M - Medium")
                     .font(.Content.mediumMedium)
             }
-            
+
             VStack(alignment: .leading, spacing: 16) {
                 Text("Content - S - SemiBold")
                     .font(.Content.smallSemiBold)
