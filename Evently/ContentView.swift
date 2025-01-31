@@ -14,7 +14,7 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
-                .font(.custom("Nunito-Bold", size: 34))
+                .font(.Headline.h3)
         }
         .padding()
     }
