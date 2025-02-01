@@ -29,7 +29,7 @@ struct EventlyApp: App {
                         }
                     )
                 case .running:
-                    Text("Remi t booooooo")
+                    ContentView()
                 case .failed:
                     Text("Failed")
                 }

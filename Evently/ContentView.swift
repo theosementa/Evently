@@ -20,9 +20,20 @@ struct ContentView: View {
                 .font(.Headline.head3)
         }
         .padding()
+        .background(
+            LinearGradient(
+                colors: [
+                    Color(hex: "FF5AAC"),
+                    Color(hex: "FF5AAC").adjustLightness(percent: -10)
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        )
     }
 }
 
 #Preview {
     ContentView()
+        .environment(AppManager())
 }
