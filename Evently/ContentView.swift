@@ -21,14 +21,7 @@ struct ContentView: View {
         }
         .padding()
         .background(
-            LinearGradient(
-                colors: [
-                    Color(hex: "FF5AAC"),
-                    Color(hex: "FF5AAC").adjustLightness(percent: -10)
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
+            LinearGradient(colorHex: "FF5AAC")
         )
     }
 }
