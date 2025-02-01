@@ -7,34 +7,40 @@
 
 import SwiftUI
 import Observation
+import NavigationKit
 
 @main
 struct EventlyApp: App {
+
+    @StateObject private var router = Router<NavigationDestination>(isPresented: .constant(.home))
 
     @State private var appManager: AppManager = .shared
 
     // MARK: -
     var body: some Scene {
         WindowGroup {
-            VStack { // TODO: TEMP
-                switch appManager.appState {
-                case .idle:
-                    EmptyView()
-                case .loading:
-                    SplachScreen(
-                        onStart: {
+            RoutedNavigationStack(router: router) {
+                Group {
+                    switch appManager.appState {
+                    case .idle:
+                        EmptyView()
+                    case .loading:
+                        SplachScreen(
+                            onStart: {
 
-                        }, completion: {
-                            appManager.appState = .running
-                        }
-                    )
-                case .running:
-                    ContentView()
-                case .failed:
-                    Text("Failed")
+                            }, completion: {
+                                appManager.appState = .running
+                            }
+                        )
+                    case .running:
+                        ContentView()
+                    case .failed:
+                        Text("Failed")
+                    }
                 }
             }
             .environment(appManager)
+            .environmentObject(router)
             .onAppear {
                 appManager.appState = .loading
             }

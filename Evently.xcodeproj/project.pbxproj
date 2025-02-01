@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D96B00F62D4E2936002E88F4 /* NavigationKit in Frameworks */ = {isa = PBXBuildFile; productRef = D96B00F52D4E2936002E88F4 /* NavigationKit */; };
 		D9B1CC0E2D4D1C1B00D40513 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D9B1CC0D2D4D1C1B00D40513 /* Lottie */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9B1CC0E2D4D1C1B00D40513 /* Lottie in Frameworks */,
+				D96B00F62D4E2936002E88F4 /* NavigationKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +87,7 @@
 			name = Evently;
 			packageProductDependencies = (
 				D9B1CC0D2D4D1C1B00D40513 /* Lottie */,
+				D96B00F52D4E2936002E88F4 /* NavigationKit */,
 			);
 			productName = Evently;
 			productReference = D9819C342D496BE800154969 /* Evently.app */;
@@ -116,6 +119,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D9B1CC0C2D4D1C1B00D40513 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				D96B00F42D4E2936002E88F4 /* XCRemoteSwiftPackageReference "NavigationKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D9819C352D496BE800154969 /* Products */;
@@ -383,6 +387,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D96B00F42D4E2936002E88F4 /* XCRemoteSwiftPackageReference "NavigationKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/theosementa/NavigationKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		D9B1CC0C2D4D1C1B00D40513 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -394,6 +406,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D96B00F52D4E2936002E88F4 /* NavigationKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D96B00F42D4E2936002E88F4 /* XCRemoteSwiftPackageReference "NavigationKit" */;
+			productName = NavigationKit;
+		};
 		D9B1CC0D2D4D1C1B00D40513 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D9B1CC0C2D4D1C1B00D40513 /* XCRemoteSwiftPackageReference "lottie-ios" */;

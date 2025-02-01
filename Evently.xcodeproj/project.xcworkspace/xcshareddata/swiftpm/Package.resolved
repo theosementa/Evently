@@ -1,5 +1,5 @@
 {
-  "originHash" : "0a79f2009ea5ba6a9e7c2c6471d05458a7ac9a981d2fd7ab914f1eb741af1ea1",
+  "originHash" : "2ddbc5dabb6d4ec9925cf540a0f81551d411083913bac7d4ed310dc62911de03",
   "pins" : [
     {
       "identity" : "lottie-ios",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "769b88d83a42ca8d5572b020c96f47e3690b3796",
         "version" : "4.4.3"
+      }
+    },
+    {
+      "identity" : "navigationkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/theosementa/NavigationKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "42108930c14cfe79d2519120c6c36daa9f7df011"
       }
     }
   ],
