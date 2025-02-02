@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D91499852D4FE91D004DBE15 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D91499842D4FE91D004DBE15 /* GoogleSignIn */; };
+		D91499872D4FE91D004DBE15 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D91499862D4FE91D004DBE15 /* GoogleSignInSwift */; };
 		D96B00F62D4E2936002E88F4 /* NavigationKit in Frameworks */ = {isa = PBXBuildFile; productRef = D96B00F52D4E2936002E88F4 /* NavigationKit */; };
 		D9B1CC0E2D4D1C1B00D40513 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D9B1CC0D2D4D1C1B00D40513 /* Lottie */; };
 /* End PBXBuildFile section */
@@ -43,6 +45,8 @@
 			files = (
 				D9B1CC0E2D4D1C1B00D40513 /* Lottie in Frameworks */,
 				D96B00F62D4E2936002E88F4 /* NavigationKit in Frameworks */,
+				D91499852D4FE91D004DBE15 /* GoogleSignIn in Frameworks */,
+				D91499872D4FE91D004DBE15 /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +92,8 @@
 			packageProductDependencies = (
 				D9B1CC0D2D4D1C1B00D40513 /* Lottie */,
 				D96B00F52D4E2936002E88F4 /* NavigationKit */,
+				D91499842D4FE91D004DBE15 /* GoogleSignIn */,
+				D91499862D4FE91D004DBE15 /* GoogleSignInSwift */,
 			);
 			productName = Evently;
 			productReference = D9819C342D496BE800154969 /* Evently.app */;
@@ -120,6 +126,7 @@
 			packageReferences = (
 				D9B1CC0C2D4D1C1B00D40513 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				D96B00F42D4E2936002E88F4 /* XCRemoteSwiftPackageReference "NavigationKit" */,
+				D91499832D4FE91D004DBE15 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D9819C352D496BE800154969 /* Products */;
@@ -299,6 +306,7 @@
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Evently/Evently.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20250129;
 				DEVELOPMENT_ASSET_PATHS = "\"Evently/Preview Content\"";
@@ -338,6 +346,7 @@
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Evently/Evently.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20250129;
 				DEVELOPMENT_ASSET_PATHS = "\"Evently/Preview Content\"";
@@ -395,6 +404,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D91499832D4FE91D004DBE15 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 		D96B00F42D4E2936002E88F4 /* XCRemoteSwiftPackageReference "NavigationKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/theosementa/NavigationKit";
@@ -414,6 +431,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D91499842D4FE91D004DBE15 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D91499832D4FE91D004DBE15 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		D91499862D4FE91D004DBE15 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D91499832D4FE91D004DBE15 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		D96B00F52D4E2936002E88F4 /* NavigationKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D96B00F42D4E2936002E88F4 /* XCRemoteSwiftPackageReference "NavigationKit" */;

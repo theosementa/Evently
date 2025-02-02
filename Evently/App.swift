@@ -15,6 +15,7 @@ struct EventlyApp: App {
     @StateObject private var router = Router<NavigationDestination>(isPresented: .constant(.home))
 
     @State private var appManager: AppManager = .shared
+    @State private var bannerManager: BannerManager = .shared
 
     // MARK: -
     var body: some Scene {
@@ -39,6 +40,8 @@ struct EventlyApp: App {
                     }
                 }
             }
+            .animation(.smooth, value: appManager.appState)
+            .bannerView(banner: $bannerManager.banner)
             .environment(appManager)
             .environmentObject(router)
             .onAppear {
