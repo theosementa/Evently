@@ -34,8 +34,8 @@ struct EventlyApp: App {
                         )
                     case .running:
                         ContentView()
-                    case .failed:
-                        Text("Failed")
+                    case .needToLogin:
+                        Text("needToLogin")
                     }
                 }
             }

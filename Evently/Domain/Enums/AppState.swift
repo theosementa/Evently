@@ -11,5 +11,5 @@ enum AppState {
     case idle
     case loading
     case running
-    case failed
+    case needToLogin
 }
