@@ -8,19 +8,32 @@
 import Foundation
 
 struct UserService {
-    
-    static func register(body: UserRegisterBody) async throws -> UserLoginResponse {
+
+    static func register(body: UserModel) async throws -> UserModel {
         return try await NetworkService.shared.sendRequest(
-            apiBuilder: AuthAPIRequester.register(body: body),
-            responseModel: UserLoginResponse.self
+            apiBuilder: UserAPIRequester.register(body: body),
+            responseModel: UserModel.self
         )
     }
-    
-    static func login(email: String, password: String) async throws -> UserLoginResponse {
+
+    static func login(email: String, password: String) async throws -> UserModel {
         return try await NetworkService.shared.sendRequest(
-            apiBuilder: AuthAPIRequester.login(email: email, pasword: password),
-            responseModel: UserLoginResponse.self
+            apiBuilder: UserAPIRequester.login(email: email, pasword: password),
+            responseModel: UserModel.self
         )
     }
-    
+
+    static func update(body: UserModel) async throws -> UserModel {
+        return try await NetworkService.shared.sendRequest(
+            apiBuilder: UserAPIRequester.update(body: body),
+            responseModel: UserModel.self
+        )
+    }
+
+    static func delete() async throws {
+        try await NetworkService.shared.sendRequest(
+            apiBuilder: UserAPIRequester.delete
+        )
+    }
+
 }
