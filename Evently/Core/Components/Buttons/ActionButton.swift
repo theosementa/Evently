@@ -90,7 +90,7 @@ extension ActionButton {
             icon: .calendar,
             title: "Mes événements"
         ) { }
-        
+
         ActionButton(
             style: .default,
             icon: .calendar,
@@ -103,7 +103,7 @@ extension ActionButton {
             icon: .calendar,
             title: "Mes événements"
         ) { }
-        
+
         ActionButton(
             style: .reversed,
             icon: .calendar,
