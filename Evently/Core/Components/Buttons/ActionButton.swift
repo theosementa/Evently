@@ -17,8 +17,9 @@ struct ActionButton: View {
 
     // Builder
     var style: ActionButtonStyle
-    var icon: ImageResource
+    var icon: ImageResource?
     var title: String
+    var isFill: Bool = false
     var action: () -> Void
 
     // MARK: -
@@ -27,13 +28,16 @@ struct ActionButton: View {
             HStack(spacing: 8) {
                 if style == .reversed {
                     Text(title)
+                        .frame(maxWidth: isFill ? .infinity : nil, alignment: .leading)
                 }
-                
-                Image(icon)
-                    .resizable()
-                    .renderingMode(.template)
-                    .frame(width: 20, height: 20)
-                
+
+                if let icon {
+                    Image(icon)
+                        .resizable()
+                        .renderingMode(.template)
+                        .frame(width: 20, height: 20)
+                }
+
                 if style != .reversed {
                     Text(title)
                 }
@@ -42,6 +46,7 @@ struct ActionButton: View {
             .foregroundStyle(foregroundColor)
             .padding(.horizontal)
             .padding(.vertical, 14)
+            .frame(maxWidth: isFill ? .infinity : nil)
             .background {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(backgroundColor)
@@ -87,15 +92,35 @@ extension ActionButton {
         ) { }
         
         ActionButton(
+            style: .default,
+            icon: .calendar,
+            title: "Mes événements",
+            isFill: true
+        ) { }
+
+        ActionButton(
             style: .reversed,
             icon: .calendar,
             title: "Mes événements"
+        ) { }
+        
+        ActionButton(
+            style: .reversed,
+            icon: .calendar,
+            title: "Mes événements",
+            isFill: true
         ) { }
 
         ActionButton(
             style: .secondary,
             icon: .calendar,
             title: "Mes événements"
+        ) { }
+
+        ActionButton(
+            style: .default,
+            title: "Terminer",
+            isFill: true
         ) { }
     }
     .padding()
