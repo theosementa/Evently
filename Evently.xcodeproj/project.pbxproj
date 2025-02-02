@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D91499852D4FE91D004DBE15 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D91499842D4FE91D004DBE15 /* GoogleSignIn */; };
 		D91499872D4FE91D004DBE15 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D91499862D4FE91D004DBE15 /* GoogleSignInSwift */; };
+		D91499972D4FEB57004DBE15 /* KeychainKit in Frameworks */ = {isa = PBXBuildFile; productRef = D91499962D4FEB57004DBE15 /* KeychainKit */; };
 		D96B00F62D4E2936002E88F4 /* NavigationKit in Frameworks */ = {isa = PBXBuildFile; productRef = D96B00F52D4E2936002E88F4 /* NavigationKit */; };
 		D9B1CC0E2D4D1C1B00D40513 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D9B1CC0D2D4D1C1B00D40513 /* Lottie */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 				D9B1CC0E2D4D1C1B00D40513 /* Lottie in Frameworks */,
 				D96B00F62D4E2936002E88F4 /* NavigationKit in Frameworks */,
 				D91499852D4FE91D004DBE15 /* GoogleSignIn in Frameworks */,
+				D91499972D4FEB57004DBE15 /* KeychainKit in Frameworks */,
 				D91499872D4FE91D004DBE15 /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +96,7 @@
 				D96B00F52D4E2936002E88F4 /* NavigationKit */,
 				D91499842D4FE91D004DBE15 /* GoogleSignIn */,
 				D91499862D4FE91D004DBE15 /* GoogleSignInSwift */,
+				D91499962D4FEB57004DBE15 /* KeychainKit */,
 			);
 			productName = Evently;
 			productReference = D9819C342D496BE800154969 /* Evently.app */;
@@ -127,6 +130,7 @@
 				D9B1CC0C2D4D1C1B00D40513 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				D96B00F42D4E2936002E88F4 /* XCRemoteSwiftPackageReference "NavigationKit" */,
 				D91499832D4FE91D004DBE15 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				D91499952D4FEB57004DBE15 /* XCRemoteSwiftPackageReference "KeychainKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D9819C352D496BE800154969 /* Products */;
@@ -412,6 +416,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		D91499952D4FEB57004DBE15 /* XCRemoteSwiftPackageReference "KeychainKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/theosementa/KeychainKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 		D96B00F42D4E2936002E88F4 /* XCRemoteSwiftPackageReference "NavigationKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/theosementa/NavigationKit";
@@ -440,6 +452,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D91499832D4FE91D004DBE15 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		D91499962D4FEB57004DBE15 /* KeychainKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D91499952D4FEB57004DBE15 /* XCRemoteSwiftPackageReference "KeychainKit" */;
+			productName = KeychainKit;
 		};
 		D96B00F52D4E2936002E88F4 /* NavigationKit */ = {
 			isa = XCSwiftPackageProductDependency;

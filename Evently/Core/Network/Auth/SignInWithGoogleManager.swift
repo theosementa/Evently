@@ -32,7 +32,9 @@ extension SignInWithGoogleManager {
 
     @MainActor
     func signIn() {
-       guard let presentingViewController = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.keyWindow?.rootViewController else { return }
+        guard let presentingViewController = (
+            UIApplication.shared.connectedScenes.first as? UIWindowScene
+        )?.keyWindow?.rootViewController else { return }
 
         GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { user, error in
             if let error {

@@ -22,9 +22,13 @@ class SignInWithAppleManager: NSObject {
     }
 }
 
-extension SignInWithAppleManager: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+extension SignInWithAppleManager: ASAuthorizationControllerDelegate,
+                                  ASAuthorizationControllerPresentationContextProviding {
 
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    func authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithAuthorization authorization: ASAuthorization
+    ) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
 
             guard let appleIDToken = appleIDCredential.identityToken else { return }

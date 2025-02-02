@@ -31,7 +31,11 @@ extension NetworkService {
         }
     }
 
-    private func sendRequest<T: Decodable>(apiBuilder: APIRequestBuilder, responseModel: T.Type, retryCount: Int) async throws -> T {
+    private func sendRequest<T: Decodable>(
+        apiBuilder: APIRequestBuilder,
+        responseModel: T.Type,
+        retryCount: Int
+    ) async throws -> T {
         do {
             guard let urlRequest = apiBuilder.urlRequest else {
                 throw NetworkError.badRequest
@@ -50,7 +54,11 @@ extension NetworkService {
                 if self.retryCount < maxRetries {
                     self.retryCount += 1
                     try await TokenManager.shared.refreshToken()
-                    return try await self.sendRequest(apiBuilder: apiBuilder, responseModel: responseModel, retryCount: self.retryCount)
+                    return try await self.sendRequest(
+                        apiBuilder: apiBuilder,
+                        responseModel: responseModel,
+                        retryCount: self.retryCount
+                    )
                 } else {
                     self.retryCount = 0
                     throw NetworkError.refreshTokenFailed
