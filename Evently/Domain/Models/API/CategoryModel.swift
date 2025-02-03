@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUICore
 
-struct CategoryModel: Codable {
+struct CategoryModel: Codable, Identifiable {
     var id: Int?
     var rawName: String?
     var rawIcon: String?
