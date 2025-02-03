@@ -15,6 +15,26 @@ struct EventModel: Codable, Identifiable {
     var folderId: Int?
     var recurrencePattern: String?
     var interval: Int?
-    var targetDate: String?
+    var rawTargetDate: String?
     var categoryID: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case description
+        case isRecurring
+        case folderId
+        case recurrencePattern
+        case interval
+        case rawTargetDate = "targetDate"
+        case categoryID
+    }
+}
+
+extension EventModel {
+    
+    var targetDate: Date {
+        return rawTargetDate?.toDate() ?? .now
+    }
+    
 }
