@@ -11,35 +11,35 @@ struct CategoryService {
     
     static func fetchAll() async throws -> [CategoryModel] {
         return try await NetworkService.shared.sendRequest(
-            apiBuilder: CategoryAPIRequester.fetchAll,
+            apiBuilder: CategoryAPIRequester.fetchCategories,
             responseModel: [CategoryModel].self
         )
     }
     
     static func fetchAllDefaults() async throws -> [CategoryModel] {
         return try await NetworkService.shared.sendRequest(
-            apiBuilder: CategoryAPIRequester.fetchAllDefaults,
+            apiBuilder: CategoryAPIRequester.fetchCategoriesDefaults,
             responseModel: [CategoryModel].self
         )
     }
     
     static func create(category: CategoryModel) async throws -> CategoryModel {
         return try await NetworkService.shared.sendRequest(
-            apiBuilder: CategoryAPIRequester.create(body: category),
+            apiBuilder: CategoryAPIRequester.createCategory(body: category),
             responseModel: CategoryModel.self
         )
     }
     
     static func update(id: Int, category: CategoryModel) async throws -> CategoryModel {
         return try await NetworkService.shared.sendRequest(
-            apiBuilder: CategoryAPIRequester.update(id: id, body: category),
+            apiBuilder: CategoryAPIRequester.updateCategory(id: id, body: category),
             responseModel: CategoryModel.self
         )
     }
     
     static func delete(id: Int) async throws {
         try await NetworkService.shared.sendRequest(
-            apiBuilder: CategoryAPIRequester.delete(id: id)
+            apiBuilder: CategoryAPIRequester.deleteCategory(id: id)
         )
     }
     

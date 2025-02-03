@@ -8,36 +8,36 @@
 import Foundation
 
 enum CategoryAPIRequester: APIRequestBuilder {
-    case fetchAll
-    case create(body: CategoryModel)
-    case fetchAllDefaults
-    case update(id: Int, body: CategoryModel)
-    case delete(id: Int)
+    case fetchCategories
+    case createCategory(body: CategoryModel)
+    case fetchCategoriesDefaults
+    case updateCategory(id: Int, body: CategoryModel)
+    case deleteCategory(id: Int)
 }
 
 extension CategoryAPIRequester {
     var path: String {
         switch self {
-        case .fetchAll:
+        case .fetchCategories:
             return NetworkPath.Category.base
-        case .create:
+        case .createCategory:
             return NetworkPath.Category.base
-        case .fetchAllDefaults:
+        case .fetchCategoriesDefaults:
             return NetworkPath.Category.default
-        case .update(let id, _):
+        case .updateCategory(let id, _):
             return NetworkPath.Category.categoryWithId(id: id)
-        case .delete(let id):
+        case .deleteCategory(let id):
             return NetworkPath.Category.categoryWithId(id: id)
         }
     }
     
     var httpMethod: HTTPMethod {
         switch self {
-        case .fetchAll:             return .GET
-        case .create:               return .POST
-        case .fetchAllDefaults:     return .GET
-        case .update:               return .PUT
-        case .delete:               return .DELETE
+        case .fetchCategories:          return .GET
+        case .createCategory:           return .POST
+        case .fetchCategoriesDefaults:  return .GET
+        case .updateCategory:           return .PUT
+        case .deleteCategory:           return .DELETE
         }
     }
     
@@ -51,9 +51,9 @@ extension CategoryAPIRequester {
     
     var body: Data? {
         switch self {
-        case .create(let body):
+        case .createCategory(let body):
             return try? JSONEncoder().encode(body)
-        case .update(_, body: let body):
+        case .updateCategory(_, body: let body):
             return try? JSONEncoder().encode(body)
         default:
             return nil
