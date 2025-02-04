@@ -9,11 +9,20 @@
 // https://github.com/google/GoogleSignIn-iOS/issues/378
 import SwiftUI
 import GoogleSignIn
+import NavigationKit
 
 class SignInWithGoogleManager: ObservableObject {
 
+    @Published var givenName: String = ""
+    @Published var familyName: String = ""
     @Published var isLoggedIn: Bool = false
     @Published var errorMessage: String = ""
+
+    var router: Router<NavigationDestination>
+
+    init(router: Router<NavigationDestination>) {
+        self.router = router
+    }
 
 }
 
@@ -22,8 +31,13 @@ extension SignInWithGoogleManager {
     func getUserInfo() async {
         if GIDSignIn.sharedInstance.currentUser != nil {
             let user = GIDSignIn.sharedInstance.currentUser
-            guard user != nil else { return }
+            guard let user else { return }
 
+            let givenName = user.profile?.givenName
+            let familyName = user.profile?.familyName
+
+            self.givenName = givenName ?? ""
+            self.familyName = familyName ?? ""
             self.isLoggedIn = true
         } else {
             self.isLoggedIn = false
@@ -48,15 +62,32 @@ extension SignInWithGoogleManager {
             Task {
                 await self.getUserInfo()
 
-                let user = try await NetworkService.shared.sendRequest(
+                let authResponse = try await NetworkService.shared.sendRequest(
                     apiBuilder: AuthAPIRequester.google(body: .init(identityToken: googleToken.tokenString)),
-                    responseModel: UserModel.self
+                    responseModel: AuthResponse.self
                 )
 
-                if let token = user.token, let refreshToken = user.refreshToken {
-                    TokenManager.shared.setTokenAndRefreshToken(token: token, refreshToken: refreshToken)
-                    UserStore.shared.currentUser = user
-                    AppManager.shared.appState = .running
+                // If user need step two
+                if let stepTwo = authResponse.needStepTwo, stepTwo,
+                   let finalUser = authResponse.user, let token = finalUser.token {
+                    let viewModel: LoginViewModel = .shared
+
+                    viewModel.firstName = self.givenName
+                    viewModel.lastName = self.familyName
+
+                    TokenManager.shared.setToken(token: token)
+
+                    await MainActor.run {
+                        self.router.pushStepTwo()
+                    }
+                } else {
+                    if let finalUser = authResponse.user,
+                       let token = finalUser.token,
+                       let refreshToken = finalUser.refreshToken {
+                        TokenManager.shared.setTokenAndRefreshToken(token: token, refreshToken: refreshToken)
+                        AppManager.shared.appState = .running
+                        UserStore.shared.currentUser = finalUser
+                    }
                 }
             }
         }

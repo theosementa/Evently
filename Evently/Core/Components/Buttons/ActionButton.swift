@@ -11,6 +11,8 @@ enum ActionButtonStyle {
     case `default`
     case reversed
     case secondary
+    case secondaryReversed
+    case google
 }
 
 struct ActionButton: View {
@@ -26,7 +28,7 @@ struct ActionButton: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 8) {
-                if style == .reversed {
+                if style == .reversed || style == .google || style == .secondaryReversed {
                     Text(title)
                         .frame(maxWidth: isFill ? .infinity : nil, alignment: .leading)
                 }
@@ -38,7 +40,7 @@ struct ActionButton: View {
                         .frame(width: 20, height: 20)
                 }
 
-                if style != .reversed {
+                if style != .reversed && style != .google && style != .secondaryReversed {
                     Text(title)
                 }
             }
@@ -50,7 +52,11 @@ struct ActionButton: View {
             .background {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(backgroundColor)
-                    .stroke(style == .secondary ? Color.white0 : Color.clear, lineWidth: 2)
+                    .stroke(
+                        (style == .secondary || style == .secondaryReversed)
+                        ? Color.white0
+                        : Color.clear, lineWidth: 2
+                    )
             }
         }
     } // body
@@ -66,6 +72,10 @@ extension ActionButton {
             return Color.black
         case .secondary:
             return Color.white
+        case .google:
+            return Color.white
+        case .secondaryReversed:
+            return Color.white
         }
     }
 
@@ -76,6 +86,10 @@ extension ActionButton {
         case .reversed:
             return Color.white
         case .secondary:
+            return Color.clear
+        case .google:
+            return Color(hex: "DB4A39")
+        case .secondaryReversed:
             return Color.clear
         }
     }

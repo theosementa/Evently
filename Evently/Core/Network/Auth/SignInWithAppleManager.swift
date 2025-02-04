@@ -47,7 +47,8 @@ extension SignInWithAppleManager: ASAuthorizationControllerDelegate,
                     responseModel: AuthResponse.self
                 )
 
-                if let needStepTwo = authResponse.needStepTwo, needStepTwo, let finalUser = authResponse.user, let token = finalUser.token {
+                if let needStepTwo = authResponse.needStepTwo, needStepTwo,
+                   let finalUser = authResponse.user, let token = finalUser.token {
                     let viewModel: LoginViewModel = .shared
 
                     if let fullName = appleIDCredential.fullName {
