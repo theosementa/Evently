@@ -11,7 +11,7 @@ import Foundation
 final class EventStore {
     static let shared = EventStore()
     
-    @Published var events: [EventModel] = []
+    var events: [EventModel] = []
 }
 
 extension EventStore {

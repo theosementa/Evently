@@ -11,8 +11,8 @@ import Foundation
 final class CategoryStore {
     static let shared = CategoryStore()
     
-    @Published var categories: [CategoryModel] = []
-    @Published var defaultCategories: [CategoryModel] = []
+    var categories: [CategoryModel] = []
+    var defaultCategories: [CategoryModel] = []
     
     var allCategories: [CategoryModel] {
         return defaultCategories + categories
