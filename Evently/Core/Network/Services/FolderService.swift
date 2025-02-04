@@ -46,9 +46,10 @@ extension FolderService {
         )
     }
     
-    static func shareFolder(id: Int) async throws {
-        try await NetworkService.shared.sendRequest(
-            apiBuilder: FolderAPIRequester.shareFolder(id: id)
+    static func shareFolder(id: Int) async throws -> InviteToken {
+        return try await NetworkService.shared.sendRequest(
+            apiBuilder: FolderAPIRequester.shareFolder(id: id),
+            responseModel: InviteToken.self
         )
     }
     
