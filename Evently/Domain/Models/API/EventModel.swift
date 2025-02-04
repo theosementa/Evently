@@ -17,6 +17,7 @@ struct EventModel: Codable, Identifiable {
     var interval: Int?
     var rawTargetDate: String?
     var categoryID: Int?
+    var folderID: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -28,6 +29,7 @@ struct EventModel: Codable, Identifiable {
         case interval
         case rawTargetDate = "targetDate"
         case categoryID
+        case folderID
     }
 }
 
@@ -35,6 +37,14 @@ extension EventModel {
 
     var targetDate: Date {
         return rawTargetDate?.toDate() ?? .now
+    }
+    
+    var category: CategoryModel? {
+        return CategoryStore.shared.allCategories.first(where: { $0.id == self.categoryID })
+    }
+    
+    var folder: FolderModel? {
+        return FolderStore.shared.folders.first(where: { $0.id == self.folderID })
     }
 
 }
