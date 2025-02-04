@@ -38,11 +38,11 @@ extension EventModel {
     var targetDate: Date {
         return rawTargetDate?.toDate() ?? .now
     }
-    
+
     var category: CategoryModel? {
         return CategoryStore.shared.allCategories.first(where: { $0.id == self.categoryID })
     }
-    
+
     var folder: FolderModel? {
         return FolderStore.shared.folders.first(where: { $0.id == self.folderID })
     }

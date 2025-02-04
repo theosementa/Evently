@@ -16,6 +16,7 @@ struct UserModel: Codable, Identifiable {
     var password: String?
     var token: String?
     var refreshToken: String?
+    var isCompleted: Bool?
 
     /// Default
     init(
@@ -25,7 +26,8 @@ struct UserModel: Codable, Identifiable {
         userName: String? = nil,
         email: String? = nil,
         token: String? = nil,
-        refreshToken: String? = nil
+        refreshToken: String? = nil,
+        isCompleted: Bool? = nil
     ) {
         self.id = id
         self.firstName = firstName
@@ -34,6 +36,7 @@ struct UserModel: Codable, Identifiable {
         self.email = email
         self.token = token
         self.refreshToken = refreshToken
+        self.isCompleted = isCompleted
     }
 
     /// Register body

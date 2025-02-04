@@ -9,12 +9,19 @@ import NavigationKit
 import SwiftUI
 
 enum NavigationDestination: RoutedDestination, Identifiable, Hashable {
+
+    case stepTwo
+
     case home
     case detailFitted
 //    case detail(user: UserModel)
 
     func body(route: Route) -> some View {
         switch self {
+
+        case .stepTwo:
+            StepTwoView()
+
         case .home:
             ContentView()
         case .detailFitted:

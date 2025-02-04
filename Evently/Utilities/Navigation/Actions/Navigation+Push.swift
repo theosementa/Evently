@@ -13,4 +13,7 @@ extension Router where Destination == NavigationDestination {
         navigateTo(.detailFitted)
     }
 
+    func pushStepTwo() {
+        navigateTo(.stepTwo)
+    }
 }

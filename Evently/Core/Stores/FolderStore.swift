@@ -10,12 +10,12 @@ import Foundation
 @Observable
 final class FolderStore {
     static let shared = FolderStore()
-    
+
     var folders: [FolderModel] = []
 }
 
 extension FolderStore {
-    
+
     @MainActor
     func fetchFolders() async {
         do {
@@ -24,7 +24,7 @@ extension FolderStore {
                 .sorted { $0.name < $1.name }
         } catch { NetworkService.handleError(error: error) }
     }
-    
+
     @MainActor
     func createFolder(folder: FolderModel) async {
         do {
@@ -33,45 +33,45 @@ extension FolderStore {
             self.folders.sort { $0.name < $1.name }
         } catch { NetworkService.handleError(error: error) }
     }
-    
+
     @MainActor
     func updateFolder(id: Int, folder: FolderModel) async {
         do {
             let updatedFolder = try await FolderService.updateFolder(id: id, folder: folder)
-            
+
             if let index = self.folders.firstIndex(where: { $0.id == id }) {
                 self.folders[index] = folder
                 self.folders.sort { $0.name < $1.name }
             }
         } catch { NetworkService.handleError(error: error) }
     }
-    
+
     @MainActor
     func deleteFolder(id: Int) async {
         do {
             try await FolderService.deleteFolder(id: id)
-            
+
             if let index = self.folders.firstIndex(where: { $0.id == id }) {
                 self.folders.remove(at: index)
             }
         } catch { NetworkService.handleError(error: error) }
     }
-    
+
 }
 
 extension FolderStore {
-    
+
     @MainActor
     func leaveFolder(id: Int) async {
         do {
             try await FolderService.leaveFolder(id: id)
-            
+
             if let index = self.folders.firstIndex(where: { $0.id == id }) {
                 self.folders.remove(at: index)
             }
         } catch { NetworkService.handleError(error: error) }
     }
-    
+
     @MainActor
     func shareFolder(id: Int) async -> InviteToken? {
         do {
@@ -81,7 +81,7 @@ extension FolderStore {
             return nil
         }
     }
-    
+
     @MainActor
     func joinFolder(inviteToken: String) async {
         do {
@@ -91,5 +91,5 @@ extension FolderStore {
             NetworkService.handleError(error: error)
         }
     }
-    
+
 }

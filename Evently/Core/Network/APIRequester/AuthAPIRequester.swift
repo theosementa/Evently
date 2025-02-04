@@ -11,6 +11,7 @@ enum AuthAPIRequester: APIRequestBuilder {
     case apple(body: AuthBody)
     case google(body: AuthBody)
     case socket(body: AuthBody)
+    case stepTwo(body: StepTwoBody)
 }
 
 extension AuthAPIRequester {
@@ -22,6 +23,8 @@ extension AuthAPIRequester {
             return NetworkPath.Auth.google
         case .socket:
             return NetworkPath.Auth.socket
+        case .stepTwo:
+            return NetworkPath.Auth.stepTwo
         }
     }
 
@@ -37,18 +40,16 @@ extension AuthAPIRequester {
         switch self {
         case .apple, .google:
             return false
-        case .socket:
+        case .socket, .stepTwo:
             return true
         }
     }
 
     var body: Data? {
         switch self {
-        case .apple(let body):
+        case .apple(let body), .google(let body), .socket(let body):
             return try? JSONEncoder().encode(body)
-        case .google(let body):
-            return try? JSONEncoder().encode(body)
-        case .socket(let body):
+        case .stepTwo(let body):
             return try? JSONEncoder().encode(body)
         }
     }
