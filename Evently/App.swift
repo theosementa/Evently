@@ -12,8 +12,8 @@ import NavigationKit
 @main
 struct EventlyApp: App {
 
-    @StateObject private var router = Router<NavigationDestination>(isPresented: .constant(.home))
-    @StateObject private var loginRouter = Router<NavigationDestination>(isPresented: .constant(.home))
+    @StateObject private var router = Router<NavigationDestination>()
+    @StateObject private var loginRouter = Router<NavigationDestination>()
 
     @State private var appManager: AppManager = .shared
     @State private var bannerManager: BannerManager = .shared

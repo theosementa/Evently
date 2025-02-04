@@ -428,8 +428,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/theosementa/NavigationKit";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		D9B1CC0C2D4D1C1B00D40513 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {

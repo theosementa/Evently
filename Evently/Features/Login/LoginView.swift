@@ -62,6 +62,6 @@ Dès maintenant, laisse-nous gérer l’organisation pendant que tu te concentre
 
 // MARK: - Preview
 #Preview {
-    LoginView(router: .init(isPresented: .constant(nil)))
+    LoginView(router: .init())
         .preferredColorScheme(.dark)
 }
