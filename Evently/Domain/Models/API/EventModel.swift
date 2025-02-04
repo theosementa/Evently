@@ -17,7 +17,7 @@ struct EventModel: Codable, Identifiable {
     var interval: Int?
     var rawTargetDate: String?
     var categoryID: Int?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -32,9 +32,9 @@ struct EventModel: Codable, Identifiable {
 }
 
 extension EventModel {
-    
+
     var targetDate: Date {
         return rawTargetDate?.toDate() ?? .now
     }
-    
+
 }

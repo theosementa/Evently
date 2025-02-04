@@ -30,7 +30,7 @@ extension EventAPIRequester {
             return NetworkPath.Event.share(id: id)
         }
     }
-    
+
     var httpMethod: HTTPMethod {
         switch self {
         case .fetchEvents:  return .GET
@@ -40,15 +40,15 @@ extension EventAPIRequester {
         case .shareEvent:   return .POST
         }
     }
-    
+
     var parameters: [URLQueryItem]? {
         return nil
     }
-    
+
     var isTokenNeeded: Bool {
         return true
     }
-    
+
     var body: Data? {
         switch self {
         case .createEvent(let event):

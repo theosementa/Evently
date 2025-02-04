@@ -10,17 +10,17 @@ import Foundation
 @Observable
 final class CategoryStore {
     static let shared = CategoryStore()
-    
+
     var categories: [CategoryModel] = []
     var defaultCategories: [CategoryModel] = []
-    
+
     var allCategories: [CategoryModel] {
         return defaultCategories + categories
     }
 }
 
 extension CategoryStore {
-    
+
     @MainActor
     func fetchAll() async {
         do {
@@ -29,7 +29,7 @@ extension CategoryStore {
                 .sorted { $0.name < $1.name }
         } catch { NetworkService.handleError(error: error) }
     }
-    
+
     @MainActor
     func fetchDefaults() async {
         do {
@@ -38,7 +38,7 @@ extension CategoryStore {
                 .sorted { $0.name < $1.name }
         } catch { NetworkService.handleError(error: error) }
     }
-    
+
     @MainActor
     func createCategory(category: CategoryModel) async {
         do {
@@ -47,28 +47,28 @@ extension CategoryStore {
             self.categories.sort { $0.name < $1.name }
         } catch { NetworkService.handleError(error: error) }
     }
-    
+
     @MainActor
     func updateCategory(id: Int, category: CategoryModel) async {
         do {
             let updatedCategory = try await CategoryService.update(id: id, category: category)
-            
+
             if let index = self.categories.firstIndex(where: { $0.id == id }) {
                 self.categories[index] = updatedCategory
                 self.categories.sort { $0.name < $1.name }
             }
         } catch { NetworkService.handleError(error: error) }
     }
-    
+
     @MainActor
     func deleteCategory(id: Int) async {
         do {
             try await CategoryService.delete(id: id)
-            
+
             if let index = self.categories.firstIndex(where: { $0.id == id }) {
                 self.categories.remove(at: index)
             }
         } catch { NetworkService.handleError(error: error) }
     }
-    
+
 }

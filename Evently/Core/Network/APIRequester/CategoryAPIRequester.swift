@@ -30,7 +30,7 @@ extension CategoryAPIRequester {
             return NetworkPath.Category.categoryWithId(id: id)
         }
     }
-    
+
     var httpMethod: HTTPMethod {
         switch self {
         case .fetchCategories:          return .GET
@@ -40,15 +40,15 @@ extension CategoryAPIRequester {
         case .deleteCategory:           return .DELETE
         }
     }
-    
+
     var parameters: [URLQueryItem]? {
         return nil
     }
-    
+
     var isTokenNeeded: Bool {
         return true
     }
-    
+
     var body: Data? {
         switch self {
         case .createCategory(let body):

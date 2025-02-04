@@ -13,7 +13,7 @@ struct CategoryModel: Codable, Identifiable {
     var rawName: String?
     var rawIcon: String?
     var rawColor: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case rawName = "name"
@@ -23,21 +23,21 @@ struct CategoryModel: Codable, Identifiable {
 }
 
 extension CategoryModel {
-    
+
     var name: String {
         return rawName?.localized ?? ""
     }
-    
+
     var icon: String {
         return rawIcon ?? "" // TODO: Prendre un exclamation mark
     }
-    
+
     var color: String {
         return rawColor ?? ""
     }
-    
+
     var gradient: LinearGradient {
         return LinearGradient(colorHex: color)
     }
-    
+
 }

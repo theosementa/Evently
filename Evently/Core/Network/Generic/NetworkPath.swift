@@ -46,6 +46,20 @@ struct NetworkPath {
         }
     }
 
+    struct Folder {
+        static let base: String = "/folders"
+        static func folderWithId(id: Int) -> String {
+            return "/folders/\(id)"
+        }
+        static func leave(id: Int) -> String {
+            return "/folders/leave/\(id)"
+        }
+        static func share(id: Int) -> String {
+            return "/folders/share/\(id)"
+        }
+        static let join: String = "/folders/join"
+    }
+
     struct Friend {
         static func request(username: String) -> String {
             return "/friends-request/\(username)"

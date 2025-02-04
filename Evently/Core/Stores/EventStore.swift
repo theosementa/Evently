@@ -10,12 +10,12 @@ import Foundation
 @Observable
 final class EventStore {
     static let shared = EventStore()
-    
+
     var events: [EventModel] = []
 }
 
 extension EventStore {
-    
+
     @MainActor
     func fetchEvents() async {
         do {
@@ -23,7 +23,7 @@ extension EventStore {
             self.events = events.sorted { $0.targetDate > $1.targetDate }
         } catch { NetworkService.handleError(error: error)  }
     }
-    
+
     @MainActor
     func createEvent(event: EventModel) async {
         do {
@@ -32,7 +32,7 @@ extension EventStore {
             self.events.sort { $0.targetDate > $1.targetDate }
         } catch { NetworkService.handleError(error: error)  }
     }
-    
+
     @MainActor
     func updateEvent(id: Int, event: EventModel) async {
         do {
@@ -43,7 +43,7 @@ extension EventStore {
             }
         } catch { NetworkService.handleError(error: error)  }
     }
-    
+
     @MainActor
     func deleteEvent(id: Int) async {
         do {
@@ -51,12 +51,12 @@ extension EventStore {
             self.events.removeAll { $0.id == id }
         } catch { NetworkService.handleError(error: error)  }
     }
-    
+
     @MainActor
     func shareEvent(id: Int) async {
         do {
             try await EventService.shareEvent(id: id)
         } catch { NetworkService.handleError(error: error)  }
     }
-    
+
 }

@@ -11,7 +11,7 @@ struct FolderModel: Codable, Identifiable {
     var id: Int?
     var rawName: String?
     var rawIcon: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case rawName = "name"
@@ -23,7 +23,7 @@ extension FolderModel {
     var name: String {
         return rawName ?? ""
     }
-    
+
     var icon: String {
         return rawIcon ?? "folder"
     }
