@@ -9,87 +9,99 @@ import SwiftUI
 
 enum ActionButtonStyle {
     case `default`
-    case reversed
+    case unselected
+    case small
     case secondary
-    case secondaryReversed
-    case google
 }
 
 struct ActionButton: View {
 
     // Builder
-    var style: ActionButtonStyle
-    var icon: ImageResource?
-    var title: String
-    var isFill: Bool = false
-    var action: () -> Void
+    let config: Configuration
+    let action: () async -> Void
 
     // MARK: -
     var body: some View {
-        Button(action: action) {
+        Button(action: {
+            Task {
+                await action()
+            }
+        }, label: {
             HStack(spacing: 8) {
-                if style == .reversed || style == .google || style == .secondaryReversed {
-                    Text(title)
-                        .frame(maxWidth: isFill ? .infinity : nil, alignment: .leading)
-                }
-
-                if let icon {
+                if let icon = config.icon {
                     Image(icon)
                         .resizable()
                         .renderingMode(.template)
                         .frame(width: 20, height: 20)
                 }
 
-                if style != .reversed && style != .google && style != .secondaryReversed {
-                    Text(title)
-                }
+                Text(config.title)
+                    .font(.Content.mediumBold)
             }
-            .font(.Content.mediumBold)
             .foregroundStyle(foregroundColor)
-            .padding(.horizontal)
-            .padding(.vertical, 14)
-            .frame(maxWidth: isFill ? .infinity : nil)
+            .padding(.horizontal, config.style == .small ? 12 : 16)
+            .padding(.vertical, config.style == .small ? 8 : 14)
+            .frame(maxWidth: config.isFill ? .infinity : nil, alignment: config.alignment)
             .background {
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(backgroundColor)
+                RoundedRectangle(cornerRadius: config.style == .small ? 10 : 16, style: .continuous)
+                    .fill(backgroundStyle)
                     .stroke(
-                        (style == .secondary || style == .secondaryReversed)
-                        ? Color.white0
-                        : Color.clear, lineWidth: 2
+                        config.style == .secondary ? Color.white0 : Color.clear,
+                        lineWidth: 2
                     )
             }
-        }
+        })
     } // body
 } // struct
 
+// MARK: - Configuration
+extension ActionButton {
+    struct Configuration {
+        var style: ActionButtonStyle
+        var icon: ImageResource?
+        var title: String
+        var isFill: Bool = false
+        var alignment: Alignment = .center
+        var customBackground: AnyShapeStyle?
+    }
+}
+
 extension ActionButton {
 
+    private var backgroundStyle: AnyShapeStyle {
+        if let customBackground = config.customBackground, config.style != .unselected {
+            customBackground
+        } else {
+            AnyShapeStyle(backgroundColor)
+        }
+    }
+
     var foregroundColor: Color {
-        switch style {
-        case .default:
-            return Color.black
-        case .reversed:
-            return Color.black
-        case .secondary:
+        if config.customBackground != nil, config.style != .unselected {
             return Color.white
-        case .google:
-            return Color.white
-        case .secondaryReversed:
-            return Color.white
+        } else {
+            switch config.style {
+            case .default:
+                return Color.black
+            case .unselected:
+                return Color.black500
+            case .small:
+                return Color.black
+            case .secondary:
+                return Color.white
+            }
         }
     }
 
     var backgroundColor: Color {
-        switch style {
+        switch config.style {
         case .default:
             return Color.white
-        case .reversed:
+        case .unselected:
+            return Color.clear
+        case .small:
             return Color.white
         case .secondary:
-            return Color.clear
-        case .google:
-            return Color(hex: "DB4A39")
-        case .secondaryReversed:
             return Color.clear
         }
     }
@@ -100,43 +112,38 @@ extension ActionButton {
 #Preview {
     VStack(spacing: 16) {
         ActionButton(
-            style: .default,
-            icon: .calendar,
-            title: "Mes événements"
+            config: .init(
+                style: .small,
+                icon: .sparkes,
+                title: "Mes événements"
+            )
         ) { }
 
         ActionButton(
-            style: .default,
-            icon: .calendar,
-            title: "Mes événements",
-            isFill: true
+            config: .init(
+                style: .default,
+                icon: .sparkes,
+                title: "Mes événements"
+            )
         ) { }
 
         ActionButton(
-            style: .reversed,
-            icon: .calendar,
-            title: "Mes événements"
+            config: .init(
+                style: .unselected,
+                icon: .sparkes,
+                title: "Mes événements"
+            )
         ) { }
 
         ActionButton(
-            style: .reversed,
-            icon: .calendar,
-            title: "Mes événements",
-            isFill: true
-        ) { }
-
-        ActionButton(
-            style: .secondary,
-            icon: .calendar,
-            title: "Mes événements"
-        ) { }
-
-        ActionButton(
-            style: .default,
-            title: "Terminer",
-            isFill: true
+            config: .init(
+                style: .default,
+                icon: .sparkes,
+                title: "Mes événements",
+                isFill: true
+            )
         ) { }
     }
     .padding()
-    .background(Color.secondary)
+    .background(Color.black0)
 }

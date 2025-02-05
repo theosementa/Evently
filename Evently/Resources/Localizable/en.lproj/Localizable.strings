@@ -1,0 +1,182 @@
+//MARK: - Onboarding
+"onboarding_welcome" = "Welcome to Evently";
+
+"onboarding_textOne" = "Start planning all your events now with ease!";
+
+"onboarding_textTwo" = "Whether it's a birthday, an outing with friends or an important meeting, create and organize your events in just a few moments. ";
+
+"onboarding_textThree" = "Alone or with others, whether recurring or one-off, everything is designed to make your task easier.";
+
+"onboarding_textFour" = "No more need to juggle between multiple tools. ";
+
+"onboarding_textFive" = "Everything is centralized in one place so you stay organized effortlessly.";
+
+//MARK: - Auth
+"auth_dont_miss" = "Don't miss any more events!";
+
+"auth_desc" = "Manage your schedule with ease and keep control over all your events.";
+
+"auth_with_google" = "Sign in with Google";
+
+"auth_with_apple" = "Sign in with Apple";
+
+"auth_with_qrcode" = "Open the app, scan your QR Code and immediately access your space. Simple, fast and secure.";
+
+"auth_classic" = "Classic connection";
+
+"auth_step_two" = "All we need is your first and last name to complete your registration";
+
+"auth_last_name" = "Name";
+
+"auth_first_name" = "First name";
+
+"auth_classic_desc" = "Whether you already have an account or not, you can register here.";
+
+"auth_email" = "E-mail";
+
+"auth_password" = "Password";
+
+"auth_end_button" = "Complete registration";
+
+//MARK: - Home
+"home_this_month" = "This month";
+
+"home_next_year" = "Next year";
+
+"home_later_this_year" = "Later in the year";
+
+"home_later_future" = "In the distant future";
+
+"home_add_event" = "Add an event";
+
+//MARK: - Sidebar
+"sidebar_my_events" = "My events";
+
+"sidebar_my_calendar" = "My calendar";
+
+"sidebar_add_category" = "Create a category";
+
+"sidebar_add_folder" = "Create a folder";
+
+//MARK: - Existing cat
+"cat_love" = "Love";
+
+"cat_birthday" = "Birthday";
+
+"cat_comfort" = "Well-being";
+
+"cat_study" = "Studies";
+
+"cat_party" = "Holidays";
+
+"cat_money" = "Finance";
+
+"cat_leisure" = "Hobbies";
+
+"cat_work" = "Professional";
+
+"cat_sport" = "Sport";
+
+"cat_tech" = "Technology";
+
+"cat_trip" = "Trip";
+
+//MARK: - Event detail
+"detail_rest_time" = "days left";
+
+"detail_year" = "Year";
+
+"detail_month" = "Month";
+
+"detail_day" = "Days";
+
+"detail_invite_link" = "Invitation link";
+
+"detail_share_link" = "Share your event with one or more friends so they can be kept informed!";
+
+"detail_copy_link" = "Copy invitation link";
+
+"detail_share_card" = "Card to share";
+
+"detail_share_card_info" = "Share your event with all your friends with a personalized card, specially designed to make each occasion even more memorable!";
+
+"detail_share_card_button" = "Share map";
+
+"detail_members" = "List of members";
+
+"detail_edit" = "To modify";
+
+"detail_delete" = "Delete";
+
+"detail_modal_delete" = "Delete event";
+
+"detail_modal_delete_desc" = "This action is permanent, you will not be able to go back! Are you sure of yourself?";
+
+"detail_modal_delete_cancel" = "Cancel";
+
+"detail_modal_delete_confirm" = "Delete";
+
+//MARK: - Add Event Alert
+"add_event_title" = "Add an event";
+
+"add_event_desc" = "To add an event, you can choose from the list or create a custom event!";
+
+"add_event_select" = "I choose from the list";
+
+"add_event_custom" = "Personalize";
+
+"add_event_cancel" = "Cancel";
+
+//MARK: - Add Event Form
+"add_event_name" = "Event name";
+
+"add_event_name_placeholder" = "Theo's birthday";
+
+"add_event_category" = "Category";
+
+"add_event_choose_category" = "Choose a category";
+
+"add_event_choose_date" = "Event date";
+
+"add_event_reccurence" = "Recurrence";
+
+"add_event_nextstep" = "Next step";
+
+"add_event_step" = "Step";
+
+"add_event_location" = "Location/address";
+
+//MARK: - Add Event Category
+"add_category_title" = "Select a category";
+
+"add_category_can_create" = "You can create categories if you are missing any";
+
+"add_category_empty" = "No categories found.";
+
+//MARK: - Global
+"global_friends" = "Friends";
+
+"global_add_friends" = "Add friends";
+
+"global_copy_invite_link" = "Copy invitation link";
+
+"global_finish" = "To end";
+
+"global_added" = "Added";
+
+"global_add" = "Add friends";
+
+"global_search_friend" = "Find a friend";
+
+"global_unique" = "Unique";
+
+"global_monthly" = "Monthly";
+
+"global_yearly" = "Annual";
+
+"global_search_category" = "Search a category";
+
+"global_no_category_found" = "No categories found.";
+
+"global_no_friend_found" = "No friends found with this name. Are you sure you have him as a friend?";
+

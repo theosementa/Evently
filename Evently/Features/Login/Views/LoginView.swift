@@ -24,7 +24,7 @@ struct LoginView: View {
     // MARK: -
     var body: some View {
         VStack(spacing: 32) {
-            VStack(spacing: 32) {
+            VStack(alignment: .leading, spacing: 32) {
                 HStack(spacing: 16) {
                     Image(.logoEvently)
                         .resizable()
@@ -35,13 +35,12 @@ struct LoginView: View {
 
                     Spacer()
                 }
-                // TODO: TBL
-                Text("""
-Ne manque plus aucun événement !
 
-Gère ton planning en toute simplicité et garde le contrôle sur tous tes événements.
-""")
-                .font(.Content.largeMedium)
+                Text("auth_dont_miss".localized)
+                    .font(.Content.largeMedium)
+
+                Text("auth_desc".localized)
+                    .font(.Content.largeMedium)
             }
 
             Rectangle()
@@ -49,29 +48,35 @@ Gère ton planning en toute simplicité et garde le contrôle sur tous tes évé
                 .foregroundStyle(Color.black200)
 
             VStack(spacing: 16) {
-                ActionButton(
-                    style: .reversed,
-                    icon: .apple,
-                    title: "Se connecter avec Apple",
-                    isFill: true
+                ActionButtonReversed(
+                    config: .init(
+                        style: .reversed,
+                        icon: .apple,
+                        title: "auth_with_apple".localized,
+                        isTextFill: true
+                    )
                 ) {
                     signInWithAppleManager.performSignIn()
                 }
 
-                ActionButton(
-                    style: .google,
-                    icon: .google,
-                    title: "Se connecter avec Google",
-                    isFill: true
+                ActionButtonReversed(
+                    config: .init(
+                        style: .google,
+                        icon: .google,
+                        title: "auth_with_google".localized,
+                        isTextFill: true
+                    )
                 ) {
-                    signInWithAppleManager.performSignIn()
+                    signInWithGoogleManager.signIn()
                 }
 
-                ActionButton(
-                    style: .secondaryReversed,
-                    icon: .person,
-                    title: "Connexion classique",
-                    isFill: true
+                ActionButtonReversed(
+                    config: .init(
+                        style: .secondaryReversed,
+                        icon: .person,
+                        title: "auth_classic".localized,
+                        isTextFill: true
+                    )
                 ) {
 
                 }

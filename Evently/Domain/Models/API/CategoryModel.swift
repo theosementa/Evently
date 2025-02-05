@@ -37,7 +37,8 @@ extension CategoryModel {
     }
 
     var gradient: LinearGradient {
-        return LinearGradient(colorHex: color)
+        let cleanColor = color.replacingOccurrences(of: "#", with: "")
+        return LinearGradient(colorHex: cleanColor)
     }
 
 }

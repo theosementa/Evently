@@ -24,7 +24,9 @@ extension LoginViewModel {
                 body: .init(firstname: firstName, lastname: lastName)
             )
 
-            if let finalUser = authReponse.user, let token = finalUser.token, let refreshToken = finalUser.refreshToken {
+            if let finalUser = authReponse.user,
+               let token = finalUser.token,
+               let refreshToken = finalUser.refreshToken {
                 TokenManager.shared.setTokenAndRefreshToken(token: token, refreshToken: refreshToken)
                 UserStore.shared.currentUser = finalUser
                 AppManager.shared.appState = .running

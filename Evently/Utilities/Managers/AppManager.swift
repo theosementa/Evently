@@ -14,4 +14,7 @@ final class AppManager {
 
     var appState: AppState = .idle
 
+    var isSideMenuPresented: Bool = false
+    var sideMenuItem: SideMenuSelection = .events
+
 }

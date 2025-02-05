@@ -40,7 +40,7 @@ extension FolderStore {
             let updatedFolder = try await FolderService.updateFolder(id: id, folder: folder)
 
             if let index = self.folders.firstIndex(where: { $0.id == id }) {
-                self.folders[index] = folder
+                self.folders[index] = updatedFolder
                 self.folders.sort { $0.name < $1.name }
             }
         } catch { NetworkService.handleError(error: error) }

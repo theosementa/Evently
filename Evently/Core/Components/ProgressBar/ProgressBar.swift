@@ -17,11 +17,14 @@ struct ProgressBar: View {
         return Double(currentStep) / Double(maxStep)
     }
 
+    @State private var height: CGFloat = 0
+    
     // MARK: -
     var body: some View {
         GeometryReader { geometry in
             Text("Etape \(currentStep) / \(maxStep)")
                 .font(.Content.smallSemiBold)
+                .foregroundStyle(Color.black100)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
                 .frame(maxWidth: geometry.size.width * percentage, alignment: .leading)
@@ -34,7 +37,11 @@ struct ProgressBar: View {
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
                         .fill(Color.black200)
                 }
+                .onGeometryChange(for: CGSize.self, of: \.size) { newValue in
+                    height = newValue.height
+                }
         }
+        .frame(height: height)
     } // body
 } // struct
 
@@ -43,4 +50,5 @@ struct ProgressBar: View {
     ProgressBar(currentStep: 2, maxStep: 3)
         .padding()
         .background(Color.blue)
+        .preferredColorScheme(.dark)
 }

@@ -53,3 +53,11 @@ struct UserModel: Codable, Identifiable {
         self.password = password
     }
 }
+
+extension UserModel {
+
+    var fullName: String {
+        return "\(firstName ?? "") \(lastName ?? "")"
+    }
+
+}

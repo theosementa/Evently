@@ -24,7 +24,8 @@ extension UserStore {
 
     @MainActor
     func login() async {
-        guard let refreshToken = KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self), !refreshToken.isEmpty else {
+        guard let refreshToken = KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self),
+              !refreshToken.isEmpty else {
             UserStore.shared.currentUser = nil
             return
         }
@@ -34,7 +35,7 @@ extension UserStore {
 
 #if DEBUG
             print("⚒️ TOKEN : \(TokenManager.shared.token)")
-            print("⚒️ Refresh Token : \(KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self))")
+            print("⚒️ Refresh Token :\(KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self))")
 #endif
 
         } catch {

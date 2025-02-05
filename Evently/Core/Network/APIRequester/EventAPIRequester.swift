@@ -53,7 +53,7 @@ extension EventAPIRequester {
         switch self {
         case .createEvent(let event):
             return try? JSONEncoder().encode(event)
-        case .updateEvent(let id, let event):
+        case .updateEvent(_, let event):
             return try? JSONEncoder().encode(event)
         default:
             return nil

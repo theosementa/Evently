@@ -19,33 +19,46 @@ struct EventlyApp: App {
     @State private var bannerManager: BannerManager = .shared
 
     @State private var userStore: UserStore = .shared
+    @State private var folderStore: FolderStore = .shared
+    @State private var categoryStore: CategoryStore = .shared
 
     // MARK: -
     var body: some Scene {
         WindowGroup {
             Group {
-                switch appManager.appState {
-                case .idle:
-                    EmptyView()
-                case .loading:
-                    SplachScreen(
-                        onStart: {
-                            Task { await userStore.login() }
-                        }, completion: {
-                            if userStore.currentUser != nil {
-                                appManager.appState = .running
-                            } else {
-                                AppManager.shared.appState = .needToLogin
+                ZStack {
+                    switch appManager.appState {
+                    case .idle:
+                        EmptyView()
+                    case .loading:
+                        SplachScreen(
+                            onStart: {
+                                Task { await userStore.login() }
+                            }, completion: {
+                                if userStore.currentUser != nil {
+                                    appManager.appState = .running
+                                } else {
+                                    AppManager.shared.appState = .needToLogin
+                                }
                             }
+                        )
+                    case .running:
+                        RoutedNavigationStack(router: router) {
+                            HomeView()
+                                .task {
+                                    await folderStore.fetchFolders()
+                                    await categoryStore.fetchAll()
+                                    await categoryStore.fetchDefaults()
+                                }
                         }
-                    )
-                case .running:
-                    RoutedNavigationStack(router: router) {
-                        ContentView()
+                    case .needToLogin:
+                        RoutedNavigationStack(router: loginRouter) {
+                            LoginView(router: loginRouter)
+                        }
                     }
-                case .needToLogin:
-                    RoutedNavigationStack(router: loginRouter) {
-                        LoginView(router: loginRouter)
+
+                    SideMenu(isShowing: $appManager.isSideMenuPresented) {
+                        SideMenuView()
                     }
                 }
             }
@@ -54,10 +67,13 @@ struct EventlyApp: App {
             .environment(appManager)
             .environment(bannerManager)
             .environment(userStore)
+            .environment(folderStore)
+            .environment(categoryStore)
             .environmentObject(router)
             .onAppear {
                 appManager.appState = .loading
             }
+            .preferredColorScheme(.dark)
         }
     } // body
 } // struct
