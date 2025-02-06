@@ -20,6 +20,24 @@ final class CreateEventViewModel {
 
 extension CreateEventViewModel {
 
+    func createEvent() {
+        Task {
+            guard let selectedCategory, let categoryID = selectedCategory.id else { return }
+            await EventStore.shared.createEvent(
+                event: .init(
+                    name: name,
+                    frequency: frequency,
+                    categoryID: categoryID,
+                    targetDate: date
+                )
+            )
+        }
+    }
+
+}
+
+extension CreateEventViewModel {
+
     var isFirstStepValid: Bool {
         return !name.isBlank && selectedCategory != nil
     }

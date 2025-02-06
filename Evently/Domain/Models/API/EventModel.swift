@@ -11,7 +11,6 @@ struct EventModel: Codable, Identifiable {
     var id: Int?
     var name: String?
     var description: String?
-    var isRecurring: Bool?
     var folderId: Int?
     var recurrencePattern: String?
     var interval: Int?
@@ -23,7 +22,6 @@ struct EventModel: Codable, Identifiable {
         case id
         case name
         case description
-        case isRecurring
         case folderId
         case recurrencePattern
         case interval
@@ -31,6 +29,43 @@ struct EventModel: Codable, Identifiable {
         case categoryID
         case folderID
     }
+
+    /// Default
+    init(
+        id: Int? = nil,
+        name: String? = nil,
+        description: String? = nil,
+        folderId: Int? = nil,
+        recurrencePattern: String? = nil,
+        interval: Int? = nil,
+        rawTargetDate: String? = nil,
+        categoryID: Int? = nil,
+        folderID: Int? = nil
+    ) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.folderId = folderId
+        self.recurrencePattern = recurrencePattern
+        self.interval = interval
+        self.rawTargetDate = rawTargetDate
+        self.categoryID = categoryID
+        self.folderID = folderID
+    }
+
+    /// Create event
+    init(
+        name: String,
+        frequency: EventFrequency,
+        categoryID: Int,
+        targetDate: Date
+    ) {
+        self.name = name
+        self.recurrencePattern = frequency.rawValue
+        self.categoryID = categoryID
+        self.rawTargetDate = targetDate.ISO8601Format(.iso8601)
+    }
+
 }
 
 extension EventModel {
@@ -48,11 +83,7 @@ extension EventModel {
     }
 
     var frequency: EventFrequency? {
-        if isRecurring == false {
-            return EventFrequency.none
-        } else {
-            return EventFrequency(rawValue: recurrencePattern ?? "")
-        }
+        return EventFrequency(rawValue: recurrencePattern ?? "")
     }
 
 }

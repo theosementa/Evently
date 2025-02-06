@@ -21,6 +21,7 @@ struct EventlyApp: App {
     @State private var userStore: UserStore = .shared
     @State private var folderStore: FolderStore = .shared
     @State private var categoryStore: CategoryStore = .shared
+    @State private var eventStore: EventStore = .shared
 
     // MARK: -
     var body: some Scene {
@@ -49,6 +50,7 @@ struct EventlyApp: App {
                                     await folderStore.fetchFolders()
                                     await categoryStore.fetchAll()
                                     await categoryStore.fetchDefaults()
+                                    await eventStore.fetchEvents()
                                 }
                         }
                     case .needToLogin:
@@ -69,6 +71,7 @@ struct EventlyApp: App {
             .environment(userStore)
             .environment(folderStore)
             .environment(categoryStore)
+            .environment(eventStore)
             .environmentObject(router)
             .onAppear {
                 appManager.appState = .loading

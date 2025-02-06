@@ -11,8 +11,9 @@ import NavigationKit
 struct HomeView: View {
 
     @State private var viewModel: HomeViewModel = .init()
-    @Environment(AppManager.self) private var appManager
     @EnvironmentObject private var router: Router<NavigationDestination>
+    @Environment(AppManager.self) private var appManager
+    @Environment(EventStore.self) private var eventStore
 
     // MARK: -
     var body: some View {
@@ -36,6 +37,11 @@ struct HomeView: View {
 
                 CustomSearchBar(text: $viewModel.searchText)
             }
+
+            ForEach(eventStore.events) { event in
+                Text(event.name ?? "")
+            }
+
             Spacer()
         }
         .padding(.horizontal, 24)

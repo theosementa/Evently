@@ -70,6 +70,10 @@ struct CreateEventView: View {
                     isFill: true
                 )
             ) {
+                if viewModel.currentStep == 2 {
+                    viewModel.createEvent()
+                    dismiss()
+                }
                 if viewModel.isFirstStepValid {
                     viewModel.currentStep = 2
                 }
