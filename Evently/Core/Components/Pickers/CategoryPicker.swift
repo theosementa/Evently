@@ -20,15 +20,29 @@ struct CategoryPicker: View {
                 .font(.Content.smallSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            ActionButton(
-                config: .init(
-                    style: .default,
-                    icon: .plusCircle,
-                    title: "add_event_choose_category".localized,
-                    isFill: true
-                )
-            ) {
-                router.presentSelectCategory(selectedCategory: $selectedCategory)
+            if let selectedCategory {
+                ActionButton(
+                    config: .init(
+                        style: .default,
+                        icon: ImageResource(name: selectedCategory.icon, bundle: .main),
+                        title: selectedCategory.name,
+                        isFill: true,
+                        customBackground: AnyShapeStyle(selectedCategory.gradient)
+                    )
+                ) {
+                    router.presentSelectCategory(selectedCategory: $selectedCategory)
+                }
+            } else {
+                ActionButton(
+                    config: .init(
+                        style: .default,
+                        icon: .plusCircle,
+                        title: "add_event_choose_category".localized,
+                        isFill: true
+                    )
+                ) {
+                    router.presentSelectCategory(selectedCategory: $selectedCategory)
+                }
             }
         }
     } // body

@@ -18,7 +18,13 @@ struct CreateEventView: View {
         VStack(spacing: 48) {
             VStack(spacing: 16) {
                 HStack {
-                    TinyActionButton(icon: .chevronBack) { dismiss() }
+                    TinyActionButton(icon: .chevronBack) {
+                        if viewModel.currentStep == 1 {
+                            dismiss()
+                        } else {
+                            viewModel.currentStep = 1
+                        }
+                    }
 
                     HStack(spacing: 12) {
                         Image(.calendar)
@@ -36,18 +42,36 @@ struct CreateEventView: View {
             }
 
             VStack(spacing: 24) {
-                CustomTextField(
-                    text: $viewModel.name,
-                    config: .init(
-                        title: "add_event_name".localized,
-                        placeholder: "add_event_name_placeholder".localized
+                if viewModel.currentStep == 1 {
+                    CustomTextField(
+                        text: $viewModel.name,
+                        config: .init(
+                            title: "add_event_name".localized,
+                            placeholder: "add_event_name_placeholder".localized
+                        )
                     )
-                )
 
-                CategoryPicker(selectedCategory: $viewModel.selectedCategory)
+                    CategoryPicker(selectedCategory: $viewModel.selectedCategory)
+                } else {
+
+                }
             }
 
             Spacer()
+
+            ActionButton(
+                config: .init(
+                    style: viewModel.isFirstStepValid ? .default : .disabled,
+                    title: viewModel.currentStep == 1
+                        ? "add_event_nextstep".localized
+                        : "global_finish".localized,
+                    isFill: true
+                )
+            ) {
+                if viewModel.isFirstStepValid {
+                    viewModel.currentStep = 2
+                }
+            }
         }
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -15,3 +15,11 @@ final class CreateEventViewModel {
     var name: String = ""
     var selectedCategory: CategoryModel?
 }
+
+extension CreateEventViewModel {
+
+    var isFirstStepValid: Bool {
+        return !name.isBlank && selectedCategory != nil
+    }
+
+}

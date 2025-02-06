@@ -12,6 +12,7 @@ enum ActionButtonStyle {
     case unselected
     case small
     case secondary
+    case disabled
 }
 
 struct ActionButton: View {
@@ -23,9 +24,7 @@ struct ActionButton: View {
     // MARK: -
     var body: some View {
         Button(action: {
-            Task {
-                await action()
-            }
+            Task { await action() }
         }, label: {
             HStack(spacing: 8) {
                 if let icon = config.icon {
@@ -89,6 +88,8 @@ extension ActionButton {
                 return Color.black
             case .secondary:
                 return Color.white
+            case .disabled:
+                return Color.white
             }
         }
     }
@@ -103,6 +104,8 @@ extension ActionButton {
             return Color.white
         case .secondary:
             return Color.clear
+        case .disabled:
+            return Color.black200
         }
     }
 

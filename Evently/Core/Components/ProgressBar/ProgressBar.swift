@@ -42,6 +42,7 @@ struct ProgressBar: View {
                 }
         }
         .frame(height: height)
+        .animation(.smooth, value: currentStep)
     } // body
 } // struct
 

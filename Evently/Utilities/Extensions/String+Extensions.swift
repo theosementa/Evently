@@ -13,6 +13,10 @@ extension String {
         return NSLocalizedString(self, comment: "")
     }
 
+    var isBlank: Bool {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
     func toDate() -> Date? {
         let dateFormatter = ISO8601DateFormatter()
         dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
