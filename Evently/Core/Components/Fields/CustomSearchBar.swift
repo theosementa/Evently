@@ -25,6 +25,8 @@ struct CustomSearchBar: View {
             TextField("Rechercher", text: $text) // TODO: TBL
                 .focused($isFocused)
                 .font(.Content.mediumSemiBold)
+                .autocorrectionDisabled(true)
+                .keyboardType(.alphabet)
         }
         .padding(.horizontal)
         .padding(.vertical, 14)

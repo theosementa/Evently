@@ -8,13 +8,14 @@
 import NavigationKit
 import SwiftUI
 
-enum NavigationDestination: RoutedDestination, Identifiable, Hashable {
+enum NavigationDestination: RoutedDestination, Identifiable {
 
     case stepTwo
 
     case home
-    case detailFitted
-//    case detail(user: UserModel)
+
+    case createEvent
+    case selectCategory(selectedCategory: Binding<CategoryModel?>)
 
     func body(route: Route) -> some View {
         switch self {
@@ -23,13 +24,36 @@ enum NavigationDestination: RoutedDestination, Identifiable, Hashable {
             StepTwoView()
 
         case .home:
-            ContentView()
-        case .detailFitted:
-            SwiftUIViewText()
-//        case let .detail(user):
-//            UserDetail(userID: user.id)
+            HomeView()
+
+        case .createEvent:
+            CreateEventView()
+        case let .selectCategory(selectedCategory):
+            SelectCategoryView(selectedCategory: selectedCategory)
         }
     }
 
     var id: Self { return self }
+
+}
+
+extension NavigationDestination {
+    static func == (lhs: NavigationDestination, rhs: NavigationDestination) -> Bool {
+        switch (lhs, rhs) {
+        case (.stepTwo, .stepTwo),
+            (.home, .home),
+            (.createEvent, .createEvent),
+            (.selectCategory, .selectCategory):
+            return true
+
+        default:
+            return false
+        }
+    }
+}
+
+extension NavigationDestination: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

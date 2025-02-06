@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import NavigationKit
 
 struct HomeView: View {
 
     @State private var viewModel: HomeViewModel = .init()
     @Environment(AppManager.self) private var appManager
+    @EnvironmentObject private var router: Router<NavigationDestination>
 
     // MARK: -
     var body: some View {
@@ -40,6 +42,16 @@ struct HomeView: View {
         .padding(.top)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black0)
+        .overlay(alignment: . bottomTrailing) {
+            ActionButton(
+                config: .init(
+                    style: .default,
+                    icon: .calendar,
+                    title: "add_event_title".localized
+                )
+            ) { router.pushCreateEvent() }
+                .padding(24)
+        }
     } // body
 } // struct
 

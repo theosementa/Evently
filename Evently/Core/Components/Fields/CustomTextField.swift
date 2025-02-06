@@ -28,6 +28,8 @@ struct CustomTextField: View {
                     TextField(config.placeholder, text: $text)
                 }
             }
+            .autocorrectionDisabled(true)
+            .keyboardType(.alphabet)
             .focused($isFocused)
             .font(.Content.largeSemiBold)
             .padding(.horizontal)

@@ -18,7 +18,7 @@ struct ProgressBar: View {
     }
 
     @State private var height: CGFloat = 0
-    
+
     // MARK: -
     var body: some View {
         GeometryReader { geometry in

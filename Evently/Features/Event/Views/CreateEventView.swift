@@ -8,42 +8,52 @@
 import SwiftUI
 
 struct CreateEventView: View {
-    
+
     @Environment(\.dismiss) private var dismiss
-    
+
     @State private var viewModel: CreateEventViewModel = .init()
-    
+
     // MARK: -
     var body: some View {
         VStack(spacing: 48) {
             VStack(spacing: 16) {
                 HStack {
-                    Image(.calendar)
-                        
-                    Text("add_event_title".localized)
-                        .font(.Content.xlBold)
+                    TinyActionButton(icon: .chevronBack) { dismiss() }
+
+                    HStack(spacing: 12) {
+                        Image(.calendar)
+                        Text("add_event_title".localized)
+                            .font(.Content.xlBold)
+                    }
+                    .frame(maxWidth: .infinity)
+
+                    TinyActionButton(icon: .chevronBack) { dismiss() }
+                        .opacity(0)
                 }
                 .frame(maxWidth: .infinity)
-                .overlay(alignment: .leading) {
-                    TinyActionButton(icon: .chevronBack) { dismiss() }
-                }
-                
+
                 ProgressBar(currentStep: viewModel.currentStep, maxStep: 2)
             }
-            
-            CustomTextField(
-                text: $viewModel.name,
-                config: .init(
-                    title: "add_event_name".localized,
-                    placeholder: "add_event_name_placeholder".localized
+
+            VStack(spacing: 24) {
+                CustomTextField(
+                    text: $viewModel.name,
+                    config: .init(
+                        title: "add_event_name".localized,
+                        placeholder: "add_event_name_placeholder".localized
+                    )
                 )
-            )
-            
+
+                CategoryPicker(selectedCategory: $viewModel.selectedCategory)
+            }
+
             Spacer()
         }
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black0)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
     } // body
 } // struct
 

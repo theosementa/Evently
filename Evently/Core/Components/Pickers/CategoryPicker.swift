@@ -9,16 +9,17 @@ import SwiftUI
 import NavigationKit
 
 struct CategoryPicker: View {
-    
+
+    @Binding var selectedCategory: CategoryModel?
     @EnvironmentObject private var router: Router<NavigationDestination>
-    
+
     // MARK: -
     var body: some View {
         VStack(spacing: 6) {
             Text("add_event_category".localized)
                 .font(.Content.smallSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            
+
             ActionButton(
                 config: .init(
                     style: .default,
@@ -27,7 +28,7 @@ struct CategoryPicker: View {
                     isFill: true
                 )
             ) {
-                
+                router.presentSelectCategory(selectedCategory: $selectedCategory)
             }
         }
     } // body
@@ -35,7 +36,7 @@ struct CategoryPicker: View {
 
 // MARK: - Preview
 #Preview {
-    CategoryPicker()
+    CategoryPicker(selectedCategory: .constant(nil))
         .padding()
         .background(Color.black0)
         .preferredColorScheme(.dark)

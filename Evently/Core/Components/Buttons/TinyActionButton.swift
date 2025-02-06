@@ -18,14 +18,12 @@ struct TinyActionButton: View {
             Task { await action() }
         }, label: {
             Image(icon)
-                .resizable()
-                .frame(width: 20, height: 20)
                 .padding(6)
                 .background {
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
                         .fill(Color.black100)
                         .overlay {
-                            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
                                 .stroke(Color.black200, lineWidth: 0.5)
                         }
                 }

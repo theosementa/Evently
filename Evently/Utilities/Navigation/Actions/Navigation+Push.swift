@@ -9,11 +9,11 @@ import NavigationKit
 
 extension Router where Destination == NavigationDestination {
 
-    func pushDetail() {
-        navigateTo(.detailFitted)
-    }
-
     func pushStepTwo() {
         navigateTo(.stepTwo)
+    }
+
+    func pushCreateEvent() {
+        navigateTo(.createEvent)
     }
 }

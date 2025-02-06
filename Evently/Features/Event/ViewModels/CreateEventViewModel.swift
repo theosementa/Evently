@@ -9,9 +9,9 @@ import Foundation
 
 @Observable
 final class CreateEventViewModel {
-    
+
     var currentStep: Int = 1
-    
+
     var name: String = ""
-    var categorySelected: CategoryModel? = nil
+    var selectedCategory: CategoryModel?
 }
