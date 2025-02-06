@@ -9,7 +9,7 @@ import Foundation
 
 struct EventModel: Codable, Identifiable {
     var id: Int?
-    var name: String?
+    var rawName: String?
     var description: String?
     var folderId: Int?
     var recurrencePattern: String?
@@ -20,7 +20,7 @@ struct EventModel: Codable, Identifiable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case name
+        case rawName = "name"
         case description
         case folderId
         case recurrencePattern
@@ -43,7 +43,7 @@ struct EventModel: Codable, Identifiable {
         folderID: Int? = nil
     ) {
         self.id = id
-        self.name = name
+        self.rawName = name
         self.description = description
         self.folderId = folderId
         self.recurrencePattern = recurrencePattern
@@ -60,7 +60,7 @@ struct EventModel: Codable, Identifiable {
         categoryID: Int,
         targetDate: Date
     ) {
-        self.name = name
+        self.rawName = name
         self.recurrencePattern = frequency.rawValue
         self.categoryID = categoryID
         self.rawTargetDate = targetDate.ISO8601Format(.iso8601)
@@ -69,6 +69,10 @@ struct EventModel: Codable, Identifiable {
 }
 
 extension EventModel {
+
+    var name: String {
+        return rawName ?? ""
+    }
 
     var targetDate: Date {
         return rawTargetDate?.toDate() ?? .now
@@ -85,5 +89,16 @@ extension EventModel {
     var frequency: EventFrequency? {
         return EventFrequency(rawValue: recurrencePattern ?? "")
     }
+
+}
+
+extension EventModel {
+
+    static let preview: EventModel = .init(
+        name: "Preview Event",
+        frequency: .none,
+        categoryID: 1,
+        targetDate: Date().addingTimeInterval(60 * 60 * 24)
+    )
 
 }

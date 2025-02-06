@@ -39,7 +39,7 @@ struct HomeView: View {
             }
 
             ForEach(eventStore.events) { event in
-                Text(event.name ?? "")
+                EventRow(event: event)
             }
 
             Spacer()
