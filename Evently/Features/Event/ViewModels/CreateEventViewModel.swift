@@ -14,6 +14,7 @@ final class CreateEventViewModel {
 
     var name: String = ""
     var selectedCategory: CategoryModel?
+    var date: Date = .now
 }
 
 extension CreateEventViewModel {
