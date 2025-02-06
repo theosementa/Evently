@@ -47,4 +47,12 @@ extension EventModel {
         return FolderStore.shared.folders.first(where: { $0.id == self.folderID })
     }
 
+    var frequency: EventFrequency? {
+        if isRecurring == false {
+            return EventFrequency.none
+        } else {
+            return EventFrequency(rawValue: recurrencePattern ?? "")
+        }
+    }
+
 }

@@ -15,6 +15,7 @@ final class CreateEventViewModel {
     var name: String = ""
     var selectedCategory: CategoryModel?
     var date: Date = .now
+    var frequency: EventFrequency = .none
 }
 
 extension CreateEventViewModel {

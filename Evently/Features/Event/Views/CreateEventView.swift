@@ -54,6 +54,8 @@ struct CreateEventView: View {
                     CategoryPicker(selectedCategory: $viewModel.selectedCategory)
                 } else {
                     CustomDatePicker(selectedDate: $viewModel.date)
+
+                    FrequencyPicker(frequency: $viewModel.frequency)
                 }
             }
 

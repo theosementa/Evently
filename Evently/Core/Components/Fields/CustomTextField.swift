@@ -31,7 +31,7 @@ struct CustomTextField: View {
             .autocorrectionDisabled(true)
             .keyboardType(.alphabet)
             .focused($isFocused)
-            .font(.Content.largeSemiBold)
+            .font(.Content.mediumSemiBold)
             .padding(.horizontal)
             .padding(.vertical, 14)
             .background {

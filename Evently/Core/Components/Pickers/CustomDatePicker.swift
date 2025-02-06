@@ -16,7 +16,7 @@ struct CustomDatePicker: View {
     // MARK: -
     var body: some View {
         VStack(spacing: 6) {
-            Text("add_event_category".localized)
+            Text("add_event_choose_date".localized)
                 .font(.Content.smallSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
