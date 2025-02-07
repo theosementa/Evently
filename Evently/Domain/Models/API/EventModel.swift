@@ -96,7 +96,7 @@ extension EventModel {
 
     static let preview: EventModel = .init(
         name: "Preview Event",
-        frequency: .none,
+        frequency: .unique,
         categoryID: 1,
         targetDate: Date().addingTimeInterval(60 * 60 * 24)
     )

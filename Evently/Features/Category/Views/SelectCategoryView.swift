@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NavigationKit
 
 struct SelectCategoryView: View {
 
@@ -13,56 +14,56 @@ struct SelectCategoryView: View {
 
     @Environment(\.dismiss) private var dismiss
     @Environment(CategoryStore.self) private var categoryStore
+    @StateObject private var selectCategoryRouter = Router<NavigationDestination>()
 
     @State private var searchText: String = ""
 
     // MARK: -
     var body: some View {
-        VStack(spacing: 32) {
-            VStack(spacing: 24) {
-                HStack {
-                    HStack(spacing: 12) {
-                        Image(.tag)
-                        Text("add_category_title".localized)
-                            .font(.Content.xlBold)
-                    }
-                    Spacer()
-                    TinyActionButton(icon: .xmark) { dismiss() }
+        RoutedNavigationStack(router: selectCategoryRouter) {
+            VStack(spacing: 32) {
+                VStack(spacing: 24) {
+                    CreationHeader(
+                        icon: .tag,
+                        title: "add_category_title".localized
+                    )
+                    CustomSearchBar(text: $searchText)
                 }
-                CustomSearchBar(text: $searchText)
-            }
 
-            ScrollView {
-                VStack(spacing: 32) {
-                    Separator()
+                ScrollView {
+                    VStack(spacing: 32) {
+                        Separator()
 
-                    VStack(spacing: 8) {
-                        Text("add_category_can_create".localized)
-                            .font(.Content.mediumSemiBold)
-                        ActionButton(
-                            config: .init(
-                                style: .default,
-                                icon: .plusCircle,
-                                title: "sidebar_add_category".localized,
-                                isFill: true
-                            )
-                        ) { }
-                    }
-
-                    Separator()
-
-                    VStack(spacing: 16) {
-                        ForEach(categoryStore.allCategories) { category in
+                        VStack(spacing: 8) {
+                            Text("add_category_can_create".localized)
+                                .font(.Content.mediumSemiBold)
                             ActionButton(
                                 config: .init(
                                     style: .default,
-                                    icon: ImageResource(name: category.icon, bundle: .main),
-                                    title: category.name,
-                                    isFill: true,
-                                    alignment: .leading,
-                                    customBackground: AnyShapeStyle(category.gradient)
+                                    icon: .plusCircle,
+                                    title: "sidebar_add_category".localized,
+                                    isFill: true
                                 )
-                            ) { selectedCategory = category }
+                            ) { selectCategoryRouter.presentCreateCategory() }
+                        }
+
+                        Separator()
+
+                        VStack(spacing: 16) {
+                            ForEach(categoryStore.allCategories) { category in
+                                ActionButton(
+                                    config: .init(
+                                        style: .default,
+                                        icon: ImageResource(name: category.icon, bundle: .main),
+                                        title: category.name,
+                                        isFill: true,
+                                        alignment: .leading,
+                                        customBackground: AnyShapeStyle(category.gradient)
+                                    )
+                                ) {
+                                    selectedCategory = category
+                                    dismiss()
+                                }
                                 .overlay {
                                     if selectedCategory?.id == category.id {
                                         RoundedRectangle(cornerRadius: 16, style: .continuous)
@@ -70,16 +71,18 @@ struct SelectCategoryView: View {
                                             .padding(.horizontal, 1)
                                     }
                                 }
+                            }
                         }
                     }
                 }
+                .scrollIndicators(.hidden)
+                .contentMargins(.bottom, 32, for: .scrollContent)
             }
-            .scrollIndicators(.hidden)
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.black0)
+            .ignoresSafeArea(.container, edges: .bottom)
         }
-        .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.black0)
-        .ignoresSafeArea(.container, edges: .bottom)
     } // body
 } // struct
 

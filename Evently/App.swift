@@ -46,12 +46,6 @@ struct EventlyApp: App {
                     case .running:
                         RoutedNavigationStack(router: router) {
                             HomeView()
-                                .task {
-                                    await folderStore.fetchFolders()
-                                    await categoryStore.fetchAll()
-                                    await categoryStore.fetchDefaults()
-                                    await eventStore.fetchEvents()
-                                }
                         }
                     case .needToLogin:
                         RoutedNavigationStack(router: loginRouter) {
@@ -75,6 +69,19 @@ struct EventlyApp: App {
             .environmentObject(router)
             .onAppear {
                 appManager.appState = .loading
+            }
+            .onChange(of: appManager.appState) {
+                if appManager.appState == .running {
+                    Task {
+                        async let friends: () = userStore.fetchFriends()
+                        async let folders: () = folderStore.fetchFolders()
+                        async let categories: () = categoryStore.fetchAll()
+                        async let defaults: () = categoryStore.fetchDefaults()
+                        async let events: () = eventStore.fetchEvents()
+
+                        _ = await (friends, folders, categories, defaults, events)
+                    }
+                }
             }
             .preferredColorScheme(.dark)
         }

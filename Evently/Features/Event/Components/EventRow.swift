@@ -11,6 +11,7 @@ struct EventRow: View {
 
     // builder
     var event: EventModel
+    @Environment(EventStore.self) private var eventStore
 
     // MARK: -
     var body: some View {
@@ -53,6 +54,15 @@ struct EventRow: View {
         .background {
             RoundedRectangle(cornerRadius: 24, style: .continuous)
                 .fill(backgroundStyle)
+        }
+        .contextMenu {
+            Button {
+                Task {
+                    await eventStore.deleteEvent(id: event.id!)
+                }
+            } label: {
+                Text("Delete")
+            }
         }
     } // body
 

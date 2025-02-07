@@ -17,10 +17,12 @@ struct HomeView: View {
 
     // MARK: -
     var body: some View {
-        VStack {
+        VStack(spacing: 24) {
             VStack(spacing: 16) {
                 HStack(spacing: 16) {
-                    TinyActionButton(icon: .person, action: { })
+                    TinyActionButton(icon: .person) {
+                        router.pushProfile()
+                    }
 
                     ActionButton(
                         config: .init(
@@ -38,14 +40,59 @@ struct HomeView: View {
                 CustomSearchBar(text: $viewModel.searchText)
             }
 
-            ForEach(eventStore.events) { event in
-                EventRow(event: event)
-            }
+            if eventStore.events.isEmpty {
+                VStack {
+                    CustomEmptyView(
+                        image: .emptyEvents,
+                        title: "home_empty_title".localized,
+                        message: "home_empty_desc".localized
+                    )
+                    .padding(.top)
 
-            Spacer()
+                    Spacer()
+                }
+            } else {
+                let filteredEvents = viewModel.filterEvents(eventStore.events)
+                let sections = viewModel.groupEvents(filteredEvents)
+                List {
+                    ForEach(Array(sections.enumerated()), id: \.element.title) { index, section in
+                        Section {
+                            ForEach(section.events) { event in
+                                EventRow(event: event)
+                                    .listRowSeparator(.hidden)
+                                    .listRowBackground(Color.clear)
+                                    .listRowInsets(.init(top: 8, leading: 0, bottom: 8, trailing: 0))
+                            }
+
+                            if index < sections.count - 1 {
+                                Separator()
+                                    .listRowSeparator(.hidden)
+                                    .listRowBackground(Color.clear)
+                                    .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                            }
+                        } header: {
+                            Text(section.title)
+                                .font(.Headline.head5)
+                                .foregroundStyle(Color.white0)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.horizontal)
+                                .padding(.bottom, 12)
+                        }
+                        .background(Color.black0)
+                        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+
+                    }
+                }
+                .listStyle(.plain)
+                .scrollIndicators(.hidden)
+                .contentMargins(.bottom, 128, for: .scrollContent)
+                .ignoresSafeArea(.container, edges: .bottom)
+                .animation(.smooth, value: filteredEvents.count)
+            }
         }
         .padding(.horizontal, 24)
         .padding(.top)
+        .listSectionSpacing(-16)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black0)
         .overlay(alignment: . bottomTrailing) {
@@ -65,4 +112,6 @@ struct HomeView: View {
 #Preview {
     HomeView()
         .preferredColorScheme(.dark)
+        .environment(AppManager.shared)
+        .environment(EventStore.shared)
 }

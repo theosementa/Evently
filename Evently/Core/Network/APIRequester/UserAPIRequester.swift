@@ -14,6 +14,7 @@ enum UserAPIRequester: APIRequestBuilder {
     case refreshToken(refreshToken: String)
     case update(body: UserModel)
     case delete
+    case fetchFriends
 }
 
 extension UserAPIRequester {
@@ -31,6 +32,8 @@ extension UserAPIRequester {
             return NetworkPath.User.base
         case .delete:
             return NetworkPath.User.base
+        case .fetchFriends:
+            return NetworkPath.User.friends
         }
     }
 
@@ -42,6 +45,7 @@ extension UserAPIRequester {
         case .login:        return .POST
         case .update:       return .PUT
         case .delete:       return .DELETE
+        case .fetchFriends: return .GET
         }
     }
 
@@ -55,6 +59,7 @@ extension UserAPIRequester {
         case .login:        return false
         case .update:       return true
         case .delete:       return true
+        case .fetchFriends: return true
         }
     }
 

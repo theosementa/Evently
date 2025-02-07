@@ -10,6 +10,7 @@ import SwiftUI
 struct CustomSearchBar: View {
 
     @Binding var text: String
+    var placeholder: String?
 
     @FocusState var isFocused: Bool
 
@@ -22,7 +23,7 @@ struct CustomSearchBar: View {
                 .frame(width: 18, height: 18)
                 .foregroundStyle(text.isEmpty ? Color.black400 : Color.white0)
 
-            TextField("Rechercher", text: $text) // TODO: TBL
+            TextField(placeholder ?? "Rechercher", text: $text) // TODO: TBL
                 .focused($isFocused)
                 .font(.Content.mediumSemiBold)
                 .autocorrectionDisabled(true)

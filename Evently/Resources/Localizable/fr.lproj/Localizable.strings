@@ -38,6 +38,8 @@
 
 "auth_end_button" = "Terminer l'inscription";
 
+"auth_connection" = "Connexion";
+
 //MARK: - Home
 "home_this_month" = "Ce mois - ci";
 
@@ -48,6 +50,10 @@
 "home_later_future" = "Dans un futur lointain";
 
 "home_add_event" = "Ajouter un évènement";
+
+"home_empty_title" = "Aucun événement !";
+
+"home_empty_desc" = "Appuie sur le bouton en bas de l’écran pour créer un nouvel événement";
 
 //MARK: - Sidebar
 "sidebar_my_events" = "Mes événements";
@@ -73,7 +79,7 @@
 
 "cat_leisure" = "Loisirs";
 
-"cat_work" = "Professionel";
+"cat_work" = "Professionnel";
 
 "cat_sport" = "Sport";
 
@@ -128,6 +134,8 @@
 "add_event_cancel" = "Annuler";
 
 //MARK: - Add Event Form
+"add_event_title" = "Ajouter un événement";
+
 "add_event_name" = "Nom de l’évenement";
 
 "add_event_name_placeholder" = "Anniversaire de Théo";
@@ -146,12 +154,40 @@
 
 "add_event_location" = "Lieu / adresse";
 
+"add_event_folder_shared" = "Dossier partagé";
+
+"add_event_choose_folder" = "Choisir un dossier partagé";
+
 //MARK: - Add Event Category
 "add_category_title" = "Sélectionner une catégorie";
 
 "add_category_can_create" = "Tu peux créer des catégories s'il t'en manque";
 
 "add_category_empty" = "Aucune catégorie trouvé.";
+
+//MARK: - Add Event Friends
+"add_friends_can_create" = "Tu peux ajouter des amis s'il t'en manque";
+
+"add_friends_label" = "Ajouter un ami";
+
+//MARK: - Add Event Folder
+"add_folder_title" = "Sélectionner un dossier ";
+
+"add_folder_search_placeholder" = "Rechercher un dossier";
+
+"add_folder_can_create" = "Tu peux créer des dossiers s'il t'en manque";
+
+//MARK: - Create Category
+"create_cat_title" = "Créer une catégorie";
+
+"create_cat_name_cat" = "Nom de la catégtorie";
+
+//MARK: - Create Folder
+"create_folder_title" = "Créer un dossier";
+
+"create_folder_name_folder" = "Nom du dossier";
+
+"create_folder_placeholder" = "Club de vélo";
 
 //MARK: - Global
 "global_friends" = "Amis";
@@ -164,7 +200,7 @@
 
 "global_added" = "Ajouté";
 
-"global_add" = "Ajouter des amis";
+"global_add" = "Ajouter";
 
 "global_search_friend" = "Rechercher un ami";
 

@@ -13,7 +13,7 @@ extension LinearGradient {
         self.init(
             colors: [
                 Color(hex: colorHex),
-                Color(hex: colorHex).adjustLightness(percent: -10)
+                Color(hex: colorHex).adjustLightness(percent: -15)
             ],
             startPoint: .top,
             endPoint: .bottom

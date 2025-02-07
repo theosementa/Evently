@@ -36,4 +36,11 @@ struct UserService {
         )
     }
 
+    static func fetchFriends() async throws -> [UserModel] {
+        return try await NetworkService.shared.sendRequest(
+            apiBuilder: UserAPIRequester.fetchFriends,
+            responseModel: [UserModel].self
+        )
+    }
+
 }

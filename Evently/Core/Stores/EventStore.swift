@@ -24,13 +24,18 @@ extension EventStore {
         } catch { NetworkService.handleError(error: error)  }
     }
 
+    @discardableResult
     @MainActor
-    func createEvent(event: EventModel) async {
+    func createEvent(event: EventModel) async -> EventModel? {
         do {
             let newEvent = try await EventService.createEvent(event: event)
             self.events.append(newEvent)
             self.events.sort { $0.targetDate > $1.targetDate }
-        } catch { NetworkService.handleError(error: error)  }
+            return newEvent
+        } catch {
+            NetworkService.handleError(error: error)
+            return nil
+        }
     }
 
     @MainActor
@@ -53,10 +58,14 @@ extension EventStore {
     }
 
     @MainActor
-    func shareEvent(id: Int) async {
+    func shareEvent(id: Int) async -> String? {
         do {
-            try await EventService.shareEvent(id: id)
-        } catch { NetworkService.handleError(error: error)  }
+            let inviteToken = try await EventService.shareEvent(id: id).inviteToken
+            return inviteToken
+        } catch {
+            NetworkService.handleError(error: error)
+            return nil
+        }
     }
 
 }

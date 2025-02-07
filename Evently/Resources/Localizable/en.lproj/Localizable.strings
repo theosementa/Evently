@@ -38,6 +38,8 @@
 
 "auth_end_button" = "Complete registration";
 
+"auth_connection" = "Connection";
+
 //MARK: - Home
 "home_this_month" = "This month";
 
@@ -48,6 +50,10 @@
 "home_later_future" = "In the distant future";
 
 "home_add_event" = "Add an event";
+
+"home_empty_title" = "No events!";
+
+"home_empty_desc" = "Tap the button at the bottom of the screen to create a new event";
 
 //MARK: - Sidebar
 "sidebar_my_events" = "My events";
@@ -128,6 +134,8 @@
 "add_event_cancel" = "Cancel";
 
 //MARK: - Add Event Form
+"add_event_title" = "Add an event";
+
 "add_event_name" = "Event name";
 
 "add_event_name_placeholder" = "Theo's birthday";
@@ -146,12 +154,40 @@
 
 "add_event_location" = "Location/address";
 
+"add_event_folder_shared" = "Shared folder";
+
+"add_event_choose_folder" = "Choose a shared folder";
+
 //MARK: - Add Event Category
 "add_category_title" = "Select a category";
 
 "add_category_can_create" = "You can create categories if you are missing any";
 
 "add_category_empty" = "No categories found.";
+
+//MARK: - Add Event Friends
+"add_friends_can_create" = "You can add friends if you are missing any";
+
+"add_friends_label" = "Add a friend";
+
+//MARK: - Add Event Folder
+"add_folder_title" = "Select a folder ";
+
+"add_folder_search_placeholder" = "Search for a folder";
+
+"add_folder_can_create" = "";
+
+//MARK: - Create Category
+"create_cat_title" = "Create a category";
+
+"create_cat_name_cat" = "Category name";
+
+//MARK: - Create Folder
+"create_folder_title" = "Create a folder";
+
+"create_folder_name_folder" = "Folder name";
+
+"create_folder_placeholder" = "Cycling club";
 
 //MARK: - Global
 "global_friends" = "Friends";
@@ -164,7 +200,7 @@
 
 "global_added" = "Added";
 
-"global_add" = "Add friends";
+"global_add" = "Add";
 
 "global_search_friend" = "Find a friend";
 

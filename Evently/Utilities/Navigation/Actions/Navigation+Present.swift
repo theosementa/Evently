@@ -15,4 +15,20 @@ extension Router where Destination == NavigationDestination {
         presentSheet(.selectCategory(selectedCategory: selectedCategory))
     }
 
+    func presentSelectFolder(selectedFolder: Binding<FolderModel?>) {
+        presentSheet(.selectFolder(selectedFolder: selectedFolder))
+    }
+
+    func presentSelectedFriends(selectedFriends: Binding<[UserModel]>) {
+        presentSheet(.selectFriends(selectedFriends: selectedFriends))
+    }
+
+    func presentCreateCategory(onDismiss: (() -> Void)? = nil) {
+        presentSheet(.createCategory, onDismiss)
+    }
+
+    func presentCreateFolder(onDismiss: (() -> Void)? = nil) {
+        presentSheet(.createFolder, onDismiss)
+    }
+
 }

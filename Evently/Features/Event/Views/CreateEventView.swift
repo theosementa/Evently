@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NavigationKit
 
 struct CreateEventView: View {
 
@@ -20,9 +21,10 @@ struct CreateEventView: View {
                 HStack {
                     TinyActionButton(icon: .chevronBack) {
                         if viewModel.currentStep == 1 {
+                            viewModel.deleteCurrentEventInCreation()
                             dismiss()
                         } else {
-                            viewModel.currentStep = 1
+                            viewModel.currentStep -= 1
                         }
                     }
 
@@ -38,11 +40,12 @@ struct CreateEventView: View {
                 }
                 .frame(maxWidth: .infinity)
 
-                ProgressBar(currentStep: viewModel.currentStep, maxStep: 2)
+                ProgressBar(currentStep: viewModel.currentStep, maxStep: 3)
             }
 
             VStack(spacing: 24) {
-                if viewModel.currentStep == 1 {
+                switch viewModel.currentStep {
+                case 1:
                     CustomTextField(
                         text: $viewModel.name,
                         config: .init(
@@ -52,10 +55,29 @@ struct CreateEventView: View {
                     )
 
                     CategoryPicker(selectedCategory: $viewModel.selectedCategory)
-                } else {
+
+                    FolderPicker(selectedFolder: $viewModel.selectedFolder)
+                case 2:
                     CustomDatePicker(selectedDate: $viewModel.date)
 
                     FrequencyPicker(frequency: $viewModel.frequency)
+                case 3:
+                    FriendsPicker(selectedFriends: $viewModel.selectedFriends)
+                    if let inviteToken = viewModel.currentInviteToken {
+                        ActionButton(
+                            config: .init(
+                                style: .secondary,
+                                icon: .copy,
+                                title: "global_copy_invite_link".localized,
+                                isFill: true
+                            )
+                        ) {
+                            UIPasteboard.general.string = inviteToken
+                            BannerManager.shared.banner = .inviteLink
+                        }
+                    }
+                default:
+                    EmptyView()
                 }
             }
 
@@ -65,17 +87,20 @@ struct CreateEventView: View {
                 config: .init(
                     style: viewModel.isFirstStepValid ? .default : .disabled,
                     title: viewModel.currentStep == 1
-                        ? "add_event_nextstep".localized
-                        : "global_finish".localized,
+                    ? "add_event_nextstep".localized
+                    : "global_finish".localized,
                     isFill: true
                 )
             ) {
-                if viewModel.currentStep == 2 {
-                    viewModel.createEvent()
+                if viewModel.currentStep == 3 {
                     dismiss()
-                }
-                if viewModel.isFirstStepValid {
-                    viewModel.currentStep = 2
+                } else if viewModel.currentStep == 2 {
+                    viewModel.createEvent()
+                    viewModel.currentStep = 3
+                } else {
+                    if viewModel.isFirstStepValid {
+                        viewModel.currentStep = 2
+                    }
                 }
             }
         }
@@ -84,6 +109,11 @@ struct CreateEventView: View {
         .background(Color.black0)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: viewModel.currentStep) { oldValue, newValue in
+            if oldValue == 3 && newValue < 3 {
+                viewModel.deleteCurrentEventInCreation()
+            }
+        }
     } // body
 } // struct
 

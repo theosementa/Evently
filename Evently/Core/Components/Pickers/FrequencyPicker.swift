@@ -50,7 +50,7 @@ struct FrequencyPicker: View {
 
 // MARK: - Preview
 #Preview {
-    @Previewable @State var frequency: EventFrequency = .none
+    @Previewable @State var frequency: EventFrequency = .unique
     FrequencyPicker(frequency: $frequency)
         .preferredColorScheme(.dark)
         .padding()

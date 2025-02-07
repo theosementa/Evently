@@ -11,7 +11,7 @@ struct UserModel: Codable, Identifiable {
     var id: Int?
     var firstName: String?
     var lastName: String?
-    var userName: String?
+    var username: String?
     var email: String?
     var password: String?
     var token: String?
@@ -23,7 +23,7 @@ struct UserModel: Codable, Identifiable {
         id: Int? = nil,
         firstName: String? = nil,
         lastName: String? = nil,
-        userName: String? = nil,
+        username: String? = nil,
         email: String? = nil,
         token: String? = nil,
         refreshToken: String? = nil,
@@ -32,7 +32,7 @@ struct UserModel: Codable, Identifiable {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
-        self.userName = userName
+        self.username = username
         self.email = email
         self.token = token
         self.refreshToken = refreshToken
@@ -59,5 +59,16 @@ extension UserModel {
     var fullName: String {
         return "\(firstName ?? "") \(lastName ?? "")"
     }
+
+}
+
+extension UserModel {
+
+    static let preview = UserModel(
+        id: 1,
+        firstName: "Theo",
+        lastName: "Sementa",
+        email: "theo@sementa.dev"
+    )
 
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FolderModel: Codable, Identifiable {
+struct FolderModel: Codable, Identifiable, Equatable {
     var id: Int?
     var rawName: String?
     var rawIcon: String?
@@ -27,4 +27,14 @@ extension FolderModel {
     var icon: String {
         return rawIcon ?? "folder"
     }
+}
+
+extension FolderModel {
+
+    static let preview: FolderModel = .init(
+        id: 1,
+        rawName: "Folder Preview",
+        rawIcon: "folder"
+    )
+
 }

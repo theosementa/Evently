@@ -129,3 +129,10 @@ extension Banner {
         return Banner(title: "banner_success_emailCopied".localized, style: .neutral)
     }
 }
+
+extension Banner {
+    static let inviteLink: Banner = Banner(
+        title: "banner_copy_invite_link".localized, // TODO: TBL
+        style: .neutral
+    )
+}

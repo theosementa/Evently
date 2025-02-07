@@ -8,7 +8,7 @@
 import Foundation
 
 enum EventFrequency: String, Codable, CaseIterable {
-    case none
+    case unique = "unique"
     //    case daily
     //    case weekly
     case monthly = "monthly"
@@ -19,7 +19,7 @@ extension EventFrequency {
 
     var title: String {
         switch self {
-        case .none:
+        case .unique:
             return "global_unique".localized
         case .monthly:
             return "global_monthly".localized

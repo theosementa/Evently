@@ -11,6 +11,7 @@ import NavigationKit
 struct CategoryPicker: View {
 
     @Binding var selectedCategory: CategoryModel?
+
     @EnvironmentObject private var router: Router<NavigationDestination>
 
     // MARK: -

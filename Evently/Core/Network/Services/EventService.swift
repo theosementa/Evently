@@ -36,9 +36,10 @@ struct EventService {
         )
     }
 
-    static func shareEvent(id: Int) async throws {
-        try await NetworkService.shared.sendRequest(
-            apiBuilder: EventAPIRequester.shareEvent(id: id)
+    static func shareEvent(id: Int) async throws -> InviteToken {
+        return try await NetworkService.shared.sendRequest(
+            apiBuilder: EventAPIRequester.shareEvent(id: id),
+            responseModel: InviteToken.self
         )
     }
 

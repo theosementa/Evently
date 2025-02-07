@@ -13,6 +13,10 @@ extension Router where Destination == NavigationDestination {
         navigateTo(.stepTwo)
     }
 
+    func pushProfile() {
+        navigateTo(.profile)
+    }
+
     func pushCreateEvent() {
         navigateTo(.createEvent)
     }
