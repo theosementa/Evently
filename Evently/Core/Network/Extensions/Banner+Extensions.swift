@@ -9,42 +9,33 @@ import Foundation
 
 extension Banner {
     struct NetworkError {
+        static let badRequestError: Banner =
+            Banner(title: "networkError_400".localized, style: .error)
 
-        static var badRequestError: Banner {
-            return Banner(title: "networkError_400".localized, style: .error)
-        }
+        static let unauthorizedError: Banner =
+            Banner(title: "networkError_401".localized, style: .error)
 
-        static var unauthorizedError: Banner {
-            return Banner(title: "networkError_401".localized, style: .error)
-        }
+        static let notFoundError: Banner =
+            Banner(title: "networkError_404".localized, style: .error)
 
-        static var notFoundError: Banner {
-            return Banner(title: "networkError_404".localized, style: .error)
-        }
+        static let fieldIsIncorrectlyFilledError: Banner =
+            Banner(title: "networkError_422".localized, style: .error)
 
-        static var fieldIsIncorrectlyFilledError: Banner {
-            return Banner(title: "networkError_422".localized, style: .error)
-        }
+        static let internalError: Banner =
+            Banner(title: "networkError_500".localized, style: .error)
 
-        static var internalError: Banner {
-            return Banner(title: "networkError_500".localized, style: .error)
-        }
+        static let parsingError: Banner =
+            Banner(title: "networkError_parsing".localized, style: .error)
 
-        static var parsingError: Banner {
-            return Banner(title: "networkError_parsing".localized, style: .error)
-        }
+        static let refreshTokenFailedError: Banner =
+            Banner(title: "networkError_refreshToken".localized, style: .error)
 
-        static var refreshTokenFailedError: Banner {
-            return Banner(title: "networkError_refreshToken".localized, style: .error)
-        }
+        static let noConnectionError: Banner =
+            Banner(title: "networkError_noConnection".localized, style: .error)
 
-        static var noConnectionError: Banner {
-            return Banner(title: "banner_error_noConnection".localized, style: .error)
-        }
+        static let unknownError: Banner =
+            Banner(title: "networkError_unknown".localized, style: .error)
 
-        static var unknownError: Banner {
-            return Banner(title: "networkError_unknown".localized, style: .error)
-        }
     }
 }
 
@@ -102,23 +93,6 @@ extension Banner {
     }
 }
 
-// MARK: - Group
-extension Banner {
-    static var groupAlreadyHere: Banner {
-        return Banner(title: "banner_error_group_already_here".localized, style: .error)
-    }
-    static var groupDeleted: Banner {
-        return Banner(title: "banner_error_group_deleted".localized, style: .error)
-    }
-}
-
-// MARK: - Payment Method
-extension Banner {
-    static var ibanCopied: Banner {
-        return Banner(title: "banner_success_ibanCopied".localized, style: .neutral)
-    }
-}
-
 // MARK: - Utils
 extension Banner {
     static var usernameCopied: Banner {
@@ -130,9 +104,10 @@ extension Banner {
     }
 }
 
+// MARK: - Global
 extension Banner {
     static let inviteLink: Banner = Banner(
-        title: "banner_copy_invite_link".localized, // TODO: TBL
+        title: "banner_copy_invite_link".localized,
         style: .neutral
     )
 }
