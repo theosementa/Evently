@@ -31,6 +31,10 @@ struct CreateFolderView: View {
                     )
 
                     FriendsPicker(selectedFriends: $selectedFriends)
+                    
+                    if !selectedFriends.isEmpty {
+                        MemberListRow(members: selectedFriends)
+                    }
                 }
                 .padding(.horizontal, 1)
             }

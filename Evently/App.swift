@@ -85,7 +85,7 @@ struct EventlyApp: App {
                     }
                 }
             }
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(.dark) // TODO: Remove when light mode available
         }
     } // body
 } // struct
