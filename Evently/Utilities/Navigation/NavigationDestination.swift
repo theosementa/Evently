@@ -15,6 +15,8 @@ enum NavigationDestination: RoutedDestination, Identifiable {
     case home
     case profile
 
+    case addFriend
+
     case createCategory
     case createFolder
     case createEvent
@@ -33,6 +35,9 @@ enum NavigationDestination: RoutedDestination, Identifiable {
             HomeView()
         case .profile:
             ProfileView()
+
+        case .addFriend:
+            AddFriendView()
 
         case .createCategory:
             CreateCategoryView()
@@ -61,6 +66,8 @@ extension NavigationDestination {
 
             (.home, .home),
             (.profile, .profile),
+
+            (.addFriend, .addFriend),
 
             (.createCategory, .createCategory),
             (.createFolder, .createFolder),

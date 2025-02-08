@@ -64,6 +64,7 @@ struct EventlyApp: App {
             .environment(appManager)
             .environment(bannerManager)
             .environment(userStore)
+            .environment(friendStore)
             .environment(folderStore)
             .environment(categoryStore)
             .environment(eventStore)

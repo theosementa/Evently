@@ -177,6 +177,9 @@
 
 "add_folder_can_create" = "Tu peux créer des dossiers s'il t'en manque";
 
+//MARK: - Add Friend
+"add_friends_username" = "Nom d’utilisateur de ton ami";
+
 //MARK: - Create Category
 "create_cat_title" = "Créer une catégorie";
 
@@ -198,6 +201,8 @@
 
 "global_finish" = "Terminer";
 
+"global_send" = "Envoyer";
+
 "global_added" = "Ajouté";
 
 "global_add" = "Ajouter";
@@ -215,4 +220,26 @@
 "global_no_category_found" = "Aucune catégorie trouvée.";
 
 "global_no_friend_found" = "Aucun ami trouvé avec ce nom. Es-tu sûr de l'avoir en ami ?";
+
+//MARK: - Network Error
+"networkError_400" = "400 - Une erreur s'est produite. Réessaie.";
+
+"networkError_401" = "401 - Tu n'es pas autorisé à effectuer cette action.";
+
+"networkError_404" = "404 - Le contenu recherché est introuvable.";
+
+"networkError_422" = "422 - Certaines informations sont incorrectes ou incomplètes.";
+
+"networkError_500" = "500 - Une erreur est survenue. Réessaie plus tard.";
+
+"networkError_parsing" = "Une erreur s'est produite lors du traitement des données.";
+
+"networkError_refreshToken" = "Ta session a expiré. Reconnecte-toi.";
+
+"networkError_noConnection" = "Vérifie ta connexion Internet et réessaie.";
+
+"networkError_unknown" = "Une erreur inconnue s'est produite.";
+
+//MARK: - Global Banner
+"banner_copy_invite_link" = "Lien d'invitation copié !";
 

@@ -11,6 +11,18 @@ import SwiftUICore
 
 extension Router where Destination == NavigationDestination {
 
+    func presentAddFriend(onDismiss: (() -> Void)? = nil) {
+        presentSheet(.addFriend, onDismiss)
+    }
+
+    func presentCreateCategory(onDismiss: (() -> Void)? = nil) {
+        presentSheet(.createCategory, onDismiss)
+    }
+
+    func presentCreateFolder(onDismiss: (() -> Void)? = nil) {
+        presentSheet(.createFolder, onDismiss)
+    }
+
     func presentSelectCategory(selectedCategory: Binding<CategoryModel?>) {
         presentSheet(.selectCategory(selectedCategory: selectedCategory))
     }
@@ -21,14 +33,6 @@ extension Router where Destination == NavigationDestination {
 
     func presentSelectedFriends(selectedFriends: Binding<[UserModel]>) {
         presentSheet(.selectFriends(selectedFriends: selectedFriends))
-    }
-
-    func presentCreateCategory(onDismiss: (() -> Void)? = nil) {
-        presentSheet(.createCategory, onDismiss)
-    }
-
-    func presentCreateFolder(onDismiss: (() -> Void)? = nil) {
-        presentSheet(.createFolder, onDismiss)
     }
 
 }

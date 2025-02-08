@@ -11,6 +11,8 @@ struct AddFriendView: View {
 
    @State private var viewModel: AddFriendViewModel = .init()
 
+    @Environment(\.dismiss) private var dismiss
+
     // MARK: -
     var body: some View {
         VStack(spacing: 48) {
@@ -26,6 +28,9 @@ struct AddFriendView: View {
                     placeholder: "myfriend#0001"
                 )
             )
+            .textInputAutocapitalization(.never)
+
+            Spacer()
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -37,7 +42,9 @@ struct AddFriendView: View {
                     isFill: true
                 )
             ) {
-
+                if await FriendStore.shared.sendRequest(username: viewModel.friendUsername) {
+                    dismiss()
+                }
             }
             .padding(24)
         }

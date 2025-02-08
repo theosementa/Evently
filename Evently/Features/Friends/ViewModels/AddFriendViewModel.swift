@@ -14,13 +14,4 @@ final class AddFriendViewModel {
 
 extension AddFriendViewModel {
 
-    @MainActor
-    func sendRequest() async {
-        do {
-            try await FriendService.sendRequest(to: friendUsername)
-        } catch {
-            NetworkService.handleError(error: error)
-        }
-    }
-
 }

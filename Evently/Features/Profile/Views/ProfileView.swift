@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
 
     @Environment(UserStore.self) private var userStore
+    @Environment(FriendStore.self) private var friendStore
 
     // MARK: -
     var body: some View {
@@ -17,7 +18,9 @@ struct ProfileView: View {
             if let currentUser = userStore.currentUser {
                 Text("Hello, \(currentUser.fullName)!")
                 Text(currentUser.username ?? "")
-
+            }
+            ForEach(friendStore.friends) { friend in
+                Text(friend.fullName)
             }
         }
     } // body

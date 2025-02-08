@@ -175,7 +175,10 @@
 
 "add_folder_search_placeholder" = "Search for a folder";
 
-"add_folder_can_create" = "";
+"add_folder_can_create" = "You can create folders if you are missing any";
+
+//MARK: - Add Friend
+"add_friends_username" = "Your friend's username";
 
 //MARK: - Create Category
 "create_cat_title" = "Create a category";
@@ -198,6 +201,8 @@
 
 "global_finish" = "To end";
 
+"global_send" = "Send";
+
 "global_added" = "Added";
 
 "global_add" = "Add";
@@ -215,4 +220,26 @@
 "global_no_category_found" = "No categories found.";
 
 "global_no_friend_found" = "No friends found with this name. Are you sure you have him as a friend?";
+
+//MARK: - Network Error
+"networkError_400" = "400 - An error has occurred. Try again.";
+
+"networkError_401" = "401 - You are not authorized to perform this action.";
+
+"networkError_404" = "404 - The content you were looking for could not be found.";
+
+"networkError_422" = "422 - Some information is incorrect or incomplete.";
+
+"networkError_500" = "500 - An error has occurred. Try again later.";
+
+"networkError_parsing" = "An error occurred while processing data.";
+
+"networkError_refreshToken" = "Your session has expired. Reconnect.";
+
+"networkError_noConnection" = "Check your Internet connection and try again.";
+
+"networkError_unknown" = "An unknown error has occurred.";
+
+//MARK: - Global Banner
+"banner_copy_invite_link" = "Invitation link copied!";
 
