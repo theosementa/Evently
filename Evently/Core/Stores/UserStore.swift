@@ -13,7 +13,6 @@ final class UserStore {
     static let shared = UserStore()
 
     var currentUser: UserModel?
-    var friends: [UserModel] = []
 }
 
 extension UserStore {
@@ -43,14 +42,6 @@ extension UserStore {
             NetworkService.handleError(error: error)
             self.currentUser = nil
         }
-    }
-
-    @MainActor
-    func fetchFriends() async {
-        do {
-            let friends = try await UserService.fetchFriends()
-            self.friends = friends
-        } catch { NetworkService.handleError(error: error) }
     }
 
 }

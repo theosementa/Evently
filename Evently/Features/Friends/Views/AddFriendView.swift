@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct AddFriendView: View {
-    
-    @State private var friendUsername: String = ""
-    
+
+   @State private var viewModel: AddFriendViewModel = .init()
+
     // MARK: -
     var body: some View {
         VStack(spacing: 48) {
@@ -18,9 +18,9 @@ struct AddFriendView: View {
                 icon: .person,
                 title: "global_add_friends".localized
             )
-            
+
             CustomTextField(
-                text: $friendUsername,
+                text: $viewModel.friendUsername,
                 config: .init(
                     title: "add_friends_username".localized,
                     placeholder: "myfriend#0001"
@@ -32,12 +32,12 @@ struct AddFriendView: View {
         .overlay(alignment: .bottom) {
             ActionButton(
                 config: .init(
-                    style: !friendUsername.isBlank ? .default : .disabled,
+                    style: !viewModel.friendUsername.isBlank ? .default : .disabled,
                     title: "global_send".localized,
                     isFill: true
                 )
             ) {
-                
+
             }
             .padding(24)
         }

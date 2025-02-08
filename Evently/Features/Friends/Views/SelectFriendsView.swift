@@ -13,7 +13,7 @@ struct SelectFriendsView: View {
     @Binding var selectedFriends: [UserModel]
 
     @Environment(\.dismiss) private var dismiss
-    @Environment(UserStore.self) private var userStore
+    @Environment(FriendStore.self) private var friendStore
 
     @State private var searchText: String = ""
     @State private var localSelectedFriends: [UserModel] = []
@@ -52,7 +52,7 @@ struct SelectFriendsView: View {
                     Separator()
 
                     VStack(spacing: 16) {
-                        ForEach(userStore.friends) { friend in
+                        ForEach(friendStore.friends) { friend in
                             FriendsSelectionRow(
                                 friends: $localSelectedFriends,
                                 friend: friend

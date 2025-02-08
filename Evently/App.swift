@@ -19,6 +19,7 @@ struct EventlyApp: App {
     @State private var bannerManager: BannerManager = .shared
 
     @State private var userStore: UserStore = .shared
+    @State private var friendStore: FriendStore = .shared
     @State private var folderStore: FolderStore = .shared
     @State private var categoryStore: CategoryStore = .shared
     @State private var eventStore: EventStore = .shared
@@ -73,7 +74,7 @@ struct EventlyApp: App {
             .onChange(of: appManager.appState) {
                 if appManager.appState == .running {
                     Task {
-                        async let friends: () = userStore.fetchFriends()
+                        async let friends: () = friendStore.fetchFriends()
                         async let folders: () = folderStore.fetchFolders()
                         async let categories: () = categoryStore.fetchAll()
                         async let defaults: () = categoryStore.fetchDefaults()

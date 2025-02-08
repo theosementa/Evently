@@ -5,7 +5,6 @@
 //  Created by Theo Sementa on 07/02/2025.
 //
 
-
 import Foundation
 
 enum FriendAPIRequester: APIRequestBuilder {

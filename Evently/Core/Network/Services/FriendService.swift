@@ -8,7 +8,7 @@
 import Foundation
 
 struct FriendService {
-    
+
     static func fetchAll() async throws -> [UserModel] {
         return try await NetworkService.shared.sendRequest(
             apiBuilder: UserAPIRequester.fetchFriends,
@@ -49,5 +49,5 @@ struct FriendService {
             responseModel: FriendRequestAcceptedModel.self
         )
     }
-    
+
 }
