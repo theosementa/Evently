@@ -63,19 +63,6 @@ struct MyFriendsView: View {
                     }
 
                     VStack(alignment: .leading, spacing: 16) {
-                        ForEach(friendStore.requests) { request in
-                            Text(request.asker?.fullName ?? "")
-                                .onTapGesture {
-                                    Task {
-                                        if let requestID = request.id {
-                                            await FriendStore.shared.answerRequest(requestID: requestID, answer: true)
-                                        }
-                                    }
-                                }
-                        }
-                    }
-
-                    VStack(alignment: .leading, spacing: 16) {
                         ForEach(friendStore.friends) { friend in
                             FriendRow(friend: friend)
                         }

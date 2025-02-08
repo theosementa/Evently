@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 @Observable
 final class CreateEventViewModel {
 
     var currentStep: Int = 1
+    var maxStep: Int = 3
     var currentEvent: EventModel?
     var currentInviteToken: String?
 
@@ -25,6 +27,51 @@ final class CreateEventViewModel {
 
     var currentEventID: Int? {
         return currentEvent?.id
+    }
+}
+
+extension CreateEventViewModel {
+
+    var currentActionButtonStyle: ActionButtonStyle {
+        switch currentStep {
+        case 1:
+            return isFirstStepValid ? .default : .disabled
+        case 2:
+            return .default
+        case 3:
+            return .default
+        default:
+            return .disabled
+        }
+    }
+
+    var currentActionButtonTitle: String {
+        switch currentStep {
+        case 1:
+            return "add_event_nextstep".localized
+        case 2:
+            return maxStep == 2 ? "global_finish".localized : "add_event_nextstep".localized
+        case 3:
+            return maxStep == 3 ? "global_finish".localized : "add_event_nextstep".localized
+        default:
+            return "Error"
+        }
+    }
+
+    func currentActionForStep(dismiss: DismissAction) {
+        if currentStep == 3 {
+            addFriendsToCurrentEventInCreation()
+            dismiss()
+        } else if currentStep == 2 {
+            createEvent()
+            if maxStep > 2 {
+                currentStep = 3
+            } else { dismiss() }
+        } else {
+            if isFirstStepValid {
+                currentStep = 2
+            }
+        }
     }
 }
 

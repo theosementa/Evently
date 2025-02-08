@@ -40,7 +40,7 @@ struct CreateEventView: View {
                 }
                 .frame(maxWidth: .infinity)
 
-                ProgressBar(currentStep: viewModel.currentStep, maxStep: 3)
+                ProgressBar(currentStep: viewModel.currentStep, maxStep: viewModel.maxStep)
             }
 
             VStack(spacing: 24) {
@@ -85,24 +85,12 @@ struct CreateEventView: View {
 
             ActionButton(
                 config: .init(
-                    style: viewModel.isFirstStepValid ? .default : .disabled,
-                    title: viewModel.currentStep == 1
-                    ? "add_event_nextstep".localized
-                    : "global_finish".localized,
+                    style: viewModel.currentActionButtonStyle,
+                    title: viewModel.currentActionButtonTitle,
                     isFill: true
                 )
             ) {
-                if viewModel.currentStep == 3 {
-                    viewModel.addFriendsToCurrentEventInCreation()
-                    dismiss()
-                } else if viewModel.currentStep == 2 {
-                    viewModel.createEvent()
-                    viewModel.currentStep = 3
-                } else {
-                    if viewModel.isFirstStepValid {
-                        viewModel.currentStep = 2
-                    }
-                }
+                viewModel.currentActionForStep(dismiss: dismiss)
             }
         }
         .padding(24)
@@ -113,6 +101,13 @@ struct CreateEventView: View {
         .onChange(of: viewModel.currentStep) { oldValue, newValue in
             if oldValue == 3 && newValue < 3 {
                 viewModel.deleteCurrentEventInCreation()
+            }
+        }
+        .onChange(of: viewModel.selectedFolder) {
+            if viewModel.selectedFolder != nil {
+                viewModel.maxStep = 2
+            } else {
+                viewModel.maxStep = 3
             }
         }
     } // body
