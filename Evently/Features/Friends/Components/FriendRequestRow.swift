@@ -37,7 +37,7 @@ struct FriendRequestRow: View {
                     config: .init(
                         style: .small,
                         icon: .checkmarkCircle,
-                        title: "Accepter", // TODO: TBL
+                        title: "global_accept".localized,
                         isFill: true
                     )
                 ) {
@@ -50,7 +50,7 @@ struct FriendRequestRow: View {
                     config: .init(
                         style: .smallSecondary,
                         icon: .xmark,
-                        title: "Refuser", // TODO: TBL
+                        title: "global_refuse".localized,
                         isFill: true
                     )
                 ) {

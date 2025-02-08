@@ -25,7 +25,7 @@ struct MyFriendRequestsView: View {
                     Image(.person)
                         .resizable()
                         .frame(width: 32, height: 32)
-                    Text("Demandes reçu".localized) // TODO: TBL
+                    Text("my_friends_requests_received".localized)
                         .font(.Headline.head4)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }

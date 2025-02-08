@@ -24,7 +24,7 @@
 
 "auth_classic" = "Classic connection";
 
-"auth_step_two" = "All we need is your first and last name to complete your registration";
+"auth_step_two" = "We just need your first and last name to complete your registration";
 
 "auth_last_name" = "Name";
 
@@ -206,6 +206,11 @@
 
 "member_list_person" = "person";
 
+//MARK: - My Friends
+"my_friends_requests_received" = "Requests received";
+
+"my_friends_requests" = "My friend requests";
+
 //MARK: - Global
 "global_friends" = "Friends";
 
@@ -218,6 +223,10 @@
 "global_finish" = "To end";
 
 "global_send" = "Send";
+
+"global_sent" = "Sent";
+
+"global_received" = "Received";
 
 "global_added" = "Added";
 
@@ -236,6 +245,10 @@
 "global_no_category_found" = "No categories found.";
 
 "global_no_friend_found" = "No friends found with this name. Are you sure you have him as a friend?";
+
+"global_accept" = "Accept";
+
+"global_refuse" = "Refuse";
 
 //MARK: - Network Error
 "networkError_400" = "400 - An error has occurred. Try again.";

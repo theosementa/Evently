@@ -39,7 +39,7 @@ struct MyFriendsView: View {
             ScrollView {
                 VStack(spacing: 48) {
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("Mes demandes d'amis") // TODO: TBL
+                        Text("my_friends_requests".localized)
                             .font(.Content.xlSemiBold)
 
                         HStack(spacing: 16) {
@@ -47,7 +47,7 @@ struct MyFriendsView: View {
                                 config: .init(
                                     style: .default,
                                     icon: .paperPlane,
-                                    title: "Envoyé", // TODO: TBL
+                                    title: "global_sent".localized,
                                     isFill: true
                                 )
                             ) { }
@@ -55,7 +55,7 @@ struct MyFriendsView: View {
                                 config: .init(
                                     style: .default,
                                     icon: .inbox,
-                                    title: "Reçu", // TODO: TBL
+                                    title: "global_received".localized,
                                     isFill: true
                                 )
                             ) { router.pushMyFriendRequests() }

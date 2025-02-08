@@ -27,6 +27,7 @@ enum NavigationDestination: RoutedDestination, Identifiable {
     case selectFolder(selectedFolder: Binding<FolderModel?>)
     case selectFriends(selectedFriends: Binding<[UserModel]>)
 
+    // swiftlint:disable:next cyclomatic_complexity
     func body(route: Route) -> some View {
         switch self {
 

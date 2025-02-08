@@ -206,6 +206,11 @@
 
 "member_list_person" = "personne";
 
+//MARK: - My Friends
+"my_friends_requests_received" = "Demandes reçu";
+
+"my_friends_requests" = "Mes demandes d'amis";
+
 //MARK: - Global
 "global_friends" = "Amis";
 
@@ -218,6 +223,10 @@
 "global_finish" = "Terminer";
 
 "global_send" = "Envoyer";
+
+"global_sent" = "Envoyé";
+
+"global_received" = "Reçu";
 
 "global_added" = "Ajouté";
 
@@ -236,6 +245,10 @@
 "global_no_category_found" = "Aucune catégorie trouvée.";
 
 "global_no_friend_found" = "Aucun ami trouvé avec ce nom. Es-tu sûr de l'avoir en ami ?";
+
+"global_accept" = "Accepter";
+
+"global_refuse" = "Refuser";
 
 //MARK: - Network Error
 "networkError_400" = "400 - Une erreur s'est produite. Réessaie.";
