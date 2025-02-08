@@ -11,7 +11,7 @@ import Foundation
 final class CreateEventViewModel {
 
     var currentStep: Int = 1
-    var currentEventID: Int?
+    var currentEvent: EventModel?
     var currentInviteToken: String?
 
     var name: String = ""
@@ -22,6 +22,10 @@ final class CreateEventViewModel {
     var frequency: EventFrequency = .unique
 
     var selectedFriends: [UserModel] = []
+
+    var currentEventID: Int? {
+        return currentEvent?.id
+    }
 }
 
 extension CreateEventViewModel {
@@ -34,11 +38,22 @@ extension CreateEventViewModel {
                     name: name,
                     frequency: frequency,
                     categoryID: categoryID,
-                    targetDate: date
+                    targetDate: date,
+                    folderID: selectedFolder?.id
                 )
             ) {
-                currentEventID = newEvent.id
+                currentEvent = newEvent
                 await fetchInviteTokenFromCurrentEventInCreation()
+            }
+        }
+    }
+
+    func addFriendsToCurrentEventInCreation() {
+        Task {
+            if let currentEventID, let currentEvent, !selectedFriends.isEmpty {
+                let friends = selectedFriends.compactMap(\.username)
+                self.currentEvent?.friends?.append(contentsOf: friends)
+                await EventStore.shared.updateEvent(id: currentEventID, event: currentEvent)
             }
         }
     }

@@ -44,7 +44,7 @@ struct FriendsSelectionRow: View {
                 }
                 .foregroundStyle(isAdded ? Color.black100 : Color.white0)
                 .padding(.horizontal, 14)
-                .padding(.top, 6)
+                .padding(.vertical, 6)
                 .background {
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
                         .fill(isAdded ? Color.white0 : Color.black200)

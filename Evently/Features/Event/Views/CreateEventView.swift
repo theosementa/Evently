@@ -93,6 +93,7 @@ struct CreateEventView: View {
                 )
             ) {
                 if viewModel.currentStep == 3 {
+                    viewModel.addFriendsToCurrentEventInCreation()
                     dismiss()
                 } else if viewModel.currentStep == 2 {
                     viewModel.createEvent()

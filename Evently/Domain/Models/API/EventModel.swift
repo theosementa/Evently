@@ -17,6 +17,7 @@ struct EventModel: Codable, Identifiable {
     var rawTargetDate: String?
     var categoryID: Int?
     var folderID: Int?
+    var friends: [String]?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -28,6 +29,7 @@ struct EventModel: Codable, Identifiable {
         case rawTargetDate = "targetDate"
         case categoryID
         case folderID
+        case friends
     }
 
     /// Default
@@ -40,7 +42,8 @@ struct EventModel: Codable, Identifiable {
         interval: Int? = nil,
         rawTargetDate: String? = nil,
         categoryID: Int? = nil,
-        folderID: Int? = nil
+        folderID: Int? = nil,
+        friends: [String]? = nil
     ) {
         self.id = id
         self.rawName = name
@@ -51,6 +54,7 @@ struct EventModel: Codable, Identifiable {
         self.rawTargetDate = rawTargetDate
         self.categoryID = categoryID
         self.folderID = folderID
+        self.friends = friends
     }
 
     /// Create event
@@ -58,12 +62,14 @@ struct EventModel: Codable, Identifiable {
         name: String,
         frequency: EventFrequency,
         categoryID: Int,
-        targetDate: Date
+        targetDate: Date,
+        folderID: Int? = nil
     ) {
         self.rawName = name
         self.recurrencePattern = frequency.rawValue
         self.categoryID = categoryID
         self.rawTargetDate = targetDate.ISO8601Format(.iso8601)
+        self.folderID = folderID
     }
 
 }

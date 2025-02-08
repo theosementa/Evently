@@ -29,6 +29,7 @@ extension Font {
         static let mediumSemiBold: Font = .custom(customFont + "-SemiBold", size: 16)
         static let mediumMedium: Font = .custom(customFont + "-Medium", size: 16)
 
+        static let smallBold: Font = .custom(customFont + "-Bold", size: 14)
         static let smallSemiBold: Font = .custom(customFont + "-SemiBold", size: 14)
     }
 

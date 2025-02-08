@@ -15,7 +15,7 @@ struct EventRow: View {
 
     // MARK: -
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: event.folder == nil ? 16 : 8) {
             VStack(alignment: .leading, spacing: 0) {
                 Text(event.name)
                     .font(.Content.xlBold)
@@ -26,6 +26,24 @@ struct EventRow: View {
                     .foregroundStyle(Color.white200)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+
+            if let folder = event.folder {
+                HStack(spacing: 6) {
+                    Image(.folder)
+                        .resizable()
+                        .frame(width: 16, height: 16)
+                    Text(folder.name)
+                        .font(.Content.smallBold)
+                }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .background {
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .fill(Color.white0)
+                        .opacity(0.3)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
 
             HStack(alignment: .bottom, spacing: 32) {
                 Image(ImageResource(name: event.category?.icon ?? "", bundle: .main))

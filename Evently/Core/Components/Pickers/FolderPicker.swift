@@ -21,6 +21,18 @@ struct FolderPicker: View {
                 .font(.Content.smallSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
+            if let selectedFolder {
+                ActionButton(
+                    config: .init(
+                        style: .default,
+                        icon: .folderOpen,
+                        title: selectedFolder.name,
+                        isFill: true
+                    )
+                ) {
+                    router.presentSelectFolder(selectedFolder: $selectedFolder)
+                }
+            } else {
                 ActionButton(
                     config: .init(
                         style: .default,
@@ -31,6 +43,7 @@ struct FolderPicker: View {
                 ) {
                     router.presentSelectFolder(selectedFolder: $selectedFolder)
                 }
+            }
         }
     } // body
 } // struct
