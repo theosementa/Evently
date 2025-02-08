@@ -18,12 +18,12 @@ enum FriendAPIRequester: APIRequestBuilder {
 extension FriendAPIRequester {
     var path: String {
         switch self {
-        case .sendRequest(let username):
-            return NetworkPath.Friend.request(username: username)
-        case .removeFriend(let username):
-            return NetworkPath.Friend.request(username: username)
+        case .sendRequest:
+            return NetworkPath.Friend.base
+        case .removeFriend:
+            return NetworkPath.Friend.base
         case .pendingRequests:
-            return NetworkPath.Friend.pendingRequests
+            return NetworkPath.Friend.base
         case .getSentRequests:
             return NetworkPath.Friend.sentRequests
         case .acceptOrReject(let requestID, _):
@@ -51,6 +51,10 @@ extension FriendAPIRequester {
 
     var body: Data? {
         switch self {
+        case .sendRequest(let username):
+            return try? JSONEncoder().encode(["searchField": username])
+        case .removeFriend(let username):
+            return try? JSONEncoder().encode(["searchField": username])
         case .acceptOrReject(_, let accepted):
             return try? JSONEncoder().encode(["accept": accepted])
         default:

@@ -17,6 +17,14 @@ extension Router where Destination == NavigationDestination {
         navigateTo(.profile)
     }
 
+    func pushMyFriends() {
+        navigateTo(.myFriends)
+    }
+
+    func pushMyFriendRequests() {
+        navigateTo(.myFriendRequests)
+    }
+
     func pushCreateEvent() {
         navigateTo(.createEvent)
     }

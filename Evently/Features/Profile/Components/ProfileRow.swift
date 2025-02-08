@@ -24,6 +24,7 @@ struct ProfileRow: View {
             Text(title)
                 .font(.Content.mediumSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundStyle(Color.white0)
 
             Image(isPushable ? .chevronRight : .arrowDiagonal)
                 .resizable()

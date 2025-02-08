@@ -68,6 +68,7 @@ extension UserModel {
         id: 1,
         firstName: "Theo",
         lastName: "Sementa",
+        username: "theo#0001",
         email: "theo@sementa.dev"
     )
 

@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import NavigationKit
 
 struct ProfileView: View {
 
     @Environment(\.dismiss) private var dismiss
-
+    @EnvironmentObject private var router: Router<NavigationDestination>
     @Environment(UserStore.self) private var userStore
 
     // MARK: -
@@ -44,11 +45,13 @@ struct ProfileView: View {
                     }
 
                     VStack(spacing: 16) {
-                        ProfileRow(
-                            icon: .person,
-                            title: "profile_my_friends".localized,
-                            isPushable: true
-                        )
+                        RoutedNavigationButton(push: router.pushMyFriends()) {
+                            ProfileRow(
+                                icon: .person,
+                                title: "profile_my_friends".localized,
+                                isPushable: true
+                            )
+                        }
                         ProfileRow(
                             icon: .hammer,
                             title: "profile_my_preferences".localized,
@@ -65,6 +68,7 @@ struct ProfileView: View {
                 }
             } // ScrollView
             .scrollIndicators(.hidden)
+            .contentMargins(.top, 32, for: .scrollContent)
         }
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

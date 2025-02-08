@@ -10,9 +10,10 @@ import SwiftUI
 enum ActionButtonStyle {
     case `default`
     case unselected
-    case small
     case secondary
     case disabled
+    case small
+    case smallSecondary
 }
 
 struct ActionButton: View {
@@ -20,6 +21,14 @@ struct ActionButton: View {
     // Builder
     let config: Configuration
     let action: () async -> Void
+
+    var isSmall: Bool {
+        return config.style == .small || config.style == .smallSecondary
+    }
+
+    var isSecondary: Bool {
+        return config.style == .secondary || config.style == .smallSecondary
+    }
 
     // MARK: -
     var body: some View {
@@ -38,14 +47,14 @@ struct ActionButton: View {
                     .font(.Content.mediumBold)
             }
             .foregroundStyle(foregroundColor)
-            .padding(.horizontal, config.style == .small ? 12 : 16)
-            .padding(.vertical, config.style == .small ? 8 : 14)
+            .padding(.horizontal, isSmall ? 12 : 16)
+            .padding(.vertical, isSmall ? 8 : 14)
             .frame(maxWidth: config.isFill ? .infinity : nil, alignment: config.alignment)
             .background {
-                RoundedRectangle(cornerRadius: config.style == .small ? 10 : 16, style: .continuous)
+                RoundedRectangle(cornerRadius: isSmall ? 12 : 16, style: .continuous)
                     .fill(backgroundStyle)
                     .stroke(
-                        config.style == .secondary ? Color.white0 : Color.clear,
+                        isSecondary ? Color.white0 : Color.clear,
                         lineWidth: 2
                     )
             }
@@ -84,11 +93,13 @@ extension ActionButton {
                 return Color.black
             case .unselected:
                 return Color.black500
-            case .small:
-                return Color.black
             case .secondary:
                 return Color.white
             case .disabled:
+                return Color.white
+            case .small:
+                return Color.black
+            case .smallSecondary:
                 return Color.white
             }
         }
@@ -100,12 +111,14 @@ extension ActionButton {
             return Color.white
         case .unselected:
             return Color.clear
-        case .small:
-            return Color.white
         case .secondary:
             return Color.clear
         case .disabled:
             return Color.black200
+        case .small:
+            return Color.white
+        case .smallSecondary:
+            return Color.clear
         }
     }
 

@@ -14,6 +14,8 @@ enum NavigationDestination: RoutedDestination, Identifiable {
 
     case home
     case profile
+    case myFriends
+    case myFriendRequests
 
     case addFriend
 
@@ -35,6 +37,10 @@ enum NavigationDestination: RoutedDestination, Identifiable {
             HomeView()
         case .profile:
             ProfileView()
+        case .myFriends:
+            MyFriendsView()
+        case .myFriendRequests:
+            MyFriendRequestsView()
 
         case .addFriend:
             AddFriendView()
@@ -66,6 +72,8 @@ extension NavigationDestination {
 
             (.home, .home),
             (.profile, .profile),
+            (.myFriends, .myFriends),
+            (.myFriendRequests, .myFriendRequests),
 
             (.addFriend, .addFriend),
 

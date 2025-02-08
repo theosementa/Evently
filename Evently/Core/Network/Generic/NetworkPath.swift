@@ -61,10 +61,7 @@ struct NetworkPath {
     }
 
     struct Friend {
-        static func request(username: String) -> String {
-            return "/friends-request/\(username)"
-        }
-        static let pendingRequests: String = "/friends-request"
+        static let base: String  = "/friends-request"
         static let sentRequests: String = "/friends-request/sent"
         static func acceptOrReject(requestID: Int) -> String {
             return "/friends-request/\(requestID)"

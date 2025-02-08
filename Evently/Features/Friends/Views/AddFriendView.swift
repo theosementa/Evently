@@ -34,6 +34,8 @@ struct AddFriendView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea(.container, edges: .bottom)
+        .background(Color.black0)
         .overlay(alignment: .bottom) {
             ActionButton(
                 config: .init(
@@ -48,8 +50,6 @@ struct AddFriendView: View {
             }
             .padding(24)
         }
-        .background(Color.black0)
-        .ignoresSafeArea(.container, edges: .bottom)
     } // body
 } // struct
 
