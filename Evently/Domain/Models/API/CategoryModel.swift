@@ -29,7 +29,7 @@ extension CategoryModel {
     }
 
     var icon: String {
-        return rawIcon ?? "" // TODO: Prendre un exclamation mark
+        return rawIcon ?? "danger"
     }
 
     var color: String {

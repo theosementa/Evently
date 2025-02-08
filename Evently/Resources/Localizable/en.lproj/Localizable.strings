@@ -55,6 +55,13 @@
 
 "home_empty_desc" = "Tap the button at the bottom of the screen to create a new event";
 
+//MARK: - Profile
+"profile_my_friends" = "My friends";
+
+"profile_my_preferences" = "My preferences";
+
+"profile_manage_my_account" = "Manage my account";
+
 //MARK: - Sidebar
 "sidebar_my_events" = "My events";
 
@@ -192,8 +199,17 @@
 
 "create_folder_placeholder" = "Cycling club";
 
+//MARK: - Member List
+"member_list_title" = "List of members";
+
+"member_list_persons" = "people";
+
+"member_list_person" = "person";
+
 //MARK: - Global
 "global_friends" = "Friends";
+
+"global_search" = "To research";
 
 "global_add_friends" = "Add friends";
 

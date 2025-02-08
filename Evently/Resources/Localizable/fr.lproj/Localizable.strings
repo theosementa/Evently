@@ -55,6 +55,13 @@
 
 "home_empty_desc" = "Appuie sur le bouton en bas de l’écran pour créer un nouvel événement";
 
+//MARK: - Profile
+"profile_my_friends" = "Mes amis";
+
+"profile_my_preferences" = "Mes préférences";
+
+"profile_manage_my_account" = "Gérer mon compte";
+
 //MARK: - Sidebar
 "sidebar_my_events" = "Mes événements";
 
@@ -192,8 +199,17 @@
 
 "create_folder_placeholder" = "Club de vélo";
 
+//MARK: - Member List
+"member_list_title" = "Liste des membres";
+
+"member_list_persons" = "personnes";
+
+"member_list_person" = "personne";
+
 //MARK: - Global
 "global_friends" = "Amis";
+
+"global_search" = "Rechercher";
 
 "global_add_friends" = "Ajouter des amis";
 

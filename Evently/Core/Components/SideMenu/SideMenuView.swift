@@ -77,7 +77,9 @@ struct SideMenuView: View {
                             ForEach(folderStore.folders) { folder in
                                 ActionButton(
                                     config: .init(
-                                        style: appManager.sideMenuItem == .folder(id: folder.id) ? .default : .unselected,
+                                        style: appManager.sideMenuItem == .folder(id: folder.id)
+                                        ? .default
+                                        : .unselected,
                                         icon: .folder,
                                         title: folder.name,
                                         isFill: true,
@@ -96,7 +98,9 @@ struct SideMenuView: View {
                             ForEach(categoryStore.allCategories) { category in
                                 ActionButton(
                                     config: .init(
-                                        style: appManager.sideMenuItem == .category(id: category.id) ? .default : .unselected,
+                                        style: appManager.sideMenuItem == .category(id: category.id)
+                                        ? .default
+                                        : .unselected,
                                         icon: ImageResource(name: category.icon, bundle: .main),
                                         title: category.name,
                                         isFill: true,

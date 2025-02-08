@@ -8,11 +8,11 @@
 import Foundation
 
 enum EventFrequency: String, Codable, CaseIterable {
-    case unique = "unique"
+    case unique
     //    case daily
     //    case weekly
-    case monthly = "monthly"
-    case yearly = "yearly"
+    case monthly
+    case yearly
 }
 
 extension EventFrequency {

@@ -46,17 +46,22 @@ extension HomeViewModel {
             let month = calendar.component(.month, from: event.targetDate)
 
             if year == currentYear && month == currentMonth {
-                return "Ce mois-ci" // TODO: TBL
+                return "home_this_month".localized
             } else if year == currentYear {
-                return "Plus tard cette année"
+                return "home_later_this_year".localized
             } else if year == currentYear + 1 {
-                return "L'année prochaine"
+                return "home_next_year".localized
             } else {
-                return "Futur lointain"
+                return "home_later_future".localized
             }
         }
 
-        let sectionOrder = ["Ce mois-ci", "Plus tard cette année", "L'année prochaine", "Futur lointain"]
+        let sectionOrder = [
+            "home_this_month".localized,
+            "home_later_this_year".localized,
+            "home_next_year".localized,
+            "home_later_future".localized
+        ]
 
         return sectionOrder.compactMap { title in
             if let sectionEvents = grouped[title], !sectionEvents.isEmpty {

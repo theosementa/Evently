@@ -8,25 +8,29 @@
 import SwiftUI
 
 struct MemberListRow: View {
-    
+
     var members: [UserModel]
-    
+
     var limitedMembers: [UserModel] {
         return Array(members.prefix(4))
     }
-    
+
+    var extraPeopleCount: Int {
+        return max(0, members.count - 4)
+    }
+
     // MARK: -
     var body: some View {
         VStack(spacing: 24) {
             HStack(spacing: 8) {
-                Text("Liste des membres") // TODO: TBL
+                Text("member_list_title".localized)
                     .font(.Content.xlBold)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                
+
                 HStack(spacing: 4) {
                     Text(members.count.formatted())
                         .font(.Content.mediumBold)
-                    
+
                     Image(.person)
                 }
                 .padding(.horizontal, 12)
@@ -36,7 +40,7 @@ struct MemberListRow: View {
                         .fill(Color.black200)
                 }
             }
-            
+
             VStack(spacing: 16) {
                 ForEach(limitedMembers) { member in
                     HStack(spacing: 8) {
@@ -47,8 +51,9 @@ struct MemberListRow: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
-                if members.count > 4 {
-                    Text("+ \(members.count - 4) personnes") // TODO: TBL
+                if extraPeopleCount > 0 {
+                    let labelToDisplay = "member_list_\(extraPeopleCount == 1 ? "person" : "people")".localized
+                    Text("+ \(extraPeopleCount) \(labelToDisplay)")
                 }
             }
         }

@@ -46,19 +46,19 @@ struct ProfileView: View {
                     VStack(spacing: 16) {
                         ProfileRow(
                             icon: .person,
-                            title: "Mes amis",
+                            title: "profile_my_friends".localized,
                             isPushable: true
-                        ) // TODO: TBL
+                        )
                         ProfileRow(
                             icon: .hammer,
-                            title: "Mes préférences",
+                            title: "profile_my_preferences".localized,
                             isPushable: true
-                        ) // TODO: TBL
+                        )
                         ProfileRow(
                             icon: .gear,
-                            title: "Gérer mon compte",
+                            title: "profile_manage_my_account".localized,
                             isPushable: true
-                        ) // TODO: TBL
+                        )
                     }
                     .padding(.horizontal, 1)
 

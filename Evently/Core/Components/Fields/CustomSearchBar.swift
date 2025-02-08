@@ -23,7 +23,7 @@ struct CustomSearchBar: View {
                 .frame(width: 18, height: 18)
                 .foregroundStyle(text.isEmpty ? Color.black400 : Color.white0)
 
-            TextField(placeholder ?? "Rechercher", text: $text) // TODO: TBL
+            TextField(placeholder ?? "global_search".localized, text: $text)
                 .focused($isFocused)
                 .font(.Content.mediumSemiBold)
                 .autocorrectionDisabled(true)
