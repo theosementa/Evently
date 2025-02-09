@@ -1,5 +1,5 @@
 //MARK: - Onboarding
-"onboarding_welcome" = "Bienvenue sur Evently";
+"onboarding_welcome" = "Bienvenue sur";
 
 "onboarding_textOne" = "Commence dès maintenant à planifier tous tes événements en toute simplicité !";
 
@@ -249,6 +249,10 @@
 "global_accept" = "Accepter";
 
 "global_refuse" = "Refuser";
+
+"global_start" = "Commencer";
+
+"global_continue" = "Continuer";
 
 //MARK: - Network Error
 "networkError_400" = "400 - Une erreur s'est produite. Réessaie.";
