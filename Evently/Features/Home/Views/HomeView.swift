@@ -39,8 +39,11 @@ struct HomeView: View {
 
                 CustomSearchBar(text: $viewModel.searchText)
             }
+            .padding(.horizontal, 24)
+            .padding(.top)
 
-            if eventStore.events.isEmpty {
+            let filteredEvents = viewModel.filterEvents(eventStore.events)
+            if filteredEvents.isEmpty {
                 VStack {
                     CustomEmptyView(
                         image: .emptyEvents,
@@ -51,9 +54,11 @@ struct HomeView: View {
 
                     Spacer()
                 }
+                .padding(.horizontal, 24)
+                .padding(.top)
             } else {
-                let filteredEvents = viewModel.filterEvents(eventStore.events)
                 let sections = viewModel.groupEvents(filteredEvents)
+
                 List {
                     ForEach(Array(sections.enumerated()), id: \.element.title) { index, section in
                         Section {
@@ -77,21 +82,20 @@ struct HomeView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal)
                                 .padding(.bottom, 12)
+                                .padding(.leading, 24)
                         }
                         .background(Color.black0)
                         .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-
                     }
                 }
                 .listStyle(.plain)
                 .scrollIndicators(.hidden)
                 .contentMargins(.bottom, 128, for: .scrollContent)
+                .contentMargins(.horizontal, 24, for: .scrollContent)
                 .ignoresSafeArea(.container, edges: .bottom)
-                .animation(.smooth, value: filteredEvents.count)
+                .animation(.smooth(duration: 1.2), value: appManager.sideMenuItem)
             }
         }
-        .padding(.horizontal, 24)
-        .padding(.top)
         .listSectionSpacing(-16)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black0)

@@ -211,6 +211,13 @@
 
 "my_friends_requests" = "Mes demandes d'amis";
 
+//MARK: - Profile
+"profile_contact" = "Nous contacter";
+
+"profile_review" = "Rédiger un avis";
+
+"profile_share" = "Partager l’application";
+
 //MARK: - Global
 "global_friends" = "Amis";
 

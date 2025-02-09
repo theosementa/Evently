@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NavigationKit
 
 struct SideMenuView: View {
 
@@ -14,6 +15,8 @@ struct SideMenuView: View {
     @Environment(FolderStore.self) private var folderStore
     @Environment(CategoryStore.self) private var categoryStore
     @Environment(AppManager.self) private var appManager
+
+    @EnvironmentObject private var router: Router<NavigationDestination>
 
     // MARK: -
     var body: some View {
@@ -56,7 +59,10 @@ struct SideMenuView: View {
                                 isFill: true,
                                 alignment: .leading
                             )
-                        ) { }
+                        ) {
+                            appManager.isSideMenuPresented = false
+                            router.presentCreateFolder()
+                        }
 
                         ActionButton(
                             config: .init(
@@ -66,7 +72,10 @@ struct SideMenuView: View {
                                 isFill: true,
                                 alignment: .leading
                             )
-                        ) { }
+                        ) {
+                            appManager.isSideMenuPresented = false
+                            router.presentCreateCategory()
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
 

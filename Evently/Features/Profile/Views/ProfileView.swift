@@ -11,6 +11,8 @@ import NavigationKit
 struct ProfileView: View {
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.openURL) private var openURL
+
     @EnvironmentObject private var router: Router<NavigationDestination>
     @Environment(UserStore.self) private var userStore
 
@@ -65,6 +67,32 @@ struct ProfileView: View {
                     }
                     .padding(.horizontal, 1)
 
+                    VStack(spacing: 16) {
+                        ProfileRow(
+                            icon: .share,
+                            title: "profile_share".localized,
+                            isPushable: false
+                        )
+                        ProfileRow(
+                            icon: .star,
+                            title: "profile_review".localized,
+                            isPushable: false
+                        )
+                        Button {
+                            if let url = URL(string: "mailto:contact@evently-app.fr") {
+                                openURL(url)
+                            }
+                        } label: {
+                            ProfileRow(
+                                icon: .mail,
+                                title: "profile_contact".localized,
+                                isPushable: false
+                            )
+                        }
+
+                    }
+                    .padding(.horizontal, 1)
+
                 }
             } // ScrollView
             .scrollIndicators(.hidden)
@@ -81,4 +109,5 @@ struct ProfileView: View {
 // MARK: - Preview
 #Preview {
     ProfileView()
+        .environment(UserStore.shared)
 }

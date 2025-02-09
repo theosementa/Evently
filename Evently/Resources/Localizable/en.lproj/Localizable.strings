@@ -24,7 +24,7 @@
 
 "auth_classic" = "Classic connection";
 
-"auth_step_two" = "We just need your first and last name to complete your registration";
+"auth_step_two" = "All we need is your first and last name to complete your registration";
 
 "auth_last_name" = "Name";
 
@@ -210,6 +210,13 @@
 "my_friends_requests_received" = "Requests received";
 
 "my_friends_requests" = "My friend requests";
+
+//MARK: - Profile
+"profile_contact" = "Contact us";
+
+"profile_review" = "Write a review";
+
+"profile_share" = "Share the app";
 
 //MARK: - Global
 "global_friends" = "Friends";

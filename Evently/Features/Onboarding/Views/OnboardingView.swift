@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    
+
     @State private var viewModel: OnboardingViewModel = .init()
-    
+
     // MARK: -
     var body: some View {
         VStack(spacing: 32) {
@@ -23,17 +23,17 @@ struct OnboardingView: View {
                         }
                         .font(.Headline.head4)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        
+
                         Image(.logoEvently)
                             .resizable()
                             .frame(width: 40, height: 40)
                             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                     }
-                    
+
                     Image(.havingFun)
                 }
             }
-            
+
             Group {
                 if viewModel.onboardingCurrentStep == 1 {
                     VStack(alignment: .leading, spacing: 32) {
@@ -68,7 +68,7 @@ struct OnboardingView: View {
                 }
             }
             .frame(maxHeight: .infinity, alignment: .top)
-                        
+
             if viewModel.onboardingCurrentStep == 1 && viewModel.isButtonStepOneDisplayed {
                 ActionButton(
                     config: .init(
@@ -91,7 +91,7 @@ struct OnboardingView: View {
                         isFill: true
                     )
                 ) {
-                    
+
                 }
             }
         }
