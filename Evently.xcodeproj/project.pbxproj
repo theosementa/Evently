@@ -75,6 +75,7 @@
 		D9D658EB2D5A61BC0047D4A6 /* Exceptions for "Evently" folder in "EventlyWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"/Localized: Resources/Localizable/Localizable.strings",
 				Core/AppConstant.swift,
 				Core/Network/APIRequester/CategoryAPIRequester.swift,
 				Core/Network/APIRequester/EventAPIRequester.swift,
@@ -102,6 +103,14 @@
 				Domain/Models/API/FolderModel.swift,
 				Domain/Models/API/InviteToken.swift,
 				Domain/Models/API/UserModel.swift,
+				"Resources/Fonts/Nunito-Black.ttf",
+				"Resources/Fonts/Nunito-Bold.ttf",
+				"Resources/Fonts/Nunito-ExtraBold.ttf",
+				"Resources/Fonts/Nunito-ExtraLight.ttf",
+				"Resources/Fonts/Nunito-Light.ttf",
+				"Resources/Fonts/Nunito-Medium.ttf",
+				"Resources/Fonts/Nunito-Regular.ttf",
+				"Resources/Fonts/Nunito-SemiBold.ttf",
 				"Utilities/Extensions/Color+Extensions.swift",
 				"Utilities/Extensions/Date+Extensions.swift",
 				"Utilities/Extensions/Font+Extensions.swift",

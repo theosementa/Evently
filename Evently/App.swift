@@ -8,6 +8,7 @@
 import SwiftUI
 import Observation
 import NavigationKit
+import WidgetKit
 
 @main
 struct EventlyApp: App {
@@ -74,6 +75,8 @@ struct EventlyApp: App {
             }
             .onChange(of: appManager.appState) {
                 if appManager.appState == .running {
+                    WidgetCenter.shared.reloadAllTimelines()
+
                     Task {
                         async let friends: () = friendStore.fetchFriends()
                         async let folders: () = folderStore.fetchFolders()

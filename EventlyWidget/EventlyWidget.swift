@@ -24,16 +24,15 @@ struct Provider: AppIntentTimelineProvider {
         _ = await EventStore.shared.fetchEvents()
 
         let eventForWidget = EventModelWidget.allEvents
-        let entries = eventForWidget.map { EventModelEntry(date: Date(), configuration: configuration, event: $0) }
+        var entries: [EventModelEntry] = []
 
-//        let currentDate = Date()
-//        for hourOffset in 0 ..< 5 {
-//            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-//            let entry = EventModelEntry(date: Date(), event: $0)
-//            entries.append(entry)
-//        }
-//        
-        let timeline = Timeline(entries: entries, policy: .never)
+        let currentDate = Date()
+        for hourOffset in 0 ..< 5 {
+            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+            entries = eventForWidget.map { EventModelEntry(date: entryDate, configuration: configuration, event: $0) }
+        }
+
+        let timeline = Timeline(entries: entries, policy: .atEnd)
         return timeline
     }
 
@@ -53,16 +52,17 @@ struct EventlyWidgetEntryView: View {
 
     var body: some View {
         if let event = entry.configuration.event {
-            VStack(spacing: 16) {
+            VStack(spacing: 8) {
                 Text(event.name)
-                    .font(.Content.mediumBold)
+                    .font(.Content.largeBold)
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
-                VStack(spacing: 0) {
+
+                VStack(spacing: -2) {
                     Text(event.date.daysFromNow.formatted())
-                        .font(.Headline.head5)
+                        .font(.Headline.head4)
                     Text("detail_rest_time".localized)
-                        .font(.Content.smallSemiBold)
+                        .font(.Content.mediumSemiBold)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)

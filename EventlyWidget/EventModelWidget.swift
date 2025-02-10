@@ -24,13 +24,12 @@ struct EventModelWidget: AppEntity {
 
     static var allEvents: [EventModelWidget] {
         return EventStore.shared.events.compactMap {
-//            let gradient = $0.category?.gradient
-            guard let id = $0.id else { return nil }
+            guard let id = $0.id, let gradient = $0.category?.gradient else { return nil }
             return EventModelWidget(
                 id: id,
                 name: $0.name,
                 date: $0.targetDate,
-                gradient: LinearGradient(colorHex: $0.category?.color.replacingOccurrences(of: "#", with: "") ?? "FFFFFF")
+                gradient: gradient
             )
         }
     }
@@ -51,11 +50,9 @@ struct EventModelQuery: EntityQuery {
     func entities(for identifiers: [EventModelWidget.ID]) async throws -> [EventModelWidget] {
         try await UserStore.shared.loginWithToken()
 
-        if EventStore.shared.events.isEmpty {
-            _ = await CategoryStore.shared.fetchDefaults()
-            _ = await CategoryStore.shared.fetchAll()
-            _ = await EventStore.shared.fetchEvents()
-        }
+        _ = await CategoryStore.shared.fetchDefaults()
+        _ = await CategoryStore.shared.fetchAll()
+        _ = await EventStore.shared.fetchEvents()
 
         return EventModelWidget.allEvents.filter { identifiers.contains($0.id) }
     }
@@ -63,11 +60,9 @@ struct EventModelQuery: EntityQuery {
     func suggestedEntities() async throws -> [EventModelWidget] {
         try await UserStore.shared.loginWithToken()
 
-        if EventStore.shared.events.isEmpty {
-            _ = await CategoryStore.shared.fetchDefaults()
-            _ = await CategoryStore.shared.fetchAll()
-            _ = await EventStore.shared.fetchEvents()
-        }
+        _ = await CategoryStore.shared.fetchDefaults()
+        _ = await CategoryStore.shared.fetchAll()
+        _ = await EventStore.shared.fetchEvents()
 
         return EventModelWidget.allEvents
     }
