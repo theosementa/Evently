@@ -55,9 +55,7 @@ struct LoginView: View {
                         title: "auth_with_apple".localized,
                         isTextFill: true
                     )
-                ) {
-                    signInWithAppleManager.performSignIn()
-                }
+                ) { signInWithAppleManager.performSignIn() }
 
                 ActionButtonReversed(
                     config: .init(
@@ -66,9 +64,7 @@ struct LoginView: View {
                         title: "auth_with_google".localized,
                         isTextFill: true
                     )
-                ) {
-                    signInWithGoogleManager.signIn()
-                }
+                ) { signInWithGoogleManager.signIn() }
 
                 ActionButtonReversed(
                     config: .init(
@@ -77,9 +73,7 @@ struct LoginView: View {
                         title: "auth_classic".localized,
                         isTextFill: true
                     )
-                ) {
-
-                }
+                ) { router.pushClassicLogin() }
             }
         }
         .padding(24)

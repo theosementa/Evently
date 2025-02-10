@@ -10,6 +10,7 @@ import SwiftUI
 struct ClassicLoginView: View {
 
     @State private var viewModel: ClassicLoginViewModel = .init()
+    @Environment(UserStore.self) private var userStore
 
     // MARK: -
     var body: some View {
@@ -46,7 +47,9 @@ struct ClassicLoginView: View {
                     title: "auth_connection".localized,
                     isFill: true
                 )
-            ) { }
+            ) {
+
+            }
         }
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

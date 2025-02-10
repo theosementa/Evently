@@ -13,6 +13,10 @@ extension Router where Destination == NavigationDestination {
         navigateTo(.stepTwo)
     }
 
+    func pushClassicLogin() {
+        navigateTo(.classicLogin)
+    }
+
     func pushProfile() {
         navigateTo(.profile)
     }

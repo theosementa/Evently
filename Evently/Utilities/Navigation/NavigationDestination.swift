@@ -11,6 +11,7 @@ import SwiftUI
 enum NavigationDestination: RoutedDestination, Identifiable {
 
     case stepTwo
+    case classicLogin
 
     case home
     case profile
@@ -33,6 +34,8 @@ enum NavigationDestination: RoutedDestination, Identifiable {
 
         case .stepTwo:
             StepTwoView()
+        case .classicLogin:
+            ClassicLoginView()
 
         case .home:
             HomeView()
@@ -70,6 +73,7 @@ extension NavigationDestination {
     static func == (lhs: NavigationDestination, rhs: NavigationDestination) -> Bool {
         switch (lhs, rhs) {
         case (.stepTwo, .stepTwo),
+            (.classicLogin, .classicLogin),
 
             (.home, .home),
             (.profile, .profile),

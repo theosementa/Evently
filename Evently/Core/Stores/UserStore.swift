@@ -44,4 +44,26 @@ extension UserStore {
         }
     }
 
+    @MainActor
+    func loginWithCredentials(email: String, password: String) async {
+        do {
+            let user = try await UserService.login(email: email, password: password)
+            self.currentUser = user
+        } catch {
+            NetworkService.handleError(error: error)
+            self.currentUser = nil
+        }
+    }
+
+    @MainActor
+    func register(email: String, password: String) async {
+        do {
+            let user = try await UserService.register(body: .init(email: email, password: password))
+            self.currentUser = user
+        } catch {
+            NetworkService.handleError(error: error)
+            self.currentUser = nil
+        }
+    }
+
 }

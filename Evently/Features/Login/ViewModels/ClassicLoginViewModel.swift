@@ -14,3 +14,15 @@ final class ClassicLoginViewModel {
     var password: String = ""
 
 }
+
+extension ClassicLoginViewModel {
+
+    func loginWithCredentials() {
+        Task {
+            await UserStore.shared.loginWithCredentials(email: email, password: password)
+        }
+    }
+
+//    func register
+
+}
