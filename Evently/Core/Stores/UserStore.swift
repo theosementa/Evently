@@ -23,8 +23,15 @@ extension UserStore {
     }
 
     @MainActor
+    func loginWithTokenWithoutThrow() async {
+        do {
+            try await TokenManager.shared.refreshToken()
+        } catch { NetworkService.handleError(error: error) }
+    }
+
+    @MainActor
     func login() async {
-        guard let refreshToken = KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self),
+        guard let refreshToken = KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self, accessGroup: AppConstant.appGroupForKeychain),
               !refreshToken.isEmpty else {
             UserStore.shared.currentUser = nil
             return
@@ -35,7 +42,7 @@ extension UserStore {
 
 #if DEBUG
             print("⚒️ TOKEN : \(TokenManager.shared.token)")
-            print("⚒️ Refresh Token :\(KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self))")
+            print("⚒️ Refresh Token :\(KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self, accessGroup: AppConstant.appGroupForKeychain))")
 #endif
 
         } catch {

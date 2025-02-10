@@ -22,12 +22,12 @@ extension TokenManager {
 
     func setTokenAndRefreshToken(token: String, refreshToken: String) {
         self.token = token
-        KeychainService.setItemToKeychain(id: "refreshToken", data: refreshToken)
+        KeychainService.setItemToKeychain(id: "refreshToken", data: refreshToken, accessGroup: AppConstant.appGroupForKeychain)
     }
 
     @MainActor
     func refreshToken() async throws {
-        if let refreshTokenInKeychain = KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self),
+        if let refreshTokenInKeychain = KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self, accessGroup: AppConstant.appGroupForKeychain),
            !refreshTokenInKeychain.isEmpty {
             do {
                 let user = try await NetworkService.shared.sendRequest(

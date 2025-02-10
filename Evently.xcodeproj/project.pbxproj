@@ -12,10 +12,42 @@
 		D91499972D4FEB57004DBE15 /* KeychainKit in Frameworks */ = {isa = PBXBuildFile; productRef = D91499962D4FEB57004DBE15 /* KeychainKit */; };
 		D96B00F62D4E2936002E88F4 /* NavigationKit in Frameworks */ = {isa = PBXBuildFile; productRef = D96B00F52D4E2936002E88F4 /* NavigationKit */; };
 		D9B1CC0E2D4D1C1B00D40513 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D9B1CC0D2D4D1C1B00D40513 /* Lottie */; };
+		D9D658CD2D5A5F9B0047D4A6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D658CC2D5A5F9B0047D4A6 /* WidgetKit.framework */; };
+		D9D658CF2D5A5F9B0047D4A6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D658CE2D5A5F9B0047D4A6 /* SwiftUI.framework */; };
+		D9D658E02D5A5F9C0047D4A6 /* EventlyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D9D658CA2D5A5F9B0047D4A6 /* EventlyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D9D659092D5A64C40047D4A6 /* KeychainKit in Frameworks */ = {isa = PBXBuildFile; productRef = D9D659082D5A64C40047D4A6 /* KeychainKit */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D9D658DE2D5A5F9C0047D4A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9819C2C2D496BE800154969 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9D658C92D5A5F9B0047D4A6;
+			remoteInfo = EventlyWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D9D658E12D5A5F9C0047D4A6 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D9D658E02D5A5F9C0047D4A6 /* EventlyWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D9819C342D496BE800154969 /* Evently.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Evently.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9D658CA2D5A5F9B0047D4A6 /* EventlyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EventlyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9D658CC2D5A5F9B0047D4A6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D9D658CE2D5A5F9B0047D4A6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D9D6590A2D5A79550047D4A6 /* EventlyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EventlyWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -26,6 +58,56 @@
 			);
 			target = D9819C332D496BE800154969 /* Evently */;
 		};
+		D9D658E52D5A5F9C0047D4A6 /* Exceptions for "EventlyWidget" folder in "EventlyWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D9D658C92D5A5F9B0047D4A6 /* EventlyWidgetExtension */;
+		};
+		D9D658E92D5A60560047D4A6 /* Exceptions for "EventlyWidget" folder in "Evently" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				EventModelWidget.swift,
+			);
+			target = D9819C332D496BE800154969 /* Evently */;
+		};
+		D9D658EB2D5A61BC0047D4A6 /* Exceptions for "Evently" folder in "EventlyWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Core/AppConstant.swift,
+				Core/Network/APIRequester/CategoryAPIRequester.swift,
+				Core/Network/APIRequester/EventAPIRequester.swift,
+				Core/Network/APIRequester/FolderAPIRequester.swift,
+				Core/Network/APIRequester/UserAPIRequester.swift,
+				Core/Network/Components/Banner.swift,
+				"Core/Network/Extensions/Banner+Extensions.swift",
+				Core/Network/Generic/APIRequestBuilder.swift,
+				Core/Network/Generic/NetworkError.swift,
+				Core/Network/Generic/NetworkPath.swift,
+				Core/Network/Generic/NetworkService.swift,
+				Core/Network/Managers/BannerManager.swift,
+				Core/Network/Managers/TokenManager.swift,
+				Core/Network/Services/CategoryService.swift,
+				Core/Network/Services/EventService.swift,
+				Core/Network/Services/FolderService.swift,
+				Core/Network/Services/UserService.swift,
+				Core/Stores/CategoryStore.swift,
+				Core/Stores/EventStore.swift,
+				Core/Stores/FolderStore.swift,
+				Core/Stores/UserStore.swift,
+				Domain/Enums/EventFrequency.swift,
+				Domain/Models/API/CategoryModel.swift,
+				Domain/Models/API/EventModel.swift,
+				Domain/Models/API/FolderModel.swift,
+				Domain/Models/API/InviteToken.swift,
+				Domain/Models/API/UserModel.swift,
+				"Utilities/Extensions/Color+Extensions.swift",
+				"Utilities/Extensions/LinearGradient+Extensions.swift",
+				"Utilities/Extensions/String+Extensions.swift",
+			);
+			target = D9D658C92D5A5F9B0047D4A6 /* EventlyWidgetExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,8 +115,18 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				D90CE9E42D4ABEAF00AAB44A /* Exceptions for "Evently" folder in "Evently" target */,
+				D9D658EB2D5A61BC0047D4A6 /* Exceptions for "Evently" folder in "EventlyWidgetExtension" target */,
 			);
 			path = Evently;
+			sourceTree = "<group>";
+		};
+		D9D658D02D5A5F9B0047D4A6 /* EventlyWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D9D658E92D5A60560047D4A6 /* Exceptions for "EventlyWidget" folder in "Evently" target */,
+				D9D658E52D5A5F9C0047D4A6 /* Exceptions for "EventlyWidget" folder in "EventlyWidgetExtension" target */,
+			);
+			path = EventlyWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -52,13 +144,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D9D658C72D5A5F9B0047D4A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9D658CF2D5A5F9B0047D4A6 /* SwiftUI.framework in Frameworks */,
+				D9D659092D5A64C40047D4A6 /* KeychainKit in Frameworks */,
+				D9D658CD2D5A5F9B0047D4A6 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		D9819C2B2D496BE800154969 = {
 			isa = PBXGroup;
 			children = (
+				D9D6590A2D5A79550047D4A6 /* EventlyWidgetExtension.entitlements */,
 				D9819C362D496BE800154969 /* Evently */,
+				D9D658D02D5A5F9B0047D4A6 /* EventlyWidget */,
+				D9D658CB2D5A5F9B0047D4A6 /* Frameworks */,
 				D9819C352D496BE800154969 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,8 +172,18 @@
 			isa = PBXGroup;
 			children = (
 				D9819C342D496BE800154969 /* Evently.app */,
+				D9D658CA2D5A5F9B0047D4A6 /* EventlyWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D9D658CB2D5A5F9B0047D4A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D9D658CC2D5A5F9B0047D4A6 /* WidgetKit.framework */,
+				D9D658CE2D5A5F9B0047D4A6 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -82,10 +197,12 @@
 				D9819C312D496BE800154969 /* Frameworks */,
 				D9819C322D496BE800154969 /* Resources */,
 				D91CA7EF2D4CCDE200F0B981 /* Swiftlint */,
+				D9D658E12D5A5F9C0047D4A6 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D9D658DF2D5A5F9C0047D4A6 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D9819C362D496BE800154969 /* Evently */,
@@ -102,6 +219,29 @@
 			productReference = D9819C342D496BE800154969 /* Evently.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D9D658C92D5A5F9B0047D4A6 /* EventlyWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9D658E42D5A5F9C0047D4A6 /* Build configuration list for PBXNativeTarget "EventlyWidgetExtension" */;
+			buildPhases = (
+				D9D658C62D5A5F9B0047D4A6 /* Sources */,
+				D9D658C72D5A5F9B0047D4A6 /* Frameworks */,
+				D9D658C82D5A5F9B0047D4A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D9D658D02D5A5F9B0047D4A6 /* EventlyWidget */,
+			);
+			name = EventlyWidgetExtension;
+			packageProductDependencies = (
+				D9D659082D5A64C40047D4A6 /* KeychainKit */,
+			);
+			productName = EventlyWidgetExtension;
+			productReference = D9D658CA2D5A5F9B0047D4A6 /* EventlyWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -109,11 +249,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1600;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					D9819C332D496BE800154969 = {
 						CreatedOnToolsVersion = 16.0;
+					};
+					D9D658C92D5A5F9B0047D4A6 = {
+						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
@@ -139,12 +282,20 @@
 			projectRoot = "";
 			targets = (
 				D9819C332D496BE800154969 /* Evently */,
+				D9D658C92D5A5F9B0047D4A6 /* EventlyWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D9819C322D496BE800154969 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9D658C82D5A5F9B0047D4A6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -183,7 +334,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D9D658C62D5A5F9B0047D4A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D9D658DF2D5A5F9C0047D4A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9D658C92D5A5F9B0047D4A6 /* EventlyWidgetExtension */;
+			targetProxy = D9D658DE2D5A5F9C0047D4A6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D9819C402D496BE900154969 /* Debug */ = {
@@ -387,6 +553,64 @@
 			};
 			name = Release;
 		};
+		D9D658E22D5A5F9C0047D4A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = EventlyWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8TMMB69WBG;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EventlyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EventlyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sementa.com.Evently.EventlyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D9D658E32D5A5F9C0047D4A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = EventlyWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8TMMB69WBG;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EventlyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EventlyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sementa.com.Evently.EventlyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -404,6 +628,15 @@
 			buildConfigurations = (
 				D9819C432D496BE900154969 /* Debug */,
 				D9819C442D496BE900154969 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9D658E42D5A5F9C0047D4A6 /* Build configuration list for PBXNativeTarget "EventlyWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9D658E22D5A5F9C0047D4A6 /* Debug */,
+				D9D658E32D5A5F9C0047D4A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -470,6 +703,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D9B1CC0C2D4D1C1B00D40513 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		D9D659082D5A64C40047D4A6 /* KeychainKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D91499952D4FEB57004DBE15 /* XCRemoteSwiftPackageReference "KeychainKit" */;
+			productName = KeychainKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

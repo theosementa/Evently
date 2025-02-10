@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/theosementa/KeychainKit",
       "state" : {
-        "revision" : "29668a7dc61d41e82eefe38e27826a044ca482c1",
-        "version" : "1.0.2"
+        "revision" : "9260937441aebc07b6ed9e859250bdd86f29b5d2",
+        "version" : "1.0.3"
       }
     },
     {
