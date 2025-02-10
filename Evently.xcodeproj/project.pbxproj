@@ -103,6 +103,8 @@
 				Domain/Models/API/InviteToken.swift,
 				Domain/Models/API/UserModel.swift,
 				"Utilities/Extensions/Color+Extensions.swift",
+				"Utilities/Extensions/Date+Extensions.swift",
+				"Utilities/Extensions/Font+Extensions.swift",
 				"Utilities/Extensions/LinearGradient+Extensions.swift",
 				"Utilities/Extensions/String+Extensions.swift",
 			);

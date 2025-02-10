@@ -52,6 +52,8 @@ struct EventModelQuery: EntityQuery {
         try await UserStore.shared.loginWithToken()
 
         if EventStore.shared.events.isEmpty {
+            _ = await CategoryStore.shared.fetchDefaults()
+            _ = await CategoryStore.shared.fetchAll()
             _ = await EventStore.shared.fetchEvents()
         }
 
@@ -62,6 +64,8 @@ struct EventModelQuery: EntityQuery {
         try await UserStore.shared.loginWithToken()
 
         if EventStore.shared.events.isEmpty {
+            _ = await CategoryStore.shared.fetchDefaults()
+            _ = await CategoryStore.shared.fetchAll()
             _ = await EventStore.shared.fetchEvents()
         }
 

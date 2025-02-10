@@ -19,6 +19,8 @@ struct Provider: AppIntentTimelineProvider {
 
     func timeline(for configuration: SelectEventIntent, in context: Context) async -> Timeline<EventModelEntry> {
         await UserStore.shared.loginWithTokenWithoutThrow()
+        _ = await CategoryStore.shared.fetchDefaults()
+        _ = await CategoryStore.shared.fetchAll()
         _ = await EventStore.shared.fetchEvents()
 
         let eventForWidget = EventModelWidget.allEvents
@@ -50,11 +52,24 @@ struct EventlyWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            if let event = entry.configuration.event {
+        if let event = entry.configuration.event {
+            VStack(spacing: 16) {
                 Text(event.name)
-                Text(event.date.formatted(date: .complete, time: .omitted))
+                    .font(.Content.mediumBold)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+                VStack(spacing: 0) {
+                    Text(event.date.daysFromNow.formatted())
+                        .font(.Headline.head5)
+                    Text("detail_rest_time".localized)
+                        .font(.Content.smallSemiBold)
+                }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .padding()
+            .background(event.gradient)
+        } else {
+            Text("No widget")
         }
     }
 }
@@ -71,6 +86,7 @@ struct EventlyWidget: Widget {
             EventlyWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
+        .contentMarginsDisabled()
     }
 }
 
