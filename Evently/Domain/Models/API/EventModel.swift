@@ -84,6 +84,10 @@ extension EventModel {
         return rawTargetDate?.toDate() ?? .now
     }
 
+    var remainingDays: Int {
+        return targetDate.daysFromNow
+    }
+
     var category: CategoryModel? {
         return CategoryStore.shared.allCategories.first(where: { $0.id == self.categoryID })
     }
@@ -104,7 +108,7 @@ extension EventModel {
         name: "Preview Event",
         frequency: .unique,
         categoryID: 1,
-        targetDate: Date().addingTimeInterval(60 * 60 * 24)
+        targetDate: Date().addingTimeInterval(3600 * 24 * 12 * 300)
     )
 
 }

@@ -32,4 +32,8 @@ extension Router where Destination == NavigationDestination {
     func pushCreateEvent() {
         navigateTo(.createEvent)
     }
+
+    func pushEventDetail(eventID: Int) {
+        navigateTo(.eventDetail(eventID: eventID))
+    }
 }

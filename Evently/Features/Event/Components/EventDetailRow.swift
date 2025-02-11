@@ -1,17 +1,15 @@
 //
-//  EventRow.swift
+//  EventDetailRow.swift
 //  Evently
 //
-//  Created by Theo Sementa on 06/02/2025.
+//  Created by Theo Sementa on 11/02/2025.
 //
 
 import SwiftUI
 
-struct EventRow: View {
-
+struct EventDetailRow: View {
     // builder
     var event: EventModel
-    @Environment(EventStore.self) private var eventStore
 
     // MARK: -
     var body: some View {
@@ -26,6 +24,14 @@ struct EventRow: View {
                     .foregroundStyle(Color.white200)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+
+            let recurrence = event.frequency?.rawValue.capitalized ?? ""
+            Text("add_event_reccurence".localized + " : " + recurrence)
+                .font(.Content.mediumSemiBold)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            EventYearMonthDaysRow(event: event)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
             if let folder = event.folder {
                 HStack(spacing: 6) {
@@ -59,7 +65,7 @@ struct EventRow: View {
                     }
 
                 VStack(alignment: .trailing, spacing: 0) {
-                    Text(event.remainingDays.formatted())
+                    Text(event.targetDate.daysFromNow.formatted())
                         .font(.Headline.head4)
                     Text("detail_rest_time".localized)
                         .font(.Content.largeSemiBold)
@@ -73,15 +79,6 @@ struct EventRow: View {
             RoundedRectangle(cornerRadius: 24, style: .continuous)
                 .fill(backgroundStyle)
         }
-        .contextMenu {
-            Button {
-                Task {
-                    await eventStore.deleteEvent(id: event.id!)
-                }
-            } label: {
-                Text("Delete")
-            }
-        }
     } // body
 
     private var backgroundStyle: AnyShapeStyle {
@@ -91,12 +88,11 @@ struct EventRow: View {
             AnyShapeStyle(Color.black100)
         }
     }
-
 } // struct
 
 // MARK: - Preview
 #Preview {
-    EventRow(event: .preview)
+    EventDetailRow(event: .preview)
         .preferredColorScheme(.dark)
         .padding()
         .background(Color.black0)

@@ -69,3 +69,11 @@ extension EventStore {
     }
 
 }
+
+extension EventStore {
+
+    func findByID(_ id: Int) -> EventModel? {
+        return events.first(where: { $0.id == id })
+    }
+
+}

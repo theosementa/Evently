@@ -63,10 +63,14 @@ struct HomeView: View {
                     ForEach(Array(sections.enumerated()), id: \.element.title) { index, section in
                         Section {
                             ForEach(section.events) { event in
-                                EventRow(event: event)
+                                if let id = event.id {
+                                    RoutedNavigationButton(push: router.pushEventDetail(eventID: id)) {
+                                        EventRow(event: event)
+                                    }
                                     .listRowSeparator(.hidden)
                                     .listRowBackground(Color.clear)
                                     .listRowInsets(.init(top: 8, leading: 0, bottom: 8, trailing: 0))
+                                }
                             }
 
                             if index < sections.count - 1 {

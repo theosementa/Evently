@@ -30,13 +30,23 @@
 
 "auth_first_name" = "First name";
 
-"auth_classic_desc" = "Whether you already have an account or not, you can register here.";
+"auth_classic_desc" = "Whether you already have an account or not, you can register or log in here.";
 
 "auth_email" = "E-mail";
 
 "auth_password" = "Password";
 
+"auth_confirm_password" = "Confirm password";
+
 "auth_end_button" = "Complete registration";
+
+"auth_confirm" = "Confirm";
+
+"auth_nevermiss" = "Never miss an event again";
+
+"auth_letus" = "From now on, let us manage the organization while you focus on the essentials";
+
+"auth_openapp" = "Open the app, scan your QR Code and immediately access your space. Simple, fast and secure.";
 
 "auth_connection" = "Connection";
 
@@ -95,13 +105,19 @@
 "cat_trip" = "Trip";
 
 //MARK: - Event detail
-"detail_rest_time" = "days left";
+"detail_rest_time" = "days remaining";
 
-"detail_year" = "Year";
+"detail_years" = "years";
 
-"detail_month" = "Month";
+"detail_year" = "year";
 
-"detail_day" = "Days";
+"detail_months" = "months";
+
+"detail_month" = "month";
+
+"detail_days" = "days";
+
+"detail_day" = "day";
 
 "detail_invite_link" = "Invitation link";
 
@@ -164,6 +180,8 @@
 "add_event_folder_shared" = "Shared folder";
 
 "add_event_choose_folder" = "Choose a shared folder";
+
+"add_event_choose_date" = "Choose date";
 
 //MARK: - Add Event Category
 "add_category_title" = "Select a category";
@@ -260,6 +278,8 @@
 "global_start" = "Start";
 
 "global_continue" = "Continue";
+
+"global_selected" = "Selected";
 
 //MARK: - Network Error
 "networkError_400" = "400 - An error has occurred. Try again.";

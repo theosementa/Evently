@@ -28,6 +28,8 @@ enum NavigationDestination: RoutedDestination, Identifiable {
     case selectFolder(selectedFolder: Binding<FolderModel?>)
     case selectFriends(selectedFriends: Binding<[UserModel]>)
 
+    case eventDetail(eventID: Int)
+
     // swiftlint:disable:next cyclomatic_complexity
     func body(route: Route) -> some View {
         switch self {
@@ -62,6 +64,9 @@ enum NavigationDestination: RoutedDestination, Identifiable {
             SelectFolderView(selectedFolder: selectedFolder)
         case let .selectFriends(selectedFriends):
             SelectFriendsView(selectedFriends: selectedFriends)
+
+        case let .eventDetail(eventID):
+            EventDetailView(eventID: eventID)
         }
     }
 
@@ -88,7 +93,9 @@ extension NavigationDestination {
 
             (.selectCategory, .selectCategory),
             (.selectFolder, .selectFolder),
-            (.selectFriends, .selectFriends):
+            (.selectFriends, .selectFriends),
+
+            (.eventDetail, .eventDetail):
             return true
 
         default:

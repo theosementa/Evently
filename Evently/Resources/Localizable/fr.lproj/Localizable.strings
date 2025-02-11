@@ -30,13 +30,23 @@
 
 "auth_first_name" = "Prénom";
 
-"auth_classic_desc" = "Que tu aies déjà un compte ou non, tu peux t'inscrire ici.";
+"auth_classic_desc" = "Que tu aies déjà un compte ou non, tu peux t'inscrire ou te connecter ici.";
 
 "auth_email" = "Email";
 
 "auth_password" = "Mot de passe";
 
+"auth_confirm_password" = "Confirmation du mot de passe";
+
 "auth_end_button" = "Terminer l'inscription";
+
+"auth_confirm" = "Confirmer";
+
+"auth_nevermiss" = "Ne rate plus aucun événement, jamais";
+
+"auth_letus" = "Dès maintenant, laisse-nous gérer l’organisation pendant que tu te concentres sur l’essentiel";
+
+"auth_openapp" = "Ouvre l’application, scanne ton QR Code et accède immédiatement à ton espace. Simple, rapide et sécurisé.";
 
 "auth_connection" = "Connexion";
 
@@ -97,11 +107,17 @@
 //MARK: - Event detail
 "detail_rest_time" = "jours restants";
 
-"detail_year" = "Année";
+"detail_years" = "ans";
 
-"detail_month" = "Mois";
+"detail_year" = "an";
 
-"detail_day" = "Jours";
+"detail_months" = "mois";
+
+"detail_month" = "mois";
+
+"detail_days" = "jours";
+
+"detail_day" = "jour";
 
 "detail_invite_link" = "Lien d'invitation";
 
@@ -164,6 +180,8 @@
 "add_event_folder_shared" = "Dossier partagé";
 
 "add_event_choose_folder" = "Choisir un dossier partagé";
+
+"add_event_choose_date" = "Définir une date";
 
 //MARK: - Add Event Category
 "add_category_title" = "Sélectionner une catégorie";
@@ -260,6 +278,8 @@
 "global_start" = "Commencer";
 
 "global_continue" = "Continuer";
+
+"global_selected" = "Selectioné(s)";
 
 //MARK: - Network Error
 "networkError_400" = "400 - Une erreur s'est produite. Réessaie.";
