@@ -60,6 +60,10 @@ extension UserModel {
         return "\(firstName ?? "") \(lastName ?? "")"
     }
 
+    func isOwner(_ userIdOfEvent: Int) -> Bool {
+        return self.id == userIdOfEvent
+    }
+
 }
 
 extension UserModel {

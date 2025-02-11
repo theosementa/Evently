@@ -18,6 +18,7 @@ struct EventModel: Codable, Identifiable {
     var categoryID: Int?
     var folderID: Int?
     var friends: [String]?
+    var userID: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -30,6 +31,7 @@ struct EventModel: Codable, Identifiable {
         case categoryID
         case folderID
         case friends
+        case userID
     }
 
     /// Default
@@ -43,7 +45,8 @@ struct EventModel: Codable, Identifiable {
         rawTargetDate: String? = nil,
         categoryID: Int? = nil,
         folderID: Int? = nil,
-        friends: [String]? = nil
+        friends: [String]? = nil,
+        userID: Int? = nil
     ) {
         self.id = id
         self.rawName = name
@@ -55,6 +58,7 @@ struct EventModel: Codable, Identifiable {
         self.categoryID = categoryID
         self.folderID = folderID
         self.friends = friends
+        self.userID = userID
     }
 
     /// Create event

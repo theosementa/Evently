@@ -20,4 +20,7 @@ extension LinearGradient {
         )
     }
 
+    static var redGradient: LinearGradient {
+        return .init(colorHex: "E53517")
+    }
 }

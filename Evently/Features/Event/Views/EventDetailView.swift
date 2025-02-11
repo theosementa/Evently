@@ -14,6 +14,9 @@ struct EventDetailView: View {
 
     @Environment(\.dismiss) private var dismiss
     @Environment(EventStore.self) private var eventStore
+    @Environment(UserStore.self) private var userStore
+
+    @State private var inviteToken: String?
 
     var event: EventModel? {
         return eventStore.findByID(eventID)
@@ -21,17 +24,40 @@ struct EventDetailView: View {
 
     // MARK: -
     var body: some View {
-        if let event {
+        if let event, let currentUser = userStore.currentUser {
             VStack(spacing: 16) {
                 HStack(spacing: 16) {
                     TinyActionButton(icon: .chevronBack) { dismiss() }
                     Spacer()
                     TinyActionButton(icon: .edit) { }
-                    TinyActionButton(icon: .trash) { }
+                    TinyActionButton(
+                        icon: .trash,
+                        customBackground: AnyShapeStyle(LinearGradient.redGradient)
+                    ) {
+
+                    }
                 }
 
                 ScrollView {
-                    EventDetailRow(event: event)
+                    VStack(spacing: 24) {
+                        EventDetailRow(event: event)
+
+                        if let inviteToken, event.folder == nil, currentUser.isOwner(event.userID ?? 0) {
+                            GenericBlock(
+                                title: "detail_invite_link".localized,
+                                description: "detail_share_link".localized,
+                                centeredText: "evently-app.fr/\(inviteToken)",
+                                button: .init(
+                                    icon: .copy,
+                                    title: "Copier le lien d’invitation",
+                                    style: .default,
+                                    action: {
+                                        // TODO: Add invite link
+                                    }
+                                )
+                            )
+                        }
+                    }
                 }
                 .scrollIndicators(.hidden)
                 .contentMargins(.top, 32, for: .scrollContent)
@@ -49,6 +75,11 @@ struct EventDetailView: View {
             .background(Color.black0)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
+            .task {
+                if currentUser.isOwner(event.userID ?? 0) {
+                    self.inviteToken = await EventStore.shared.shareEvent(id: eventID)
+                }
+            }
         }
     } // body
 } // struct

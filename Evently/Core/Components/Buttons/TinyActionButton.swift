@@ -10,6 +10,7 @@ import SwiftUI
 struct TinyActionButton: View {
 
     var icon: ImageResource
+    var customBackground: AnyShapeStyle?
     var action: () async -> Void
 
     // MARK: -
@@ -20,12 +21,17 @@ struct TinyActionButton: View {
             Image(icon)
                 .padding(6)
                 .background {
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(Color.black100)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .stroke(Color.black200, lineWidth: 0.5)
-                        }
+                    if let customBackground {
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(customBackground)
+                    } else {
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(Color.black100)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .stroke(Color.black200, lineWidth: 0.5)
+                            }
+                    }
                 }
         })
     } // body
