@@ -68,6 +68,16 @@ extension EventStore {
         }
     }
 
+    @MainActor
+    func leaveEvent(id: Int) async {
+        do {
+            try await EventService.leaveEvent(id: id)
+            self.events.removeAll { $0.id == id }
+        } catch {
+            NetworkService.handleError(error: error)
+        }
+    }
+
 }
 
 extension EventStore {

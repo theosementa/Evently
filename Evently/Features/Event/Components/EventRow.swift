@@ -12,6 +12,7 @@ struct EventRow: View {
     // builder
     var event: EventModel
     @Environment(EventStore.self) private var eventStore
+    @Environment(UserStore.self) private var userStore
 
     // MARK: -
     var body: some View {
@@ -74,12 +75,25 @@ struct EventRow: View {
                 .fill(backgroundStyle)
         }
         .contextMenu {
-            Button {
-                Task {
-                    await eventStore.deleteEvent(id: event.id!)
+
+            if let user = userStore.currentUser, let userIdOfEvent = event.userID {
+                if user.isOwner(userIdOfEvent) {
+                    Button {
+                        Task {
+                            await eventStore.deleteEvent(id: event.id!) // TODO: cast
+                        }
+                    } label: {
+                        Text("Delete")
+                    }
+                } else {
+                    Button {
+                        Task {
+                            await eventStore.leaveEvent(id: event.id!) // TODO: cast
+                        }
+                    } label: {
+                        Text("Leave")
+                    }
                 }
-            } label: {
-                Text("Delete")
             }
         }
     } // body

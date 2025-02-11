@@ -13,6 +13,7 @@ enum EventAPIRequester: APIRequestBuilder {
     case updateEvent(id: Int, event: EventModel)
     case deleteEvent(id: Int)
     case shareEvent(id: Int)
+    case leaveEvent(id: Int)
 }
 
 extension EventAPIRequester {
@@ -28,6 +29,8 @@ extension EventAPIRequester {
             return NetworkPath.Event.eventWithId(id: id)
         case .shareEvent(let id):
             return NetworkPath.Event.share(id: id)
+        case let .leaveEvent(id):
+            return NetworkPath.Event.leave(id: id)
         }
     }
 
@@ -38,6 +41,7 @@ extension EventAPIRequester {
         case .updateEvent:  return .PUT
         case .deleteEvent:  return .DELETE
         case .shareEvent:   return .POST
+        case .leaveEvent:   return .POST
         }
     }
 

@@ -13,8 +13,6 @@ final class CreateEventViewModel {
 
     var currentStep: Int = 1
     var maxStep: Int = 3
-    var currentEvent: EventModel?
-    var currentInviteToken: String?
 
     var name: String = ""
     var selectedCategory: CategoryModel?
@@ -24,10 +22,7 @@ final class CreateEventViewModel {
     var frequency: EventFrequency = .unique
 
     var selectedFriends: [UserModel] = []
-
-    var currentEventID: Int? {
-        return currentEvent?.id
-    }
+    var inviteToken: String = UUID().uuidString
 }
 
 extension CreateEventViewModel {
@@ -60,13 +55,15 @@ extension CreateEventViewModel {
 
     func currentActionForStep(dismiss: DismissAction) {
         if currentStep == 3 {
-            addFriendsToCurrentEventInCreation()
+            createEvent()
             dismiss()
         } else if currentStep == 2 {
-            createEvent()
             if maxStep > 2 {
                 currentStep = 3
-            } else { dismiss() }
+            } else {
+                createEvent()
+                dismiss()
+            }
         } else {
             if isFirstStepValid {
                 currentStep = 2
@@ -80,42 +77,17 @@ extension CreateEventViewModel {
     func createEvent() {
         Task {
             guard let selectedCategory, let categoryID = selectedCategory.id else { return }
-            if let newEvent = await EventStore.shared.createEvent(
+            await EventStore.shared.createEvent(
                 event: .init(
                     name: name,
                     frequency: frequency,
                     categoryID: categoryID,
                     targetDate: date,
-                    folderID: selectedFolder?.id
+                    inviteToken: maxStep == 2 ? nil : inviteToken,
+                    folderID: selectedFolder?.id,
+                    friends: selectedFriends.compactMap(\.username)
                 )
-            ) {
-                currentEvent = newEvent
-                await fetchInviteTokenFromCurrentEventInCreation()
-            }
-        }
-    }
-
-    func addFriendsToCurrentEventInCreation() {
-        Task {
-            if let currentEventID, let currentEvent, !selectedFriends.isEmpty {
-                let friends = selectedFriends.compactMap(\.username)
-                self.currentEvent?.friends?.append(contentsOf: friends)
-                await EventStore.shared.updateEvent(id: currentEventID, event: currentEvent)
-            }
-        }
-    }
-
-    func fetchInviteTokenFromCurrentEventInCreation() async {
-        if let currentEventID {
-            self.currentInviteToken = await EventStore.shared.shareEvent(id: currentEventID)
-        }
-    }
-
-    func deleteCurrentEventInCreation() {
-        if let currentEventID {
-            Task {
-                await EventStore.shared.deleteEvent(id: currentEventID)
-            }
+            )
         }
     }
 

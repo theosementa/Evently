@@ -19,6 +19,7 @@ struct EventModel: Codable, Identifiable {
     var folderID: Int?
     var friends: [String]?
     var userID: Int?
+    var inviteToken: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -32,6 +33,7 @@ struct EventModel: Codable, Identifiable {
         case folderID
         case friends
         case userID
+        case inviteToken
     }
 
     /// Default
@@ -46,7 +48,8 @@ struct EventModel: Codable, Identifiable {
         categoryID: Int? = nil,
         folderID: Int? = nil,
         friends: [String]? = nil,
-        userID: Int? = nil
+        userID: Int? = nil,
+        inviteToken: String? = nil
     ) {
         self.id = id
         self.rawName = name
@@ -59,6 +62,7 @@ struct EventModel: Codable, Identifiable {
         self.folderID = folderID
         self.friends = friends
         self.userID = userID
+        self.inviteToken = inviteToken
     }
 
     /// Create event
@@ -67,13 +71,17 @@ struct EventModel: Codable, Identifiable {
         frequency: EventFrequency,
         categoryID: Int,
         targetDate: Date,
-        folderID: Int? = nil
+        inviteToken: String? = nil,
+        folderID: Int? = nil,
+        friends: [String]? = nil
     ) {
         self.rawName = name
         self.recurrencePattern = frequency.rawValue
         self.categoryID = categoryID
         self.rawTargetDate = targetDate.ISO8601Format(.iso8601)
+        self.inviteToken = inviteToken
         self.folderID = folderID
+        self.friends = friends
     }
 
 }

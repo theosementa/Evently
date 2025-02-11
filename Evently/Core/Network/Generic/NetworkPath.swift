@@ -44,6 +44,9 @@ struct NetworkPath {
         static func share(id: Int) -> String {
             return "/events/share/\(id)"
         }
+        static func leave(id: Int) -> String {
+            return "/events/leave/\(id)"
+        }
     }
 
     struct Folder {

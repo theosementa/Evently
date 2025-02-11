@@ -20,10 +20,7 @@ struct CreateEventView: View {
             VStack(spacing: 16) {
                 HStack {
                     TinyActionButton(icon: .chevronBack) {
-                        if viewModel.currentStep == 1 {
-                            viewModel.deleteCurrentEventInCreation()
-                            dismiss()
-                        } else {
+                        if viewModel.currentStep == 1 { dismiss() } else {
                             viewModel.currentStep -= 1
                         }
                     }
@@ -63,18 +60,16 @@ struct CreateEventView: View {
                     FrequencyPicker(frequency: $viewModel.frequency)
                 case 3:
                     FriendsPicker(selectedFriends: $viewModel.selectedFriends)
-                    if let inviteToken = viewModel.currentInviteToken {
-                        ActionButton(
-                            config: .init(
-                                style: .secondary,
-                                icon: .copy,
-                                title: "global_copy_invite_link".localized,
-                                isFill: true
-                            )
-                        ) {
-                            UIPasteboard.general.string = inviteToken
-                            BannerManager.shared.banner = .inviteLink
-                        }
+                    ActionButton(
+                        config: .init(
+                            style: .secondary,
+                            icon: .copy,
+                            title: "global_copy_invite_link".localized,
+                            isFill: true
+                        )
+                    ) {
+                        UIPasteboard.general.string = viewModel.inviteToken
+                        BannerManager.shared.banner = .inviteLink
                     }
                 default:
                     EmptyView()
@@ -98,11 +93,6 @@ struct CreateEventView: View {
         .background(Color.black0)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
-        .onChange(of: viewModel.currentStep) { oldValue, newValue in
-            if oldValue == 3 && newValue < 3 {
-                viewModel.deleteCurrentEventInCreation()
-            }
-        }
         .onChange(of: viewModel.selectedFolder) {
             if viewModel.selectedFolder != nil {
                 viewModel.maxStep = 2

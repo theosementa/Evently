@@ -43,4 +43,10 @@ struct EventService {
         )
     }
 
+    static func leaveEvent(id: Int) async throws {
+        try await NetworkService.shared.sendRequest(
+            apiBuilder: EventAPIRequester.leaveEvent(id: id)
+        )
+    }
+
 }
