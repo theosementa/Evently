@@ -22,7 +22,7 @@ final class CreateEventViewModel {
     var frequency: EventFrequency = .unique
 
     var selectedFriends: [UserModel] = []
-    var inviteToken: String = UUID().uuidString
+    var inviteToken: String = String.generateRandomString()
 }
 
 extension CreateEventViewModel {

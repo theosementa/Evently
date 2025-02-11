@@ -24,17 +24,17 @@ struct EventDetailView: View {
 
     // MARK: -
     var body: some View {
-        if let event, let currentUser = userStore.currentUser {
+        if let event, let userIdOfEvent = event.userID, let currentUser = userStore.currentUser {
             VStack(spacing: 16) {
                 HStack(spacing: 16) {
                     TinyActionButton(icon: .chevronBack) { dismiss() }
                     Spacer()
                     TinyActionButton(icon: .edit) { }
                     TinyActionButton(
-                        icon: .trash,
+                        icon: currentUser.isOwner(userIdOfEvent) ? .trash : .logout,
                         customBackground: AnyShapeStyle(LinearGradient.redGradient)
                     ) {
-
+                        // TODO: Display alert
                     }
                 }
 
@@ -42,7 +42,7 @@ struct EventDetailView: View {
                     VStack(spacing: 24) {
                         EventDetailRow(event: event)
 
-                        if let inviteToken, event.folder == nil, currentUser.isOwner(event.userID ?? 0) {
+                        if let inviteToken = event.inviteToken, event.folder == nil, currentUser.isOwner(event.userID ?? 0) {
                             GenericBlock(
                                 title: "detail_invite_link".localized,
                                 description: "detail_share_link".localized,
@@ -58,6 +58,7 @@ struct EventDetailView: View {
                             )
                         }
                     }
+                    .padding(.horizontal, 1)
                 }
                 .scrollIndicators(.hidden)
                 .contentMargins(.top, 32, for: .scrollContent)
@@ -75,11 +76,6 @@ struct EventDetailView: View {
             .background(Color.black0)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
-            .task {
-                if currentUser.isOwner(event.userID ?? 0) {
-                    self.inviteToken = await EventStore.shared.shareEvent(id: eventID)
-                }
-            }
         }
     } // body
 } // struct

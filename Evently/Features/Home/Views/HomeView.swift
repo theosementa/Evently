@@ -98,6 +98,9 @@ struct HomeView: View {
                 .contentMargins(.horizontal, 24, for: .scrollContent)
                 .ignoresSafeArea(.container, edges: .bottom)
                 .animation(.smooth(duration: 1.2), value: appManager.sideMenuItem)
+                .refreshable {
+                    await eventStore.fetchEvents()
+                }
             }
         }
         .listSectionSpacing(-16)

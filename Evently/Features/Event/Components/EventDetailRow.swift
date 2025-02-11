@@ -25,6 +25,11 @@ struct EventDetailRow: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
+            let recurrence = event.frequency?.title ?? ""
+            Text("add_event_reccurence".localized + " : " + recurrence)
+                .font(.Content.mediumSemiBold)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
             if let folder = event.folder {
                 HStack(spacing: 6) {
                     Image(.folder)
@@ -42,11 +47,6 @@ struct EventDetailRow: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
-
-            let recurrence = event.frequency?.title ?? ""
-            Text("add_event_reccurence".localized + " : " + recurrence)
-                .font(.Content.mediumSemiBold)
-                .frame(maxWidth: .infinity, alignment: .leading)
 
             EventYearMonthDaysRow(event: event)
                 .frame(maxWidth: .infinity, alignment: .leading)

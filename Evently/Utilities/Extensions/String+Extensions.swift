@@ -24,3 +24,12 @@ extension String {
     }
 
 }
+
+extension String {
+
+    static func generateRandomString(length: Int = 10) -> String {
+        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        return String((0..<length).map { _ in characters.randomElement()! })
+    }
+
+}
