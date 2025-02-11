@@ -12,7 +12,6 @@ struct SelectEventIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Select a event"
     static var description = IntentDescription("Selects the character to display information for.")
 
-    // An example configurable parameter.
     @Parameter(title: "Event")
     var event: EventModelWidget?
 }

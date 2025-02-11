@@ -67,7 +67,23 @@ struct EventModelQuery: EntityQuery {
         return EventModelWidget.allEvents
     }
 
-    func defaultResult() async -> EventModelWidget? {
-        try? await suggestedEntities().first
-    }
+//    func suggestedEntities() async throws -> IntentItemCollection<EventModelWidget> {
+//        var sections: [IntentItemSection<EventModelWidget>] = []
+//
+//        try await UserStore.shared.loginWithToken()
+//
+//        _ = await CategoryStore.shared.fetchDefaults()
+//        _ = await CategoryStore.shared.fetchAll()
+//        _ = await EventStore.shared.fetchEvents()
+//
+//        EventModelWidget.allEvents.forEach { event in
+//            sections.append(.init(items: [.init(event)]))
+//        }
+//
+//        return IntentItemCollection(sections: sections)
+//    }
+
+//    func defaultResult() async -> EventModelWidget? {
+//        try? await suggestedEntities().first
+//    }
 }

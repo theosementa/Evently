@@ -8,45 +8,6 @@
 import WidgetKit
 import SwiftUI
 
-struct Provider: AppIntentTimelineProvider {
-    func placeholder(in context: Context) -> EventModelEntry {
-        EventModelEntry(date: Date(), configuration: SelectEventIntent(), event: .preview)
-    }
-
-    func snapshot(for configuration: SelectEventIntent, in context: Context) async -> EventModelEntry {
-        EventModelEntry(date: Date(), configuration: configuration, event: configuration.event)
-    }
-
-    func timeline(for configuration: SelectEventIntent, in context: Context) async -> Timeline<EventModelEntry> {
-        await UserStore.shared.loginWithTokenWithoutThrow()
-        _ = await CategoryStore.shared.fetchDefaults()
-        _ = await CategoryStore.shared.fetchAll()
-        _ = await EventStore.shared.fetchEvents()
-
-        let eventForWidget = EventModelWidget.allEvents
-        var entries: [EventModelEntry] = []
-
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            entries = eventForWidget.map { EventModelEntry(date: entryDate, configuration: configuration, event: $0) }
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        return timeline
-    }
-
-//    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
-}
-
-struct EventModelEntry: TimelineEntry {
-    let date: Date
-    let configuration: SelectEventIntent
-    let event: EventModelWidget?
-}
-
 struct EventlyWidgetEntryView: View {
     var entry: Provider.Entry
 
