@@ -20,6 +20,7 @@ struct CategoryPicker: View {
             Text("add_event_category".localized)
                 .font(.Content.smallSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 8)
 
             if let selectedCategory {
                 ActionButton(

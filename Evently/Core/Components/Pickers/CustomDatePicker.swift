@@ -19,6 +19,7 @@ struct CustomDatePicker: View {
             Text("add_event_choose_date".localized)
                 .font(.Content.smallSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 8)
 
             VStack(spacing: 16) {
                 Button(action: {
@@ -40,9 +41,10 @@ struct CustomDatePicker: View {
                 })
 
                 if isDatePickerVisible {
-                    DatePicker("",
-                               selection: $selectedDate.animation(.smooth),
-                               displayedComponents: .date
+                    DatePicker(
+                        "",
+                        selection: $selectedDate.animation(.smooth),
+                        displayedComponents: .date
                     )
                     .datePickerStyle(.graphical)
                 }

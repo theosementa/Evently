@@ -13,6 +13,7 @@ struct CreateEventView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var viewModel: CreateEventViewModel
+    @StateObject private var keyboardManager: KeyboardManager = .init()
 
     init(event: EventModel? = nil) {
         self._viewModel = .init(wrappedValue: .init(event: event))
@@ -22,19 +23,16 @@ struct CreateEventView: View {
     var body: some View {
         VStack(spacing: 48) {
             VStack(spacing: 16) {
-                HStack {
+                HStack(spacing: 8) {
                     TinyActionButton(icon: .chevronBack) {
                         if viewModel.currentStep == 1 { dismiss() } else {
                             viewModel.currentStep -= 1
                         }
                     }
 
-                    HStack(spacing: 12) {
-                        Image(.calendar)
-                        Text("add_event_title".localized)
-                            .font(.Content.xlBold)
-                    }
-                    .frame(maxWidth: .infinity)
+                    Text("add_event_title".localized)
+                        .font(.Content.xlBold)
+                        .frame(maxWidth: .infinity)
 
                     TinyActionButton(icon: .chevronBack) { dismiss() }
                         .opacity(0)
@@ -54,6 +52,7 @@ struct CreateEventView: View {
                             placeholder: "add_event_name_placeholder".localized
                         )
                     )
+                    .submitLabel(.done)
 
                     CategoryPicker(selectedCategory: $viewModel.selectedCategory)
 
@@ -91,6 +90,7 @@ struct CreateEventView: View {
             ) {
                 viewModel.currentActionForStep(dismiss: dismiss)
             }
+            .padding(.bottom, keyboardManager.isVisible ? 16 : 0)
         }
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

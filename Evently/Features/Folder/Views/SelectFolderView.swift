@@ -58,7 +58,7 @@ struct SelectFolderView: View {
                             ForEach(folderStore.folders) { folder in
                                 ActionButton(
                                     config: .init(
-                                        style: selectedFolder == folder ? .default : .disabled,
+                                        style: selectedFolder == folder ? .default : .unselected,
                                         icon: .folder,
                                         title: folder.name,
                                         isFill: true,

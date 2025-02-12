@@ -17,6 +17,7 @@ struct FrequencyPicker: View {
             Text("add_event_reccurence".localized)
                 .font(.Content.smallSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 8)
 
             Menu {
                 ForEach(EventFrequency.allCases, id: \.self) { frequency in

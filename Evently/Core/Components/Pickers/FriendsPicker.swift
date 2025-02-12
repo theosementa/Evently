@@ -21,6 +21,7 @@ struct FriendsPicker: View {
             Text("global_friends".localized)
                 .font(.Content.smallSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 8)
 
                 ActionButton(
                     config: .init(

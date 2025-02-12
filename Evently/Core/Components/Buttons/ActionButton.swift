@@ -9,11 +9,12 @@ import SwiftUI
 
 enum ActionButtonStyle {
     case `default`
-    case unselected
     case secondary
+    case unselected
     case disabled
     case small
     case smallSecondary
+    case unselectedSideBar
 }
 
 struct ActionButton: View {
@@ -77,7 +78,7 @@ extension ActionButton {
 extension ActionButton {
 
     private var backgroundStyle: AnyShapeStyle {
-        if let customBackground = config.customBackground, config.style != .unselected {
+        if let customBackground = config.customBackground, config.style != .unselectedSideBar {
             customBackground
         } else {
             AnyShapeStyle(backgroundColor)
@@ -85,21 +86,23 @@ extension ActionButton {
     }
 
     var foregroundColor: Color {
-        if config.customBackground != nil, config.style != .unselected {
+        if config.customBackground != nil, config.style != .unselectedSideBar {
             return Color.white
         } else {
             switch config.style {
             case .default:
                 return Color.black
-            case .unselected:
+            case .unselectedSideBar:
                 return Color.black500
             case .secondary:
                 return Color.white
             case .disabled:
-                return Color.white
+                return Color.black400
             case .small:
                 return Color.black
             case .smallSecondary:
+                return Color.white
+            case .unselected:
                 return Color.white
             }
         }
@@ -109,16 +112,18 @@ extension ActionButton {
         switch config.style {
         case .default:
             return Color.white
-        case .unselected:
+        case .unselectedSideBar:
             return Color.clear
         case .secondary:
             return Color.clear
         case .disabled:
-            return Color.black200
+            return Color.black100
         case .small:
             return Color.white
         case .smallSecondary:
             return Color.clear
+        case .unselected:
+            return Color.black200
         }
     }
 
@@ -145,7 +150,7 @@ extension ActionButton {
 
         ActionButton(
             config: .init(
-                style: .unselected,
+                style: .unselectedSideBar,
                 icon: .sparkes,
                 title: "Mes événements"
             )

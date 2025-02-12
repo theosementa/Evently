@@ -20,6 +20,7 @@ struct FolderPicker: View {
             Text("add_event_folder_shared".localized)
                 .font(.Content.smallSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 8)
 
             if let selectedFolder {
                 ActionButton(

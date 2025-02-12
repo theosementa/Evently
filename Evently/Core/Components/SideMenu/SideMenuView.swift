@@ -28,7 +28,7 @@ struct SideMenuView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         ActionButton(
                             config: .init(
-                                style: appManager.sideMenuItem == .events ? .default : .unselected,
+                                style: appManager.sideMenuItem == .events ? .default : .unselectedSideBar,
                                 icon: .sparkes,
                                 title: "sidebar_my_events".localized,
                                 isFill: true,
@@ -38,7 +38,7 @@ struct SideMenuView: View {
 
                         ActionButton(
                             config: .init(
-                                style: appManager.sideMenuItem == .calendar ? .default : .unselected,
+                                style: appManager.sideMenuItem == .calendar ? .default : .unselectedSideBar,
                                 icon: .calendar,
                                 title: "sidebar_my_calendar".localized,
                                 isFill: true,
@@ -53,7 +53,7 @@ struct SideMenuView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         ActionButton(
                             config: .init(
-                                style: .unselected,
+                                style: .unselectedSideBar,
                                 icon: .folderPlus,
                                 title: "sidebar_add_folder".localized,
                                 isFill: true,
@@ -66,7 +66,7 @@ struct SideMenuView: View {
 
                         ActionButton(
                             config: .init(
-                                style: .unselected,
+                                style: .unselectedSideBar,
                                 icon: .plusCircle,
                                 title: "sidebar_add_category".localized,
                                 isFill: true,
@@ -88,7 +88,7 @@ struct SideMenuView: View {
                                     config: .init(
                                         style: appManager.sideMenuItem == .folder(id: folder.id)
                                         ? .default
-                                        : .unselected,
+                                        : .unselectedSideBar,
                                         icon: .folder,
                                         title: folder.name,
                                         isFill: true,
@@ -109,7 +109,7 @@ struct SideMenuView: View {
                                     config: .init(
                                         style: appManager.sideMenuItem == .category(id: category.id)
                                         ? .default
-                                        : .unselected,
+                                        : .unselectedSideBar,
                                         icon: ImageResource(name: category.icon, bundle: .main),
                                         title: category.name,
                                         isFill: true,

@@ -46,6 +46,7 @@ struct CreateFolderView: View {
             }
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.black0)
             .overlay(alignment: .bottom) {
                 ActionButton(
                     config: .init(
@@ -59,8 +60,6 @@ struct CreateFolderView: View {
                 }
                 .padding(24)
             }
-            .background(Color.black0)
-            .ignoresSafeArea(.container, edges: .bottom)
         }
         .environmentObject(createFolderRouter)
     } // body

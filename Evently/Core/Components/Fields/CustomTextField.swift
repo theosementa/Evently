@@ -20,6 +20,7 @@ struct CustomTextField: View {
             Text(config.title)
                 .font(.Content.smallSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 8)
 
             Group {
                 if config.isSecured {
