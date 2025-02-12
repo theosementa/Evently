@@ -9,13 +9,11 @@
 /* Begin PBXBuildFile section */
 		D91499852D4FE91D004DBE15 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D91499842D4FE91D004DBE15 /* GoogleSignIn */; };
 		D91499872D4FE91D004DBE15 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D91499862D4FE91D004DBE15 /* GoogleSignInSwift */; };
-		D91499972D4FEB57004DBE15 /* KeychainKit in Frameworks */ = {isa = PBXBuildFile; productRef = D91499962D4FEB57004DBE15 /* KeychainKit */; };
 		D96B00F62D4E2936002E88F4 /* NavigationKit in Frameworks */ = {isa = PBXBuildFile; productRef = D96B00F52D4E2936002E88F4 /* NavigationKit */; };
 		D9B1CC0E2D4D1C1B00D40513 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D9B1CC0D2D4D1C1B00D40513 /* Lottie */; };
 		D9D658CD2D5A5F9B0047D4A6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D658CC2D5A5F9B0047D4A6 /* WidgetKit.framework */; };
 		D9D658CF2D5A5F9B0047D4A6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D658CE2D5A5F9B0047D4A6 /* SwiftUI.framework */; };
 		D9D658E02D5A5F9C0047D4A6 /* EventlyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D9D658CA2D5A5F9B0047D4A6 /* EventlyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D9D659092D5A64C40047D4A6 /* KeychainKit in Frameworks */ = {isa = PBXBuildFile; productRef = D9D659082D5A64C40047D4A6 /* KeychainKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,11 +96,17 @@
 				Core/Stores/FolderStore.swift,
 				Core/Stores/UserStore.swift,
 				Domain/Enums/EventFrequency.swift,
+				Domain/Enums/KeychainKeys.swift,
+				Domain/Models/API/AuthResponse.swift,
 				Domain/Models/API/CategoryModel.swift,
 				Domain/Models/API/EventModel.swift,
 				Domain/Models/API/FolderModel.swift,
+				Domain/Models/API/Friends/FriendRequestAcceptedModel.swift,
+				Domain/Models/API/Friends/FriendRequestModel.swift,
 				Domain/Models/API/InviteToken.swift,
+				Domain/Models/API/StepTwoBody.swift,
 				Domain/Models/API/UserModel.swift,
+				Domain/Models/EventSection.swift,
 				"Resources/Fonts/Nunito-Black.ttf",
 				"Resources/Fonts/Nunito-Bold.ttf",
 				"Resources/Fonts/Nunito-ExtraBold.ttf",
@@ -117,6 +121,7 @@
 				"Utilities/Extensions/Int+Extensions.swift",
 				"Utilities/Extensions/LinearGradient+Extensions.swift",
 				"Utilities/Extensions/String+Extensions.swift",
+				Utilities/Helper/KeychainService.swift,
 			);
 			target = D9D658C92D5A5F9B0047D4A6 /* EventlyWidgetExtension */;
 		};
@@ -151,7 +156,6 @@
 				D9B1CC0E2D4D1C1B00D40513 /* Lottie in Frameworks */,
 				D96B00F62D4E2936002E88F4 /* NavigationKit in Frameworks */,
 				D91499852D4FE91D004DBE15 /* GoogleSignIn in Frameworks */,
-				D91499972D4FEB57004DBE15 /* KeychainKit in Frameworks */,
 				D91499872D4FE91D004DBE15 /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,7 +165,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9D658CF2D5A5F9B0047D4A6 /* SwiftUI.framework in Frameworks */,
-				D9D659092D5A64C40047D4A6 /* KeychainKit in Frameworks */,
 				D9D658CD2D5A5F9B0047D4A6 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,7 +228,6 @@
 				D96B00F52D4E2936002E88F4 /* NavigationKit */,
 				D91499842D4FE91D004DBE15 /* GoogleSignIn */,
 				D91499862D4FE91D004DBE15 /* GoogleSignInSwift */,
-				D91499962D4FEB57004DBE15 /* KeychainKit */,
 			);
 			productName = Evently;
 			productReference = D9819C342D496BE800154969 /* Evently.app */;
@@ -248,7 +250,6 @@
 			);
 			name = EventlyWidgetExtension;
 			packageProductDependencies = (
-				D9D659082D5A64C40047D4A6 /* KeychainKit */,
 			);
 			productName = EventlyWidgetExtension;
 			productReference = D9D658CA2D5A5F9B0047D4A6 /* EventlyWidgetExtension.appex */;
@@ -286,7 +287,6 @@
 				D9B1CC0C2D4D1C1B00D40513 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				D96B00F42D4E2936002E88F4 /* XCRemoteSwiftPackageReference "NavigationKit" */,
 				D91499832D4FE91D004DBE15 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-				D91499952D4FEB57004DBE15 /* XCRemoteSwiftPackageReference "KeychainKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D9819C352D496BE800154969 /* Products */;
@@ -664,14 +664,6 @@
 				minimumVersion = 8.0.0;
 			};
 		};
-		D91499952D4FEB57004DBE15 /* XCRemoteSwiftPackageReference "KeychainKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/theosementa/KeychainKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
-			};
-		};
 		D96B00F42D4E2936002E88F4 /* XCRemoteSwiftPackageReference "NavigationKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/theosementa/NavigationKit";
@@ -701,11 +693,6 @@
 			package = D91499832D4FE91D004DBE15 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
 		};
-		D91499962D4FEB57004DBE15 /* KeychainKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D91499952D4FEB57004DBE15 /* XCRemoteSwiftPackageReference "KeychainKit" */;
-			productName = KeychainKit;
-		};
 		D96B00F52D4E2936002E88F4 /* NavigationKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D96B00F42D4E2936002E88F4 /* XCRemoteSwiftPackageReference "NavigationKit" */;
@@ -715,11 +702,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D9B1CC0C2D4D1C1B00D40513 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
-		};
-		D9D659082D5A64C40047D4A6 /* KeychainKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D91499952D4FEB57004DBE15 /* XCRemoteSwiftPackageReference "KeychainKit" */;
-			productName = KeychainKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

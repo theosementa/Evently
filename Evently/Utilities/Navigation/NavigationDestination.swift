@@ -22,7 +22,7 @@ enum NavigationDestination: RoutedDestination, Identifiable {
 
     case createCategory
     case createFolder
-    case createEvent
+    case createEvent(event: EventModel? = nil)
 
     case selectCategory(selectedCategory: Binding<CategoryModel?>)
     case selectFolder(selectedFolder: Binding<FolderModel?>)
@@ -55,8 +55,8 @@ enum NavigationDestination: RoutedDestination, Identifiable {
             CreateCategoryView()
         case .createFolder:
             CreateFolderView()
-        case .createEvent:
-            CreateEventView()
+        case .createEvent(let event):
+            CreateEventView(event: event)
 
         case let .selectCategory(selectedCategory):
             SelectCategoryView(selectedCategory: selectedCategory)

@@ -26,16 +26,16 @@ struct ProgressBar: View {
                 .font(.Content.smallSemiBold)
                 .foregroundStyle(Color.black100)
                 .padding(.horizontal, 12)
-                .padding(.vertical, 8)
+                .padding(.vertical, 10)
                 .frame(maxWidth: geometry.size.width * percentage, alignment: .leading)
                 .background {
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    RoundedRectangle(cornerRadius: 14, style: .continuous)
                         .fill(Color.white0)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background {
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(Color.black200)
+                    RoundedRectangle(cornerRadius: 14, style: .continuous)
+                        .fill(Color.black100)
                 }
                 .onGeometryChange(for: CGSize.self, of: \.size) { newValue in
                     height = newValue.height

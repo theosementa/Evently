@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import KeychainKit
 
 @Observable
 final class UserStore {
@@ -31,8 +30,11 @@ extension UserStore {
 
     @MainActor
     func login() async {
-        guard let refreshToken = KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self, accessGroup: AppConstant.appGroupForKeychain),
-              !refreshToken.isEmpty else {
+        guard let refreshToken = KeychainService.retrieveItemFromKeychain(
+            id: KeychainKeys.refreshToken.rawValue,
+            type: String.self,
+            accessGroup: AppConstant.accessGroupKeychain
+        ), !refreshToken.isEmpty else {
             UserStore.shared.currentUser = nil
             return
         }
@@ -42,7 +44,7 @@ extension UserStore {
 
 #if DEBUG
             print("⚒️ TOKEN : \(TokenManager.shared.token)")
-            print("⚒️ Refresh Token :\(KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self, accessGroup: AppConstant.appGroupForKeychain))")
+            print("⚒️ Refresh Token :\(KeychainService.retrieveItemFromKeychain(id: KeychainKeys.refreshToken.rawValue, type: String.self, accessGroup: AppConstant.accessGroupKeychain))")
 #endif
 
         } catch {

@@ -1,13 +1,13 @@
 //
-//  ClassicLoginView.swift
+//  ClassicCreateAccountView.swift
 //  Evently
 //
-//  Created by Theo Sementa on 05/02/2025.
+//  Created by Theo Sementa on 12/02/2025.
 //
 
 import SwiftUI
 
-struct ClassicLoginView: View {
+struct ClassicCreateAccountView: View {
 
     @State private var viewModel: ClassicLoginViewModel = .shared
     @Environment(UserStore.self) private var userStore
@@ -40,33 +40,26 @@ struct ClassicLoginView: View {
                         isSecured: true
                     )
                 )
+
+                CustomTextField(
+                    text: $viewModel.confirmPassword,
+                    config: .init(
+                        title: "auth_confirm_password".localized,
+                        placeholder: "Th@ma$12",
+                        isSecured: true
+                    )
+                )
             }
 
             ActionButton(
                 config: .init(
                     style: .default,
                     icon: .sparkes,
-                    title: "auth_connection".localized,
+                    title: "auth_create_account".localized,
                     isFill: true
                 )
-            ) { }
+            ) {
 
-            Separator()
-
-            VStack(spacing: 16) {
-                Text("auth_new_evently".localized)
-                    .font(.Content.mediumBold)
-
-                ActionButton(
-                    config: .init(
-                        style: .secondary,
-                        icon: .sparkes,
-                        title: "auth_create_account".localized,
-                        isFill: true
-                    )
-                ) {
-
-                }
             }
 
             Spacer()
@@ -74,15 +67,12 @@ struct ClassicLoginView: View {
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black0)
-        .onAppear {
-            viewModel.resetData()
-        }
     } // body
 } // struct
 
 // MARK: - Preview
 #Preview {
-    ClassicLoginView()
+    ClassicCreateAccountView()
         .preferredColorScheme(.dark)
         .environment(UserStore.shared)
 }

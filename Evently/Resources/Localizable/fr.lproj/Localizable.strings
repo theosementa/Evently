@@ -50,6 +50,10 @@
 
 "auth_connection" = "Connexion";
 
+"auth_create_account" = "Créer mon compte";
+
+"auth_new_evently" = "Nouveau sur Evently ?";
+
 //MARK: - Home
 "home_this_month" = "Ce mois - ci";
 

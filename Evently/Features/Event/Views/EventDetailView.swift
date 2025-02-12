@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NavigationKit
 
 struct EventDetailView: View {
 
@@ -15,6 +16,8 @@ struct EventDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(EventStore.self) private var eventStore
     @Environment(UserStore.self) private var userStore
+
+    @EnvironmentObject private var router: Router<NavigationDestination>
 
     @State private var inviteToken: String?
 
@@ -28,8 +31,13 @@ struct EventDetailView: View {
             VStack(spacing: 16) {
                 HStack(spacing: 16) {
                     TinyActionButton(icon: .chevronBack) { dismiss() }
+
                     Spacer()
-                    TinyActionButton(icon: .edit) { }
+
+                    TinyActionButton(icon: .edit) {
+                        router.pushCreateEvent(event: event)
+                    }
+
                     TinyActionButton(
                         icon: currentUser.isOwner(userIdOfEvent) ? .trash : .logout,
                         customBackground: AnyShapeStyle(LinearGradient.redGradient)
@@ -42,7 +50,9 @@ struct EventDetailView: View {
                     VStack(spacing: 24) {
                         EventDetailRow(event: event)
 
-                        if let inviteToken = event.inviteToken, event.folder == nil, currentUser.isOwner(event.userID ?? 0) {
+                        if let inviteToken = event.inviteToken,
+                           event.folder == nil,
+                           currentUser.isOwner(userIdOfEvent) {
                             GenericBlock(
                                 title: "detail_invite_link".localized,
                                 description: "detail_share_link".localized,

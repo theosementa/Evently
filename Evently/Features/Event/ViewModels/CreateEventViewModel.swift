@@ -23,6 +23,23 @@ final class CreateEventViewModel {
 
     var selectedFriends: [UserModel] = []
     var inviteToken: String = String.generateRandomString()
+
+    var event: EventModel?
+
+    init(event: EventModel? = nil) {
+        if let event {
+            self.event = event
+            name = event.name
+            selectedCategory = event.category
+            selectedFolder = event.folder
+            date = event.targetDate
+            frequency = event.frequency ?? .unique
+        }
+    }
+
+    var isEditing: Bool {
+        return event != nil
+    }
 }
 
 extension CreateEventViewModel {
@@ -77,17 +94,24 @@ extension CreateEventViewModel {
     func createEvent() {
         Task {
             guard let selectedCategory, let categoryID = selectedCategory.id else { return }
-            await EventStore.shared.createEvent(
-                event: .init(
-                    name: name,
-                    frequency: frequency,
-                    categoryID: categoryID,
-                    targetDate: date,
-                    inviteToken: maxStep == 2 ? nil : inviteToken,
-                    folderID: selectedFolder?.id,
-                    friends: selectedFriends.compactMap(\.username)
+            if let event, let eventID = event.id {
+                await EventStore.shared.updateEvent(
+                    id: eventID,
+                    event: event
                 )
-            )
+            } else {
+                await EventStore.shared.createEvent(
+                    event: .init(
+                        name: name,
+                        frequency: frequency,
+                        categoryID: categoryID,
+                        targetDate: date,
+                        inviteToken: maxStep == 2 ? nil : inviteToken,
+                        folderID: selectedFolder?.id,
+                        friends: selectedFriends.compactMap(\.username)
+                    )
+                )
+            }
         }
     }
 

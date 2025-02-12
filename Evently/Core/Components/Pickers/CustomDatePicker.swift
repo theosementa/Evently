@@ -50,10 +50,11 @@ struct CustomDatePicker: View {
             .foregroundStyle(Color.white0)
             .padding(.horizontal)
             .padding(.vertical, 14)
-            .frame(maxWidth: .infinity )
+            .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .stroke(Color.white0, lineWidth: 2)
+                    .fill(Color.black100)
+                    .stroke(Color.black200, lineWidth: 1)
             }
             .padding(1)
             .clipped()

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WidgetKit
 
 @Observable
 final class EventStore {
@@ -45,6 +46,7 @@ extension EventStore {
             if let index = self.events.firstIndex(where: { $0.id == id }) {
                 self.events[index] = updatedEvent
                 self.events.sort { $0.targetDate > $1.targetDate }
+                WidgetCenter.shared.reloadAllTimelines()
             }
         } catch { NetworkService.handleError(error: error)  }
     }
@@ -54,6 +56,7 @@ extension EventStore {
         do {
             try await EventService.deleteEvent(id: id)
             self.events.removeAll { $0.id == id }
+            WidgetCenter.shared.reloadAllTimelines()
         } catch { NetworkService.handleError(error: error)  }
     }
 
@@ -73,6 +76,7 @@ extension EventStore {
         do {
             try await EventService.leaveEvent(id: id)
             self.events.removeAll { $0.id == id }
+            WidgetCenter.shared.reloadAllTimelines()
         } catch {
             NetworkService.handleError(error: error)
         }

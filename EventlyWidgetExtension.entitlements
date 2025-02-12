@@ -6,9 +6,5 @@
 	<array>
 		<string>group.sementa.com.Evently</string>
 	</array>
-	<key>keychain-access-groups</key>
-	<array>
-		<string>$(AppIdentifierPrefix)sementa.com.Evently.EventlyWidget</string>
-	</array>
 </dict>
 </plist>

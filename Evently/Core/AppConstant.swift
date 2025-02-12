@@ -8,5 +8,5 @@
 import Foundation
 
 struct AppConstant {
-    static let appGroupForKeychain: String = "group.sementa.com.Evently"
+    static let accessGroupKeychain: String = "group.sementa.com.Evently" // keep group
 }

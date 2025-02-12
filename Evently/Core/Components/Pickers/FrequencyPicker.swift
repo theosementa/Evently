@@ -41,7 +41,8 @@ struct FrequencyPicker: View {
                 .frame(maxWidth: .infinity )
                 .background {
                     RoundedRectangle(cornerRadius: 16, style: .continuous)
-                        .stroke(Color.white0, lineWidth: 2)
+                        .fill(Color.black100)
+                        .stroke(Color.black200, lineWidth: 1)
                 }
             }
         }

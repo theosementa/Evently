@@ -12,7 +12,11 @@ struct CreateEventView: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    @State private var viewModel: CreateEventViewModel = .init()
+    @State private var viewModel: CreateEventViewModel
+
+    init(event: EventModel? = nil) {
+        self._viewModel = .init(wrappedValue: .init(event: event))
+    }
 
     // MARK: -
     var body: some View {

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import KeychainKit
 
 class TokenManager: ObservableObject {
     static let shared = TokenManager()
@@ -22,13 +21,20 @@ extension TokenManager {
 
     func setTokenAndRefreshToken(token: String, refreshToken: String) {
         self.token = token
-        KeychainService.setItemToKeychain(id: "refreshToken", data: refreshToken, accessGroup: AppConstant.appGroupForKeychain)
+        KeychainService.setItemToKeychain(
+            id: KeychainKeys.refreshToken.rawValue,
+            data: refreshToken,
+            accessGroup: AppConstant.accessGroupKeychain
+        )
     }
 
     @MainActor
     func refreshToken() async throws {
-        if let refreshTokenInKeychain = KeychainService.retrieveItemFromKeychain(id: "refreshToken", type: String.self, accessGroup: AppConstant.appGroupForKeychain),
-           !refreshTokenInKeychain.isEmpty {
+        if let refreshTokenInKeychain = KeychainService.retrieveItemFromKeychain(
+            id: KeychainKeys.refreshToken.rawValue,
+            type: String.self,
+            accessGroup: AppConstant.accessGroupKeychain
+        ), !refreshTokenInKeychain.isEmpty {
             do {
                 let user = try await NetworkService.shared.sendRequest(
                     apiBuilder: UserAPIRequester.refreshToken(refreshToken: refreshTokenInKeychain),
@@ -41,8 +47,11 @@ extension TokenManager {
                 } else {
                     throw NetworkError.refreshTokenFailed
                 }
+            } catch {
+                print("⚠️ \(error.localizedDescription)")
             }
         } else {
+            print("⚠️ Keychain EMPTY")
             UserStore.shared.currentUser = nil
             TokenManager.shared.setTokenAndRefreshToken(token: "", refreshToken: "")
             throw NetworkError.refreshTokenFailed

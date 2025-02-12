@@ -1,5 +1,5 @@
 {
-  "originHash" : "32547b3946f06d1f267ee3cb16bf55b4e01b650f918522fa3cccfd935fe7b5e3",
+  "originHash" : "ba62eb5e97bb03d1fb06af9791ea58e89721adee3cb844dc5b936f65edcd4644",
   "pins" : [
     {
       "identity" : "app-check",
@@ -53,15 +53,6 @@
       "state" : {
         "revision" : "5d7d66f647400952b1758b230e019b07c0b4b22a",
         "version" : "4.1.1"
-      }
-    },
-    {
-      "identity" : "keychainkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/theosementa/KeychainKit",
-      "state" : {
-        "revision" : "9260937441aebc07b6ed9e859250bdd86f29b5d2",
-        "version" : "1.0.3"
       }
     },
     {

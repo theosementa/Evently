@@ -29,8 +29,8 @@ extension Router where Destination == NavigationDestination {
         navigateTo(.myFriendRequests)
     }
 
-    func pushCreateEvent() {
-        navigateTo(.createEvent)
+    func pushCreateEvent(event: EventModel? = nil) {
+        navigateTo(.createEvent(event: event))
     }
 
     func pushEventDetail(eventID: Int) {

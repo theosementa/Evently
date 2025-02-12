@@ -9,13 +9,21 @@ import Foundation
 
 @Observable
 final class ClassicLoginViewModel {
+    static let shared = ClassicLoginViewModel()
 
     var email: String = ""
     var password: String = ""
+    var confirmPassword: String = ""
 
 }
 
 extension ClassicLoginViewModel {
+
+    func resetData() {
+        email = ""
+        password = ""
+        confirmPassword = ""
+    }
 
     func loginWithCredentials() {
         Task {
