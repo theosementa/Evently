@@ -82,7 +82,6 @@ struct ProfileView: View {
                             if let url = URL(string: "mailto:contact@evently-app.fr") {
                                 openURL(url)
                             }
-                            // TODO: Open mail in app
                         } label: {
                             ProfileRow(
                                 icon: .mail,
@@ -93,7 +92,6 @@ struct ProfileView: View {
 
                     }
                     .padding(.horizontal, 1)
-
                 }
             } // ScrollView
             .scrollIndicators(.hidden)
