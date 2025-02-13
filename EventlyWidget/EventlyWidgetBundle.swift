@@ -12,7 +12,7 @@ import SwiftUI
 struct EventlyWidgetBundle: WidgetBundle {
     var body: some Widget {
         EventlyWidget()
-        EventlyWidgetControl()
-        EventlyWidgetLiveActivity()
+//        EventlyWidgetControl()
+//        EventlyWidgetLiveActivity()
     }
 }
