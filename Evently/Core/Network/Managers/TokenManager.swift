@@ -34,7 +34,7 @@ extension TokenManager {
             id: KeychainKeys.refreshToken.rawValue,
             type: String.self,
             accessGroup: AppConstant.accessGroupKeychain
-        ), !refreshTokenInKeychain.isEmpty {
+        ) {
             do {
                 let user = try await NetworkService.shared.sendRequest(
                     apiBuilder: UserAPIRequester.refreshToken(refreshToken: refreshTokenInKeychain),

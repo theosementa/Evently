@@ -21,13 +21,13 @@ struct TogglePicker: View {
                 .font(.Content.smallSemiBold)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 8)
-            
+
             HStack(spacing: 8) {
                 Text(text)
                     .font(.Content.mediumBold)
                     .contentTransition(.numericText())
                     .frame(maxWidth: .infinity, alignment: .leading)
-                
+
                 RoundedRectangle(cornerRadius: 6, style: .continuous)
                     .fill(isSelected ? Color.white : Color.clear)
                     .stroke(Color.white, lineWidth: isSelected ? 0 : 2)
@@ -63,7 +63,7 @@ struct TogglePicker: View {
             title: "Durée de l'événement",
             text: "Toute la journée"
         )
-        
+
         TogglePicker(
             isSelected: .constant(false),
             title: "Durée de l'événement",

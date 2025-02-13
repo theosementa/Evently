@@ -12,7 +12,7 @@
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)sementa.com.Evently</string>
+		<string>$(AppIdentifierPrefix)group.sementa.com.Evently</string>
 	</array>
 </dict>
 </plist>
