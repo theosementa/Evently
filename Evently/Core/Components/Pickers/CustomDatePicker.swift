@@ -36,6 +36,7 @@ struct CustomDatePicker: View {
                         Text(selectedDate.formatted(date: .numeric, time: .omitted))
                             .font(.Content.mediumBold)
                             .contentTransition(.numericText())
+                            .animation(.smooth, value: selectedDate)
                     }
                     .frame(maxWidth: .infinity)
                 })

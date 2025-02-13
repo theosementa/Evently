@@ -13,7 +13,6 @@ struct CreateEventView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var viewModel: CreateEventViewModel
-    @StateObject private var keyboardManager: KeyboardManager = .init()
 
     init(event: EventModel? = nil) {
         self._viewModel = .init(wrappedValue: .init(event: event))
@@ -78,8 +77,7 @@ struct CreateEventView: View {
                     EmptyView()
                 }
             }
-
-            Spacer()
+            .frame(maxHeight: .infinity, alignment: .top)
 
             ActionButton(
                 config: .init(
@@ -90,7 +88,6 @@ struct CreateEventView: View {
             ) {
                 viewModel.currentActionForStep(dismiss: dismiss)
             }
-            .padding(.bottom, keyboardManager.isVisible ? 16 : 0)
         }
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
