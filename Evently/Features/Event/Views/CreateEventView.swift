@@ -18,6 +18,8 @@ struct CreateEventView: View {
         self._viewModel = .init(wrappedValue: .init(event: event))
     }
 
+    @FocusState var isFocused: Bool
+
     // MARK: -
     var body: some View {
         VStack(spacing: 48) {
@@ -41,43 +43,61 @@ struct CreateEventView: View {
                 ProgressBar(currentStep: viewModel.currentStep, maxStep: viewModel.maxStep)
             }
 
-            VStack(spacing: 24) {
-                switch viewModel.currentStep {
-                case 1:
-                    CustomTextField(
-                        text: $viewModel.name,
-                        config: .init(
-                            title: "add_event_name".localized,
-                            placeholder: "add_event_name_placeholder".localized
+            ScrollView {
+                VStack(spacing: viewModel.currentStep == 3 ? 32 : 24) {
+                    switch viewModel.currentStep {
+                    case 1:
+                        CustomTextField(
+                            text: $viewModel.name,
+                            config: .init(
+                                title: "add_event_name".localized,
+                                placeholder: "add_event_name_placeholder".localized
+                            )
                         )
-                    )
-                    .submitLabel(.done)
+                        .submitLabel(.done)
+                        .focused($isFocused)
 
-                    CategoryPicker(selectedCategory: $viewModel.selectedCategory)
+                        CategoryPicker(selectedCategory: $viewModel.selectedCategory)
 
-                    FolderPicker(selectedFolder: $viewModel.selectedFolder)
-                case 2:
-                    CustomDatePicker(selectedDate: $viewModel.date)
-
-                    FrequencyPicker(frequency: $viewModel.frequency)
-                case 3:
-                    FriendsPicker(selectedFriends: $viewModel.selectedFriends)
-                    ActionButton(
-                        config: .init(
-                            style: .secondary,
-                            icon: .copy,
-                            title: "global_copy_invite_link".localized,
-                            isFill: true
+                        FolderPicker(selectedFolder: $viewModel.selectedFolder)
+                    case 2:
+                        TogglePicker(
+                            isSelected: $viewModel.isAllDay,
+                            title: "add_event_event_duration".localized,
+                            text: "add_event_all_day".localized
                         )
-                    ) {
-                        UIPasteboard.general.string = viewModel.inviteToken
-                        BannerManager.shared.banner = .inviteLink
+
+                        CustomDatePicker(
+                            selectedDate: $viewModel.date,
+                            needToPresentHour: !viewModel.isAllDay
+                        )
+
+                        FrequencyPicker(frequency: $viewModel.frequency)
+                    case 3:
+                        FriendsPicker(selectedFriends: $viewModel.selectedFriends)
+                        VStack(alignment: .leading, spacing: 12) {
+                            ActionButton(
+                                config: .init(
+                                    style: .secondary,
+                                    icon: .copy,
+                                    title: "global_copy_invite_link".localized,
+                                    isFill: true
+                                )
+                            ) {
+                                UIPasteboard.general.string = viewModel.inviteToken
+                                BannerManager.shared.banner = .inviteLink
+                            }
+
+                            Text("add_event_invite_friends_desc_link".localized)
+                                .font(.Content.smallSemiBold)
+                                .padding(.horizontal, 8)
+                        }
+                    default:
+                        EmptyView()
                     }
-                default:
-                    EmptyView()
                 }
             }
-            .frame(maxHeight: .infinity, alignment: .top)
+            .scrollIndicators(.hidden)
 
             ActionButton(
                 config: .init(
@@ -100,6 +120,9 @@ struct CreateEventView: View {
             } else {
                 viewModel.maxStep = 3
             }
+        }
+        .onAppear {
+            isFocused = true
         }
     } // body
 } // struct

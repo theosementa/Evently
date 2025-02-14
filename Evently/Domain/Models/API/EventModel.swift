@@ -100,6 +100,14 @@ extension EventModel {
         return targetDate.daysFromNow
     }
 
+    var isToday: Bool {
+        return remainingDays == 0
+    }
+
+    var isTomorrow: Bool {
+        return remainingDays == 1
+    }
+
     var category: CategoryModel? {
         return CategoryStore.shared.allCategories.first(where: { $0.id == self.categoryID })
     }

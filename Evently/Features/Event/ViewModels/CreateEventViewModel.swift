@@ -18,6 +18,7 @@ final class CreateEventViewModel {
     var selectedCategory: CategoryModel?
     var selectedFolder: FolderModel?
 
+    var isAllDay: Bool = true
     var date: Date = .now
     var frequency: EventFrequency = .unique
 
@@ -105,7 +106,7 @@ extension CreateEventViewModel {
                         name: name,
                         frequency: frequency,
                         categoryID: categoryID,
-                        targetDate: date,
+                        targetDate: self.isAllDay ? date.setTimeToZero() : date,
                         inviteToken: maxStep == 2 ? nil : inviteToken,
                         folderID: selectedFolder?.id,
                         friends: selectedFriends.compactMap(\.username)

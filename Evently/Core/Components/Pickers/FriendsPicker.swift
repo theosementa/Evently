@@ -27,7 +27,7 @@ struct FriendsPicker: View {
                     config: .init(
                         style: .default,
                         icon: .plusCircle,
-                        title: "global_add_friends".localized,
+                        title: "global_invite_friends".localized,
                         isFill: true
                     )
                 ) {

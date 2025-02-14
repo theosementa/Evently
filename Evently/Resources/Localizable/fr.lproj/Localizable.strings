@@ -1,5 +1,15 @@
 //MARK: - Onboarding
-"onboarding_welcome" = "Bienvenue sur";
+"onboarding_step_one_title" = "Toujours à portée de main";
+
+"onboarding_step_one_desc" = "Tous tes événements réunis en un seul endroit, accessibles partout et à tout moment.";
+
+"onboarding_step_two_title" = "Planifie en un instant";
+
+"onboarding_step_two_desc" = "Anniversaires, sorties entre amis, réunions... Planifie et organise tout en quelques instants.";
+
+"onboarding_step_three_title" = "Dossier partagé";
+
+"onboarding_step_three_desc" = "Partage un dossier avec tes amis et synchronisez vos événements en un clin d'œil ! Plus besoin de tout répéter, tout le monde est toujours à jour.";
 
 "onboarding_textOne" = "Commence dès maintenant à planifier tous tes événements en toute simplicité !";
 
@@ -10,6 +20,8 @@
 "onboarding_textFour" = "Plus besoin de jongler entre plusieurs outils. ";
 
 "onboarding_textFive" = "Tout est centralisé au même endroit pour que tu restes organisé sans effort.";
+
+"onboarding_welcome" = "Bienvenue sur";
 
 //MARK: - Auth
 "auth_dont_miss" = "Ne manque plus aucun événement !";
@@ -185,7 +197,12 @@
 
 "add_event_choose_folder" = "Choisir un dossier partagé";
 
-"add_event_choose_date" = "Définir une date";
+"add_event_event_duration" = "Durée de l'événement";
+
+"add_event_all_day" = "Toute la journée";
+
+//MARK: - Invite friends form
+"add_event_invite_friends_desc_link" = "Le lien d’invitation permet à tes amis de rejoindre l’événement en un clic. Il s’active automatiquement dès que l’événement est créé.";
 
 //MARK: - Add Event Category
 "add_category_title" = "Sélectionner une catégorie";
@@ -229,7 +246,9 @@
 "member_list_person" = "personne";
 
 //MARK: - My Friends
-"my_friends_requests_received" = "Demandes reçu";
+"my_friends_requests_received" = "Demandes reçus";
+
+"my_friends_sent_requests" = "Demandes envoyées";
 
 "my_friends_requests" = "Mes demandes d'amis";
 
@@ -246,6 +265,8 @@
 "global_search" = "Rechercher";
 
 "global_add_friends" = "Ajouter des amis";
+
+"global_invite_friends" = "Inviter des amis";
 
 "global_copy_invite_link" = "Copier le lien d’invitation";
 
@@ -283,7 +304,17 @@
 
 "global_continue" = "Continuer";
 
+"global_next" = "Suivant";
+
 "global_selected" = "Selectioné(s)";
+
+"global_update_available" = "Une mise a jour est disponible";
+
+"global_update_ok" = "Je l'installe";
+
+"global_update_later" = "Plus tard";
+
+"global_update_message" = "Une nouvelle mise a jour est disponible, celle ci va vous permettre de beneficier des dernières fonctionnalités et correctifs de bugs, nous vous conseillons vivement de la faire.";
 
 //MARK: - Network Error
 "networkError_400" = "400 - Une erreur s'est produite. Réessaie.";
@@ -306,4 +337,95 @@
 
 //MARK: - Global Banner
 "banner_copy_invite_link" = "Lien d'invitation copié !";
+
+//MARK: - Error
+"toast_error_save_user" = "Erreur lors de l'enregistrement de l'utilisateur.";
+
+"toast_error_get_folder" = "Erreur lors de la récupération des dossiers.";
+
+"toast_error_getting_user" = "Erreur lors de la récupération des informations utilisateur.";
+
+"toast_error_deleting_user" = "Erreur lors de la suppression de l'utilisateur.";
+
+"toast_error_update_user" = "Erreur lors de la mise à jour de l'utilisateur.";
+
+"toast_error_login" = "Erreur lors de la connexion.";
+
+"toast_error_getting_friends" = "Erreur lors de la récupération des amis.";
+
+"toast_error_refresh_token" = "Erreur lors du rafraîchissement du token.";
+
+"toast_error_deleting_event" = "Erreur lors de la suppression de l'événement.";
+
+"toast_error_update_event" = "Erreur lors de la mise à jour de l'événement.";
+
+"toast_error_getting_event" = "Erreur lors de la récupération des événements.";
+
+"toast_error_creating_event" = "Erreur lors de la création de l'événement.";
+
+"toast_error_deleting_friend_request" = "Erreur lors de la suppression de la demande envoyée.";
+
+"toast_error_getting_friend_request" = "Erreur lors de la récupération des demandes.";
+
+"toast_error_answer_friend_request" = "Erreur lors de la réponse à la demande d'ami.";
+
+"toast_error_sending_friend_request" = "Erreur lors de l'envoi de la demande d'ami.";
+
+"toast_error_removing_friend_request" = "Erreur lors de la suppression de l'ami.";
+
+"toast_email_required" = "L'email est requis.";
+
+"toast_all_fields_required" = "Tous les champs doivent être remplis.";
+
+"toast_passwords_do_not_match" = "Les mots de passe ne correspondent pas.";
+
+"toast_register_success" = "Inscription réussie!";
+
+"toast_register_error" = "Une erreur s'est produite lors de l'inscription.";
+
+"toast_general_error" = "Une erreur s'est produite.";
+
+"toast_email_password_required" = "L'email et le mot de passe sont requis.";
+
+"toast_login_success" = "Connexion réussie!";
+
+"toast_login_error" = "Erreur de connexion.";
+
+"toast_need_date_create_event" = "Ajouter une date";
+
+"toast_need_category_create_event" = "Selectionner une categorie";
+
+"edit_category" = "Modifier la catégorie";
+
+"create_category" = "Créer la catégorie";
+
+"global_name" = "Nom";
+
+"add_category_placeholder" = "Ajoutez un nom de catégorie";
+
+"global_color" = "Couleur";
+
+"add_category_choose_color" = "Choisissez une couleur";
+
+"add_category_save" = "Sauvegarder";
+
+"add_category_create" = "Créer";
+
+"edit_folder" = "Modifier un dossier";
+
+"create_folder" = "Créer un dossier";
+
+"add_folder_placeholder" = "Couple de Rémi";
+
+"add_folder_save" = "Sauvegarder";
+
+"add_folder_create" = "Créer un dossier";
+
+"send_friend_request" = "Envoyer la demande";
+
+"add_friend_advice" = "Tu n'as pas encore d'ami ? Ajoutes-en grace au bouton !";
+
+"account_logout" = "Deconnexion";
+
+"account_delete" = "Supprimer mon compte";
 

@@ -28,6 +28,16 @@ struct CustomSearchBar: View {
                 .font(.Content.mediumSemiBold)
                 .autocorrectionDisabled(true)
                 .keyboardType(.alphabet)
+
+            if !text.isEmpty {
+                Button { text = "" } label: {
+                    Image(.xmark)
+                        .resizable()
+                        .renderingMode(.template)
+                        .frame(width: 18, height: 18)
+                        .foregroundStyle(Color.white0)
+                }
+            }
         }
         .padding(.horizontal)
         .padding(.vertical, 14)

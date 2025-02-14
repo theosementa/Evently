@@ -11,10 +11,15 @@ import Foundation
 final class ClassicLoginViewModel {
     static let shared = ClassicLoginViewModel()
 
+    var isEmailAvailable: Bool = true
+    var isInStepTwo: Bool = false
+
     var email: String = ""
     var password: String = ""
     var confirmPassword: String = ""
 
+    var firstName: String = ""
+    var lastName: String = ""
 }
 
 extension ClassicLoginViewModel {
@@ -25,12 +30,27 @@ extension ClassicLoginViewModel {
         confirmPassword = ""
     }
 
-    func loginWithCredentials() {
-        Task {
-            await UserStore.shared.loginWithCredentials(email: email, password: password)
-        }
+    func loginWithCredentials() async {
+        await UserStore.shared.loginWithCredentials(
+            email: email,
+            password: password
+        )
     }
 
-//    func register
+    func isReadyToCreateAnAccount() -> Bool {
+        return isEmailAvailable
+        && email ~= Regex.email
+        && password ~= Regex.password
+        && password == confirmPassword
+    }
+
+    func register() async -> UserModel? {
+        return await UserStore.shared.register(
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password
+        )
+    }
 
 }

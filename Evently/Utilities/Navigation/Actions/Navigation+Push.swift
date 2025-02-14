@@ -17,6 +17,10 @@ extension Router where Destination == NavigationDestination {
         navigateTo(.classicLogin)
     }
 
+    func pushClassicCreateAccount() {
+        navigateTo(.createAccount)
+    }
+
     func pushProfile() {
         navigateTo(.profile)
     }
@@ -27,6 +31,14 @@ extension Router where Destination == NavigationDestination {
 
     func pushMyFriendRequests() {
         navigateTo(.myFriendRequests)
+    }
+
+    func pushMySentRequests() {
+        navigateTo(.mySentRequests)
+    }
+
+    func pushManageMyAccount() {
+        navigateTo(.manageMyAccount)
     }
 
     func pushCreateEvent(event: EventModel? = nil) {

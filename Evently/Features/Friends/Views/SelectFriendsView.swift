@@ -27,7 +27,7 @@ struct SelectFriendsView: View {
                 VStack(spacing: 24) {
                     CreationHeader(
                         icon: .person,
-                        title: "global_add_friends".localized
+                        title: "global_invite_friends".localized
                     )
                     CustomSearchBar(
                         text: $searchText,

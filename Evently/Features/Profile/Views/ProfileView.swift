@@ -46,6 +46,12 @@ struct ProfileView: View {
                         .foregroundStyle(Color.white0)
                     }
 
+                    Button {
+                        TokenManager.shared.setTokenAndRefreshToken(token: "", refreshToken: "")
+                    } label: {
+                        Text("Clear token")
+                    }
+
                     VStack(spacing: 16) {
                         RoutedNavigationButton(push: router.pushMyFriends()) {
                             ProfileRow(
@@ -59,11 +65,13 @@ struct ProfileView: View {
                             title: "profile_my_preferences".localized,
                             isPushable: true
                         )
-                        ProfileRow(
-                            icon: .gear,
-                            title: "profile_manage_my_account".localized,
-                            isPushable: true
-                        )
+                        RoutedNavigationButton(push: router.pushManageMyAccount()) {
+                            ProfileRow(
+                                icon: .gear,
+                                title: "profile_manage_my_account".localized,
+                                isPushable: true
+                            )
+                        }
                     }
                     .padding(.horizontal, 1)
 

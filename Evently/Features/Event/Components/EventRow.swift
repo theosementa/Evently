@@ -60,10 +60,21 @@ struct EventRow: View {
                     }
 
                 VStack(alignment: .trailing, spacing: 0) {
-                    Text(event.remainingDays.formatted())
-                        .font(.Headline.head4)
-                    Text("detail_rest_time".localized)
-                        .font(.Content.largeSemiBold)
+                    Group {
+                        if event.isToday {
+                            Text("Aujourd'hui".localized) // TODO: TBL
+                        } else if event.isTomorrow {
+                            Text("Demain".localized) // TODO: TBL
+                        } else {
+                            Text(event.remainingDays.formatted())
+                        }
+                    }
+                    .font(.Headline.head4)
+
+                    if !(event.isToday || event.isTomorrow) {
+                        Text("detail_rest_time".localized)
+                            .font(.Content.largeSemiBold)
+                    }
                 }
                 .foregroundStyle(Color.white0)
                 .frame(maxWidth: .infinity, alignment: .trailing)
@@ -75,7 +86,6 @@ struct EventRow: View {
                 .fill(backgroundStyle)
         }
         .contextMenu {
-
             if let user = userStore.currentUser, let userIdOfEvent = event.userID {
                 if user.isOwner(userIdOfEvent) {
                     Button {

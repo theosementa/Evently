@@ -2,108 +2,125 @@
 //  OnboardingView.swift
 //  Evently
 //
-//  Created by Theo Sementa on 09/02/2025.
+//  Created by Theo Sementa on 13/02/2025.
 //
 
 import SwiftUI
 
 struct OnboardingView: View {
 
-    @State private var viewModel: OnboardingViewModel = .init()
+    @State var currentStep: Int = 0
+    @State var showContent: Bool = false
+
+    @Preference(\.hasOnboardingBeenSeen) private var hasOnboardingBeenSeen
 
     // MARK: -
     var body: some View {
-        VStack(spacing: 32) {
-            if viewModel.isHeaderDisplayed {
-                VStack(spacing: 32) {
-                    HStack(alignment: .top) {
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text("onboarding_welcome".localized)
-                            Text("Evently")
-                        }
-                        .font(.Headline.head4)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+        VStack {
+            HStack(spacing: 16) {
+                Image(.logoEvently)
+                    .resizable()
+                    .frame(width: 48, height: 48)
+                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
 
-                        Image(.logoEvently)
+                Text("Evently")
+                    .font(.Headline.head3)
+            }
+
+            VStack(spacing: 32) {
+                switch currentStep {
+                case 1:
+                    Group {
+                        Image(.illuDatabase)
                             .resizable()
-                            .frame(width: 40, height: 40)
-                            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-                    }
+                            .scaledToFit()
+                            .padding(.horizontal, 32)
 
-                    Image(.havingFun)
+                        VStack(spacing: 16) {
+                            Text("onboarding_step_one_title".localized)
+                                .font(.Headline.head5)
+
+                            Text("onboarding_step_one_desc".localized)
+                                .font(.Content.largeSemiBold)
+                                .multilineTextAlignment(.center)
+                        }
+                    }
+                    .opacity(showContent ? 1 : 0)
+                case 2:
+                    Group {
+                        Image(.illuParty)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.horizontal, 32)
+
+                        VStack(spacing: 16) {
+                            Text("onboarding_step_two_title".localized)
+                                .font(.Headline.head5)
+
+                            Text("onboarding_step_two_desc".localized)
+                                .font(.Content.largeSemiBold)
+                                .multilineTextAlignment(.center)
+                        }
+                    }
+                    .opacity(showContent ? 1 : 0)
+                case 3:
+                    Group {
+                        Image(.illuHangingOut)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.horizontal, 32)
+
+                        VStack(spacing: 16) {
+                            Text("onboarding_step_three_title".localized)
+                                .font(.Headline.head5)
+
+                            Text("onboarding_step_three_desc".localized)
+                                .font(.Content.largeSemiBold)
+                                .multilineTextAlignment(.center)
+                        }
+                    }
+                    .opacity(showContent ? 1 : 0)
+                default:
+                    EmptyView()
                 }
             }
+            .frame(maxHeight: .infinity)
 
-            Group {
-                if viewModel.onboardingCurrentStep == 1 {
-                    VStack(alignment: .leading, spacing: 32) {
-                        ForEach(viewModel.onboardingStep1Texts.indices, id: \.self) { index in
-                            Text(viewModel.onboardingStep1Texts[index])
-                                .font(.Content.largeSemiBold)
-                                .opacity(viewModel.shownTexts.contains(index) ? 1 : 0)
-                                .offset(y: viewModel.shownTexts.contains(index) ? 0 : 20)
-                                .animation(.smooth(duration: 1.2), value: viewModel.shownTexts.contains(index))
-                        }
-                    }
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            viewModel.playStepOneAnimation()
-                        }
-                    }
+            ActionButton(
+                config: .init(
+                    style: .default,
+                    icon: currentStep == 3 ? .sparkes : nil,
+                    title: currentStep == 3 ? "global_start".localized : "global_next".localized,
+                    isFill: true
+                )
+            ) {
+                if currentStep == 3 {
+                    hasOnboardingBeenSeen = true
                 } else {
-                    VStack(alignment: .leading, spacing: 32) {
-                        ForEach(viewModel.onboardingStep2Texts.indices, id: \.self) { index in
-                            Text(viewModel.onboardingStep2Texts[index])
-                                .font(.Content.largeSemiBold)
-                                .opacity(viewModel.shownTexts.contains(index) ? 1 : 0)
-                                .offset(y: viewModel.shownTexts.contains(index) ? 0 : 20)
-                                .animation(.smooth(duration: 1.2), value: viewModel.shownTexts.contains(index))
-                        }
-                    }
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            viewModel.playStepTwoAnimation()
-                        }
-                    }
-                }
-            }
-            .frame(maxHeight: .infinity, alignment: .top)
-
-            if viewModel.onboardingCurrentStep == 1 && viewModel.isButtonStepOneDisplayed {
-                ActionButton(
-                    config: .init(
-                        style: .default,
-                        title: "global_continue".localized,
-                        isFill: true
-                    )
-                ) {
-                    viewModel.shownTexts.removeAll()
-                    withAnimation(.smooth) {
-                        viewModel.onboardingCurrentStep = 2
-                    }
-                }
-            } else  if viewModel.onboardingCurrentStep == 2 && viewModel.isButtonStepTwoDisplayed {
-                ActionButton(
-                    config: .init(
-                        style: .default,
-                        icon: .sparkes,
-                        title: "global_start".localized,
-                        isFill: true
-                    )
-                ) {
-
+                    playAnimation()
                 }
             }
         }
         .padding(24)
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                withAnimation(.smooth(duration: 1.2)) {
-                    viewModel.isHeaderDisplayed = true
-                }
-            }
+            playAnimation()
         }
     } // body
+
+    private func playAnimation() {
+        withAnimation(.easeOut(duration: 1.6)) {
+            showContent = false
+        }
+
+        withAnimation(.easeInOut) {
+            currentStep += 1
+        }
+
+        withAnimation(.easeIn(duration: 1.4)) {
+            showContent = true
+        }
+    }
+
 } // struct
 
 // MARK: - Preview

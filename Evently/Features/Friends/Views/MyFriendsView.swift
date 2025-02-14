@@ -50,7 +50,7 @@ struct MyFriendsView: View {
                                     title: "global_sent".localized,
                                     isFill: true
                                 )
-                            ) { }
+                            ) { router.pushMySentRequests() }
                             ActionButton(
                                 config: .init(
                                     style: .default,

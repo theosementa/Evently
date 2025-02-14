@@ -10,6 +10,7 @@ import SwiftUI
 struct CustomDatePicker: View {
 
     @Binding var selectedDate: Date
+    var needToPresentHour: Bool = false
 
     @State private var isDatePickerVisible: Bool = false
 
@@ -33,8 +34,14 @@ struct CustomDatePicker: View {
                             .renderingMode(.template)
                             .frame(width: 20, height: 20)
 
-                        Text(selectedDate.formatted(date: .numeric, time: .omitted))
-                            .font(.Content.mediumBold)
+                        HStack(spacing: 6) {
+                            Text(selectedDate.formatted(date: .numeric, time: .omitted))
+
+                            if needToPresentHour {
+                                Text("- \(selectedDate.formatted(date: .omitted, time: .shortened))")
+                            }
+                        }
+                        .font(.Content.mediumBold)
                             .contentTransition(.numericText())
                             .animation(.smooth, value: selectedDate)
                     }
@@ -45,7 +52,7 @@ struct CustomDatePicker: View {
                     DatePicker(
                         "",
                         selection: $selectedDate.animation(.smooth),
-                        displayedComponents: .date
+                        displayedComponents: needToPresentHour ? [.date, .hourAndMinute] : [.date]
                     )
                     .datePickerStyle(.graphical)
                 }

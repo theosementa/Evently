@@ -12,11 +12,14 @@ enum NavigationDestination: RoutedDestination, Identifiable {
 
     case stepTwo
     case classicLogin
+    case createAccount
 
     case home
     case profile
     case myFriends
     case myFriendRequests
+    case mySentRequests
+    case manageMyAccount
 
     case addFriend
 
@@ -38,6 +41,8 @@ enum NavigationDestination: RoutedDestination, Identifiable {
             StepTwoView()
         case .classicLogin:
             ClassicLoginView()
+        case .createAccount:
+            ClassicCreateAccountView()
 
         case .home:
             HomeView()
@@ -47,6 +52,10 @@ enum NavigationDestination: RoutedDestination, Identifiable {
             MyFriendsView()
         case .myFriendRequests:
             MyFriendRequestsView()
+        case .mySentRequests:
+            MySentRequestView()
+        case .manageMyAccount:
+            ManageMyAccountView()
 
         case .addFriend:
             AddFriendView()

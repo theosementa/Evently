@@ -26,6 +26,9 @@ struct NetworkPath {
         static func refreshToken(refreshToken: String) -> String {
             return "/user/refresh-token/\(refreshToken)"
         }
+        static func isEmailAvailbale(email: String) -> String {
+            return "/user/available/\(email)"
+        }
     }
 
     struct Category {

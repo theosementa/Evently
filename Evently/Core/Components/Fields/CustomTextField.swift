@@ -39,6 +39,25 @@ struct CustomTextField: View {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .stroke(text.isEmpty ? Color.black200 : Color.white0, lineWidth: 2)
             }
+
+            if !config.rules.isEmpty {
+                VStack(spacing: 8) {
+                    ForEach(config.rules, id: \.self) { rule in
+                        HStack(spacing: 8) {
+                            Image(rule.isActive ? .checkmarkCircle : .xmark)
+                                .resizable()
+                                .renderingMode(.template)
+                                .frame(width: 18, height: 18)
+                                .foregroundStyle(rule.isActive ? .green : .red)
+
+                            Text(rule.text)
+                                .font(.Content.smallSemiBold)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
+                }
+                .padding(.leading, 8)
+            }
         }
         .onTapGesture {
             isFocused = true
@@ -51,6 +70,12 @@ extension CustomTextField {
         var title: String
         var placeholder: String
         var isSecured: Bool = false
+        var rules: [RuleLine] = []
+    }
+
+    struct RuleLine: Hashable {
+        var isActive: Bool
+        var text: String
     }
 }
 
@@ -69,6 +94,19 @@ extension CustomTextField {
             config: .init(
                 title: "Prénom",
                 placeholder: "Thomas"
+            )
+        )
+        CustomTextField(
+            text: .constant(""),
+            config: .init(
+                title: "Prénom",
+                placeholder: "Thomas",
+                rules: [
+                    .init(
+                        isActive: true,
+                        text: "Rule for preview"
+                    )
+                ]
             )
         )
     }

@@ -15,6 +15,7 @@ enum UserAPIRequester: APIRequestBuilder {
     case update(body: UserModel)
     case delete
     case fetchFriends
+    case isEmailAvailable(email: String)
 }
 
 extension UserAPIRequester {
@@ -34,6 +35,8 @@ extension UserAPIRequester {
             return NetworkPath.User.base
         case .fetchFriends:
             return NetworkPath.User.friends
+        case .isEmailAvailable(let email):
+            return NetworkPath.User.isEmailAvailbale(email: email)
         }
     }
 
@@ -46,6 +49,7 @@ extension UserAPIRequester {
         case .update:       return .PUT
         case .delete:       return .DELETE
         case .fetchFriends: return .GET
+        case .isEmailAvailable: return .GET
         }
     }
 
@@ -60,6 +64,7 @@ extension UserAPIRequester {
         case .update:       return true
         case .delete:       return true
         case .fetchFriends: return true
+        case .isEmailAvailable: return false
         }
     }
 

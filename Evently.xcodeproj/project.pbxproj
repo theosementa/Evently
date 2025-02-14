@@ -99,6 +99,7 @@
 				Domain/Enums/KeychainKeys.swift,
 				Domain/Models/API/AuthResponse.swift,
 				Domain/Models/API/CategoryModel.swift,
+				Domain/Models/API/EmailAvailability.swift,
 				Domain/Models/API/EventModel.swift,
 				Domain/Models/API/FolderModel.swift,
 				Domain/Models/API/Friends/FriendRequestAcceptedModel.swift,

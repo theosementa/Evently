@@ -1,5 +1,15 @@
 //MARK: - Onboarding
-"onboarding_welcome" = "Welcome to";
+"onboarding_step_one_title" = "Always at hand";
+
+"onboarding_step_one_desc" = "All your events in one place, accessible anywhere and at any time.";
+
+"onboarding_step_two_title" = "Plan in an instant";
+
+"onboarding_step_two_desc" = "Birthdays, outings with friends, meetings... Plan and organize everything in just a few moments.";
+
+"onboarding_step_three_title" = "Shared folder";
+
+"onboarding_step_three_desc" = "Share a folder with your friends and sync your events in the blink of an eye! No need to repeat everything, everyone is always up to date.";
 
 "onboarding_textOne" = "Start planning all your events now with ease!";
 
@@ -10,6 +20,8 @@
 "onboarding_textFour" = "No more need to juggle between multiple tools. ";
 
 "onboarding_textFive" = "Everything is centralized in one place so you stay organized effortlessly.";
+
+"onboarding_welcome" = "Welcome to";
 
 //MARK: - Auth
 "auth_dont_miss" = "Don't miss any more events!";
@@ -109,7 +121,7 @@
 "cat_trip" = "Trip";
 
 //MARK: - Event detail
-"detail_rest_time" = "days remaining";
+"detail_rest_time" = "days left";
 
 "detail_years" = "years";
 
@@ -185,7 +197,12 @@
 
 "add_event_choose_folder" = "Choose a shared folder";
 
-"add_event_choose_date" = "Choose date";
+"add_event_event_duration" = "Event duration";
+
+"add_event_all_day" = "All day";
+
+//MARK: - Invite friends form
+"add_event_invite_friends_desc_link" = "The invite link allows your friends to join the event in one click. It is automatically activated as soon as the event is created.";
 
 //MARK: - Add Event Category
 "add_category_title" = "Select a category";
@@ -231,6 +248,8 @@
 //MARK: - My Friends
 "my_friends_requests_received" = "Requests received";
 
+"my_friends_sent_requests" = "Requests sent";
+
 "my_friends_requests" = "My friend requests";
 
 //MARK: - Profile
@@ -246,6 +265,8 @@
 "global_search" = "To research";
 
 "global_add_friends" = "Add friends";
+
+"global_invite_friends" = "Invite friends";
 
 "global_copy_invite_link" = "Copy invitation link";
 
@@ -283,14 +304,24 @@
 
 "global_continue" = "Continue";
 
+"global_next" = "Next";
+
 "global_selected" = "Selected";
+
+"global_update_available" = "An update is available";
+
+"global_update_ok" = "I install it";
+
+"global_update_later" = "Later";
+
+"global_update_message" = "A new update is available, this one will allow you to benefit from the latest features and bug fixes, we strongly advise you to do so.";
 
 //MARK: - Network Error
 "networkError_400" = "400 - An error has occurred. Try again.";
 
 "networkError_401" = "401 - You are not authorized to perform this action.";
 
-"networkError_404" = "404 - The content you were looking for could not be found.";
+"networkError_404" = "404 - The searched content could not be found.";
 
 "networkError_422" = "422 - Some information is incorrect or incomplete.";
 
@@ -306,4 +337,95 @@
 
 //MARK: - Global Banner
 "banner_copy_invite_link" = "Invitation link copied!";
+
+//MARK: - Error
+"toast_error_save_user" = "Error registering user.";
+
+"toast_error_get_folder" = "Error retrieving folders.";
+
+"toast_error_getting_user" = "Error retrieving user information.";
+
+"toast_error_deleting_user" = "Error deleting user.";
+
+"toast_error_update_user" = "Error updating user.";
+
+"toast_error_login" = "Error connecting.";
+
+"toast_error_getting_friends" = "Error retrieving friends.";
+
+"toast_error_refresh_token" = "Error refreshing token.";
+
+"toast_error_deleting_event" = "Error deleting the event.";
+
+"toast_error_update_event" = "Error updating event.";
+
+"toast_error_getting_event" = "Error retrieving events.";
+
+"toast_error_creating_event" = "Error creating the event.";
+
+"toast_error_deleting_friend_request" = "Error deleting sent request.";
+
+"toast_error_getting_friend_request" = "Error retrieving requests.";
+
+"toast_error_answer_friend_request" = "Error responding to friend request.";
+
+"toast_error_sending_friend_request" = "Error sending friend request.";
+
+"toast_error_removing_friend_request" = "Error removing friend.";
+
+"toast_email_required" = "Email is required.";
+
+"toast_all_fields_required" = "All fields must be completed.";
+
+"toast_passwords_do_not_match" = "Passwords do not match.";
+
+"toast_register_success" = "Registration successful!";
+
+"toast_register_error" = "An error occurred during registration.";
+
+"toast_general_error" = "An error has occurred.";
+
+"toast_email_password_required" = "Email and password are required.";
+
+"toast_login_success" = "Connection successful!";
+
+"toast_login_error" = "Connection error.";
+
+"toast_need_date_create_event" = "Add a date";
+
+"toast_need_category_create_event" = "Select a category";
+
+"edit_category" = "Edit category";
+
+"create_category" = "Create category";
+
+"global_name" = "Name";
+
+"add_category_placeholder" = "Add a category name";
+
+"global_color" = "Color";
+
+"add_category_choose_color" = "Choose a color";
+
+"add_category_save" = "Save";
+
+"add_category_create" = "Create";
+
+"edit_folder" = "Edit a folder";
+
+"create_folder" = "Create a folder";
+
+"add_folder_placeholder" = "Rémi's couple";
+
+"add_folder_save" = "To safeguard";
+
+"add_folder_create" = "Create a folder";
+
+"send_friend_request" = "Send request";
+
+"add_friend_advice" = "You don't have a friend yet? Add some using the button!";
+
+"account_logout" = "Disconnect";
+
+"account_delete" = "Delete my account";
 

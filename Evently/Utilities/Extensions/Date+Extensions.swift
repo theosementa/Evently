@@ -17,4 +17,9 @@ extension Date {
         return components.day ?? 0
     }
 
+    func setTimeToZero() -> Date {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        return Calendar.current.date(from: components)!
+    }
+
 }

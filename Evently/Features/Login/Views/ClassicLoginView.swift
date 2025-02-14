@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import NavigationKit
 
 struct ClassicLoginView: View {
 
     @State private var viewModel: ClassicLoginViewModel = .shared
+
     @Environment(UserStore.self) private var userStore
     @Environment(\.dismiss) private var dismiss
+
+    @EnvironmentObject var router: Router<NavigationDestination>
 
     // MARK: -
     var body: some View {
@@ -44,12 +48,16 @@ struct ClassicLoginView: View {
 
             ActionButton(
                 config: .init(
-                    style: .default,
+                    style: (viewModel.email.isEmpty || viewModel.password.isEmpty) ? .disabled : .default,
                     icon: .sparkes,
                     title: "auth_connection".localized,
                     isFill: true
                 )
-            ) { }
+            ) {
+                if !viewModel.email.isEmpty && !viewModel.password.isEmpty {
+                    await viewModel.loginWithCredentials()
+                }
+            }
 
             Separator()
 
@@ -64,9 +72,7 @@ struct ClassicLoginView: View {
                         title: "auth_create_account".localized,
                         isFill: true
                     )
-                ) {
-
-                }
+                ) { router.pushClassicCreateAccount() }
             }
 
             Spacer()
@@ -74,6 +80,8 @@ struct ClassicLoginView: View {
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black0)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
         .onAppear {
             viewModel.resetData()
         }

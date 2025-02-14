@@ -43,4 +43,11 @@ struct UserService {
         )
     }
 
+    static func isEmailAvailable(_ email: String) async throws -> EmailAvailability {
+        return try await NetworkService.shared.sendRequest(
+            apiBuilder: UserAPIRequester.isEmailAvailable(email: email),
+            responseModel: EmailAvailability.self
+        )
+    }
+
 }

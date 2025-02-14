@@ -25,6 +25,8 @@ struct EventlyApp: App {
     @State private var categoryStore: CategoryStore = .shared
     @State private var eventStore: EventStore = .shared
 
+    @Preference(\.hasOnboardingBeenSeen) private var hasOnboardingBeenSeen
+
     // MARK: -
     var body: some Scene {
         WindowGroup {
@@ -49,15 +51,23 @@ struct EventlyApp: App {
                         RoutedNavigationStack(router: router) {
                             HomeView()
                         }
+                        .environmentObject(router)
+
                     case .needToLogin:
-                        RoutedNavigationStack(router: loginRouter) {
-                            LoginView(router: loginRouter)
+                        if !hasOnboardingBeenSeen {
+                            OnboardingView()
+                        } else {
+                            RoutedNavigationStack(router: loginRouter) {
+                                LoginView(router: loginRouter)
+                            }
+                            .environmentObject(loginRouter)
                         }
                     }
 
                     SideMenu(isShowing: $appManager.isSideMenuPresented) {
                         SideMenuView()
                     }
+                    .environmentObject(router)
                 }
             }
             .animation(.smooth, value: appManager.appState)
@@ -69,7 +79,6 @@ struct EventlyApp: App {
             .environment(folderStore)
             .environment(categoryStore)
             .environment(eventStore)
-            .environmentObject(router)
             .onAppear {
                 appManager.appState = .loading
             }

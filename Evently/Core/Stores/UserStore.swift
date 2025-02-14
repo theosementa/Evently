@@ -65,14 +65,55 @@ extension UserStore {
     }
 
     @MainActor
-    func register(email: String, password: String) async {
+    func register(firstName: String, lastName: String, email: String, password: String) async -> UserModel? {
         do {
-            let user = try await UserService.register(body: .init(email: email, password: password))
+            let user = try await UserService.register(body: .init(
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
+            ))
             self.currentUser = user
+            if let token = user.token, let refreshToken = user.refreshToken {
+                TokenManager.shared.setTokenAndRefreshToken(token: token, refreshToken: refreshToken)
+            }
+            return user
         } catch {
             NetworkService.handleError(error: error)
             self.currentUser = nil
+            return nil
         }
     }
 
+    @MainActor
+    func isEmailAvailable(_ email: String) async -> Bool {
+        do {
+            return try await UserService.isEmailAvailable(email).available ?? false
+        } catch {
+            NetworkService.handleError(error: error)
+            return false
+        }
+    }
+
+}
+
+extension UserStore {
+    
+    @MainActor
+    func logout() async {
+        TokenManager.shared.setTokenAndRefreshToken(token: "", refreshToken: "")
+        AppManager.shared.appState = .needToLogin
+    }
+    
+    @MainActor
+    func deleteMyAccount() async {
+        do {
+            try await UserService.delete()
+            TokenManager.shared.setTokenAndRefreshToken(token: "", refreshToken: "")
+            AppManager.shared.appState = .needToLogin
+        } catch {
+            NetworkService.handleError(error: error)
+        }
+    }
+    
 }

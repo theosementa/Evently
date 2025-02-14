@@ -15,6 +15,20 @@ struct HomeView: View {
     @Environment(AppManager.self) private var appManager
     @Environment(EventStore.self) private var eventStore
 
+    var filteredSections: [EventSection] {
+        let filteredEvents: [EventModel]
+
+        if viewModel.searchText.isEmpty {
+            filteredEvents = viewModel.filterEvents(eventStore.events)
+        } else {
+            filteredEvents = viewModel.filterEvents(eventStore.events)
+                .filter { $0.name.localizedStandardContains(viewModel.searchText) }
+        }
+
+        let sections = viewModel.groupEvents(filteredEvents)
+        return sections
+    }
+
     // MARK: -
     var body: some View {
         VStack(spacing: 24) {
@@ -57,10 +71,8 @@ struct HomeView: View {
                 .padding(.horizontal, 24)
                 .padding(.top)
             } else {
-                let sections = viewModel.groupEvents(filteredEvents)
-
                 List {
-                    ForEach(Array(sections.enumerated()), id: \.element.title) { index, section in
+                    ForEach(Array(filteredSections.enumerated()), id: \.element.title) { index, section in
                         Section {
                             ForEach(section.events) { event in
                                 if let id = event.id {
@@ -73,7 +85,7 @@ struct HomeView: View {
                                 }
                             }
 
-                            if index < sections.count - 1 {
+                            if index < filteredSections.count - 1 {
                                 Separator()
                                     .listRowSeparator(.hidden)
                                     .listRowBackground(Color.clear)
@@ -98,6 +110,8 @@ struct HomeView: View {
                 .contentMargins(.horizontal, 24, for: .scrollContent)
                 .ignoresSafeArea(.container, edges: .bottom)
                 .animation(.smooth(duration: 1.2), value: appManager.sideMenuItem)
+                .animation(.smooth(duration: 1.2), value: filteredSections.count)
+                .animation(.smooth(duration: 1.2), value: filteredEvents.count)
                 .refreshable {
                     await eventStore.fetchEvents()
                 }
@@ -114,6 +128,7 @@ struct HomeView: View {
                     title: "add_event_title".localized
                 )
             ) { router.pushCreateEvent() }
+                .shadow(radius: 8, y: 4)
                 .padding(24)
         }
     } // body

@@ -10,6 +10,7 @@ import SwiftUI
 struct StepTwoView: View {
 
     @State private var viewModel: LoginViewModel = .shared
+    @State private var classicViewModel: ClassicLoginViewModel = .shared
 
     // MARK: -
     var body: some View {
@@ -45,11 +46,34 @@ struct StepTwoView: View {
                     title: "auth_end_button".localized,
                     isFill: true
                 )
-            ) { await viewModel.stepTwo() }
+            ) {
+                if classicViewModel.isInStepTwo {
+                    if !classicViewModel.firstName.isEmpty && !classicViewModel.lastName.isEmpty {
+                        if await classicViewModel.register() != nil {
+                            AppManager.shared.appState = .running
+                        }
+                    }
+                } else {
+                    if !viewModel.firstName.isEmpty && !viewModel.lastName.isEmpty {
+                        await viewModel.stepTwo()
+                    }
+                }
+            }
         }
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black0)
+        .navigationBarBackButtonHidden(true)
+        .onChange(of: viewModel.firstName) {
+            if classicViewModel.isInStepTwo {
+                classicViewModel.firstName = viewModel.firstName
+            }
+        }
+        .onChange(of: viewModel.lastName) {
+            if classicViewModel.isInStepTwo {
+                classicViewModel.lastName = viewModel.lastName
+            }
+        }
     } // body
 } // struct
 

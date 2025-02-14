@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import NavigationKit
 
 struct ClassicCreateAccountView: View {
 
     @State private var viewModel: ClassicLoginViewModel = .shared
     @Environment(UserStore.self) private var userStore
     @Environment(\.dismiss) private var dismiss
+
+    @EnvironmentObject var router: Router<NavigationDestination>
 
     // MARK: -
     var body: some View {
@@ -28,7 +31,13 @@ struct ClassicCreateAccountView: View {
                     text: $viewModel.email,
                     config: .init(
                         title: "auth_email".localized,
-                        placeholder: "thomasdupont@gmail.com"
+                        placeholder: "thomasdupont@gmail.com",
+                        rules: [
+                            .init(
+                                isActive: viewModel.isEmailAvailable && viewModel.email ~= Regex.email,
+                                text: "Email disponible" // TODO: TBL
+                            )
+                        ]
                     )
                 )
 
@@ -37,7 +46,17 @@ struct ClassicCreateAccountView: View {
                     config: .init(
                         title: "auth_password".localized,
                         placeholder: "Th@ma$12",
-                        isSecured: true
+                        isSecured: true,
+                        rules: [
+                            .init(
+                                isActive: viewModel.password ~= Regex.moreThan8,
+                                text: "8 caractères"
+                            ), // TODO: TBL
+                            .init(
+                                isActive: viewModel.password ~= Regex.startPassword,
+                                text: "Majuscule, minuscule et chiffre"
+                            ) // TODO: TBL
+                        ]
                     )
                 )
 
@@ -53,13 +72,14 @@ struct ClassicCreateAccountView: View {
 
             ActionButton(
                 config: .init(
-                    style: .default,
+                    style: viewModel.isReadyToCreateAnAccount() ? .default : .disabled,
                     icon: .sparkes,
                     title: "auth_create_account".localized,
                     isFill: true
                 )
             ) {
-
+                viewModel.isInStepTwo = true
+                router.pushStepTwo()
             }
 
             Spacer()
@@ -67,6 +87,13 @@ struct ClassicCreateAccountView: View {
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black0)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .onChange(of: viewModel.email) {
+            Task {
+                viewModel.isEmailAvailable = await UserStore.shared.isEmailAvailable(viewModel.email)
+            }
+        }
     } // body
 } // struct
 
